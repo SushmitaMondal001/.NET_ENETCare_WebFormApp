@@ -22,5 +22,35 @@ namespace ENETCareWebFormApp.Tests
             var result = testData.AddTotalCost(10, 20);
             Assert.IsTrue(result == 30);
         }
+
+        [TestMethod()]
+        public void GetDistrictNameTest()
+        {
+            string district = testData.GetDistrictName();
+            Assert.IsTrue(district == "NSW");
+        }
+
+        [TestMethod()]
+        public void CheckPasswordTest()
+        {
+            string password = testData.CheckPassword();
+            Assert.IsTrue(password == "12345");
+        }
+
+        [TestMethod()]
+        public void DivideNumbersTest()
+        {
+            var result = testData.DivideNumbers(20, 10);
+            Assert.IsTrue(result == 2);
+        }
+
+        [TestMethod()]
+        public void GetLocationTest()
+        {
+            int n = 0;
+            string location = testData.GetLocation();
+            bool isNumeric = int.TryParse(location, out n);
+            Assert.IsTrue(isNumeric == false);
+        }
     }
 }
