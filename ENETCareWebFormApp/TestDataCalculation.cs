@@ -38,15 +38,31 @@ namespace ENETCareWebFormApp
                 {"Talha","3500" },
             };
             for(int i = 0; i<approvalLimitList.GetLength(0); i++)
-            {
-                
+            {                
                 if ((approvalLimitList[i, 0] == name[0, 0])&& (approvalLimitList[i, 1] == name[0, 1]))
                 {
                     result = name;
                 }
             }
+            return result;
+        }
 
-
+        public string[,] IntervationCost(string[,] name)
+        {
+            string[,] result = new string[1, 2];
+            string[,] approvalLimitList =
+            {
+                {"Supply Mosquito Net”","100" },
+                {"Supply and Install Storm-proof Home Kit”","3000" },
+                
+            };
+            for (int i = 0; i < approvalLimitList.GetLength(0); i++)
+            {
+                if ((approvalLimitList[i, 0] == name[0, 0]) && (approvalLimitList[i, 1] == name[0, 1]))
+                {
+                    result = name;
+                }
+            }
             return result;
         }
 
