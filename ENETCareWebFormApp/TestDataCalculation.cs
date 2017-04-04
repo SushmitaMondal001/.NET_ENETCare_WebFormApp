@@ -50,15 +50,15 @@ namespace ENETCareWebFormApp
         public string[,] IntervationCost(string[,] name)
         {
             string[,] result = new string[1, 2];
-            string[,] approvalLimitList =
+            string[,] intervationCostList =
             {
-                {"Supply Mosquito Net”","100" },
-                {"Supply and Install Storm-proof Home Kit”","3000" },
+                {"Supply Mosquito Net","100" },
+                {"Supply and Install Storm-proof Home Kit","3000" },
                 
             };
-            for (int i = 0; i < approvalLimitList.GetLength(0); i++)
+            for (int i = 0; i < intervationCostList.GetLength(0); i++)
             {
-                if ((approvalLimitList[i, 0] == name[0, 0]) && (approvalLimitList[i, 1] == name[0, 1]))
+                if ((intervationCostList[i, 0] == name[0, 0]) && (intervationCostList[i, 1] == name[0, 1]))
                 {
                     result = name;
                 }

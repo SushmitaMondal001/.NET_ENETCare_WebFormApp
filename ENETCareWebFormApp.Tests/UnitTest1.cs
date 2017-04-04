@@ -38,6 +38,14 @@ namespace ENETCareWebFormApp.Tests
             Assert.IsTrue(result == name);
         }
 
+        [TestMethod]
+        public void IntervationCostTest()
+        {
+            string[,] name = { { "Supply Mosquito Net", "100" } };
+            string[,] result = testData.IntervationCost(name);
+            Assert.IsTrue(result == name);
+        }
+
         [TestMethod()]
         public void GetDistrictNameTest()
         {
