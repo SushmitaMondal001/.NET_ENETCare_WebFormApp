@@ -14,10 +14,11 @@ namespace ENETCareWebFormApp
             return totalCost;
         }
 
+        //Searches for Site Engineer
         public string SiteEngineer(string name)
         {
             string[] siteEngineerList = { "Supreet", "Syed", "Sushmita", "Talha" };
-            bool search = Array.Exists(siteEngineerList, element => element.Equals(name));
+            bool search = Array.Exists(siteEngineerList, x => x.Equals(name));
             string result="";
             if (search)
             {
@@ -25,6 +26,31 @@ namespace ENETCareWebFormApp
             }
             return result;
         }
+
+        public string[,] SiteEngineerApprovalLimit(string[,] name)
+        {
+            string[,] result = new string[1,2];
+            string[,] approvalLimitList =
+            {
+                {"Supreet","2000" },
+                {"Syed","3000" },
+                {"Sushmita","2500" },
+                {"Talha","3500" },
+            };
+            for(int i = 0; i<approvalLimitList.GetLength(0); i++)
+            {
+                
+                if ((approvalLimitList[i, 0] == name[0, 0])&& (approvalLimitList[i, 1] == name[0, 1]))
+                {
+                    result = name;
+                }
+            }
+
+
+            return result;
+        }
+
+
 
         // Return a district name
         public string GetDistrictName()

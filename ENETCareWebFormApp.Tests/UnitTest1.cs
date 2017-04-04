@@ -26,8 +26,16 @@ namespace ENETCareWebFormApp.Tests
         [TestMethod]
         public void SearchSiteEngineerListTest()
         {
-            string name = testData.SiteEngineer("Syed");
-            Assert.IsTrue(name == "Syed");
+            string name = testData.SiteEngineer("Talha");
+            Assert.IsTrue(name == "Talha");
+        }
+
+        [TestMethod]
+        public void SiteEngineerApprovalLimitTest()
+        {
+            string[,] name = { { "Talha", "3500" } };
+            string[,] result = testData.SiteEngineerApprovalLimit(name);
+            Assert.IsTrue(result == name);
         }
 
         [TestMethod()]
