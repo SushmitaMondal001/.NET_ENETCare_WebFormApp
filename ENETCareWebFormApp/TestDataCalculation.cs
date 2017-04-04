@@ -14,6 +14,18 @@ namespace ENETCareWebFormApp
             return totalCost;
         }
 
+        public string SiteEngineer(string name)
+        {
+            string[] siteEngineerList = { "Supreet", "Syed", "Sushmita", "Talha" };
+            bool search = Array.Exists(siteEngineerList, element => element.Equals(name));
+            string result="";
+            if (search)
+            {
+                 result = name;
+            }
+            return result;
+        }
+
         // Return a district name
         public string GetDistrictName()
         {

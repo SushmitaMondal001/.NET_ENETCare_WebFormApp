@@ -23,6 +23,13 @@ namespace ENETCareWebFormApp.Tests
             Assert.IsTrue(result == 30);
         }
 
+        [TestMethod]
+        public void SearchSiteEngineerListTest()
+        {
+            string name = testData.SiteEngineer("Syed");
+            Assert.IsTrue(name == "Syed");
+        }
+
         [TestMethod()]
         public void GetDistrictNameTest()
         {
