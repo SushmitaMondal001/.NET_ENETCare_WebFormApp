@@ -12,5 +12,7 @@ namespace ENETCareWebFormApp
             double totalCost = prevCost + newCost;
             return totalCost;
         }
+
+
     }
 }
