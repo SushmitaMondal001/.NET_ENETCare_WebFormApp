@@ -136,8 +136,7 @@ namespace ENETCareWebFormApp
             {
                 customer_result = CustomerList[1];
             }
-            //Console.WriteLine(customer_result);
-            //Console.ReadLine();
+            
             return customer_result;
         }
 
