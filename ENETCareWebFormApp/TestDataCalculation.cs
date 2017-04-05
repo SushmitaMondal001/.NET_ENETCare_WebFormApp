@@ -7,7 +7,9 @@ using System.Web;
 namespace ENETCareWebFormApp
 {
     public class TestDataCalculation
-    { 
+    {
+        Details details = new Details();
+
         // Adding to two number
         public double AddTotalCost(double prevCost, double newCost)
         {
@@ -31,17 +33,10 @@ namespace ENETCareWebFormApp
         //Searches for Site Engineer and his/her approval limit
         public string[,] SiteEngineerApprovalLimit(string[,] name)
         {
-            string[,] result = new string[1,2];
-            string[,] approvalLimitList =
-            {
-                {"Supreet","2000" },
-                {"Syed","3000" },
-                {"Sushmita","2500" },
-                {"Talha","3500" },
-            };
-            for(int i = 0; i<approvalLimitList.GetLength(0); i++)
+            string[,] result = new string[1,2];            
+            for(int i = 0; i<details.approvalLimitList.GetLength(0); i++)
             {                
-                if ((approvalLimitList[i, 0] == name[0, 0])&& (approvalLimitList[i, 1] == name[0, 1]))
+                if ((details.approvalLimitList[i, 0] == name[0, 0])&& (details.approvalLimitList[i, 1] == name[0, 1]))
                 {
                     result = name;
                 }
@@ -52,16 +47,10 @@ namespace ENETCareWebFormApp
         //Searches for Intervention type and it's cost
         public string[,] InterventionCost(string[,] name)
         {
-            string[,] result = new string[1, 2];
-            string[,] InterventionCostList =
+            string[,] result = new string[1, 2];            
+            for (int i = 0; i < details.InterventionCostList.GetLength(0); i++)
             {
-                {"Supply Mosquito Net","100" },
-                {"Supply and Install Storm-proof Home Kit","3000" },
-                
-            };
-            for (int i = 0; i < InterventionCostList.GetLength(0); i++)
-            {
-                if ((InterventionCostList[i, 0] == name[0, 0]) && (InterventionCostList[i, 1] == name[0, 1]))
+                if ((details.InterventionCostList[i, 0] == name[0, 0]) && (details.InterventionCostList[i, 1] == name[0, 1]))
                 {
                     result = name;
                 }
@@ -69,20 +58,18 @@ namespace ENETCareWebFormApp
             return result;
         }
 
+        //Checks Site Engineer approval limit against intervention cost
         public bool SiteEngineerLimitInterventionCostCheck(string[,] name)
         {
-            bool result = false;
+            bool result = false;          
 
-            Details d = new Details();
-
-            for (int i = 0; i < d.approvalLimitList.GetLength(0); i++)
+            for (int i = 0; i < details.approvalLimitList.GetLength(0); i++)
             {
-                if ((name[0, 0] == d.approvalLimitList[i, 0]) && (Convert.ToInt32(name[0, 2]) <= Convert.ToInt32(d.approvalLimitList[i, 1])))
+                if ((name[0, 0] == details.approvalLimitList[i, 0]) && (Convert.ToInt32(name[0, 2]) <= Convert.ToInt32(details.approvalLimitList[i, 1])))
                 {
                     result = true;
                 }
             }
-
             return result;
         }
 
