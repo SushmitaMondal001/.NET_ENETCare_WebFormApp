@@ -138,7 +138,28 @@ namespace ENETCareWebFormApp
             string remaining_life ="30";
             return remaining_life;
         }
-             
+
+        public string LoginForm(string username, string password)
+        {
+            string result = "";
+            if (username == "siteEngineer" || username == "manager" || username == "accountant" && password == "admin")
+            {
+                result = "Welcome";
+            }            
+            return result;
+        }
+
+        public string Approval(int cost, int hours)
+        {
+            string result = "";
+            if (cost <= 5000 || hours <= 50)
+            {
+                result = "approved";
+            }
+            return result;
+
+        }
+
 
     }
 }

@@ -110,7 +110,20 @@ namespace ENETCareWebFormApp.Tests
             string remaining_life = testData.GetRemainingLife();
             bool isNumeric = Int32.TryParse(remaining_life, out n);
             Assert.IsTrue((isNumeric == true) && (n<=100));
+        }
 
+        [TestMethod]
+        public void LoginFormTest()
+        {
+            string result = testData.LoginForm("siteEngineer", "admin");
+            Assert.IsTrue(result == "Welcome");
+        }
+
+        [TestMethod]
+        public void ApprovalTest()
+        {
+            string result = testData.Approval(3500, 32);
+            Assert.IsTrue(result == "approved");
         }
     }
 }
