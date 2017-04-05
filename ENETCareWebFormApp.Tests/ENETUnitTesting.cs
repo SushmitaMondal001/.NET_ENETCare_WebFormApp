@@ -1,26 +1,19 @@
-﻿using ENETCareWebFormApp;
+﻿using ENETCareWebForm;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ENETCareBusinessLogic;
 
-namespace ENETCareWebFormApp.Tests
+namespace ENETCareWebForm.Tests
 {
     [TestClass]
-    public class UnitTest1
+    public class ENETUnitTesting
     {
-
         TestDataCalculation testData;
 
         [TestInitialize]
         public void Setup()
         {
             testData = new TestDataCalculation();
-        }
-
-        [TestMethod()]
-        public void AddTotalCostTest()
-        {
-            var result = testData.AddTotalCost(10, 20);
-            Assert.IsTrue(result == 30);
         }
 
         [TestMethod]
@@ -68,12 +61,6 @@ namespace ENETCareWebFormApp.Tests
             Assert.IsTrue(password == "12345");
         }
 
-        [TestMethod()]
-        public void DivideNumbersTest()
-        {
-            var result = testData.DivideNumbers(20, 10);
-            Assert.IsTrue(result == 2);
-        }
 
         [TestMethod()]
         public void GetLocationTest()

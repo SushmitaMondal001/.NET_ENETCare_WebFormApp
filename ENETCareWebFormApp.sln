@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENETCareWebFormApp", "ENETCareWebFormApp\ENETCareWebFormApp.csproj", "{B84E6480-E3F2-40E7-9A03-5466EACE4E28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENETCareWebForm.Tests", "ENETCareWebFormApp.Tests\ENETCareWebForm.Tests.csproj", "{55135329-C790-4843-929C-8B42B533E30E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENETCareWebFormApp.Tests", "ENETCareWebFormApp.Tests\ENETCareWebFormApp.Tests.csproj", "{55135329-C790-4843-929C-8B42B533E30E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENETCareWebForm", "ENETCareWebForm\ENETCareWebForm.csproj", "{7525FFB7-DEFD-4C41-A7F6-D45B6FA352E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENETCareData", "ENETCareData\ENETCareData.csproj", "{8F7EFC5F-ACDF-48F1-B842-9A8277EF458B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENETCareBusinessLogic", "ENETCareBusinessLogic\ENETCareBusinessLogic.csproj", "{58094F66-DF6A-4AF9-B5A8-A1FC8ED1B02B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B84E6480-E3F2-40E7-9A03-5466EACE4E28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B84E6480-E3F2-40E7-9A03-5466EACE4E28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B84E6480-E3F2-40E7-9A03-5466EACE4E28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B84E6480-E3F2-40E7-9A03-5466EACE4E28}.Release|Any CPU.Build.0 = Release|Any CPU
 		{55135329-C790-4843-929C-8B42B533E30E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{55135329-C790-4843-929C-8B42B533E30E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55135329-C790-4843-929C-8B42B533E30E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55135329-C790-4843-929C-8B42B533E30E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7525FFB7-DEFD-4C41-A7F6-D45B6FA352E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7525FFB7-DEFD-4C41-A7F6-D45B6FA352E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7525FFB7-DEFD-4C41-A7F6-D45B6FA352E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7525FFB7-DEFD-4C41-A7F6-D45B6FA352E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F7EFC5F-ACDF-48F1-B842-9A8277EF458B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F7EFC5F-ACDF-48F1-B842-9A8277EF458B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F7EFC5F-ACDF-48F1-B842-9A8277EF458B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F7EFC5F-ACDF-48F1-B842-9A8277EF458B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58094F66-DF6A-4AF9-B5A8-A1FC8ED1B02B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58094F66-DF6A-4AF9-B5A8-A1FC8ED1B02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58094F66-DF6A-4AF9-B5A8-A1FC8ED1B02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58094F66-DF6A-4AF9-B5A8-A1FC8ED1B02B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

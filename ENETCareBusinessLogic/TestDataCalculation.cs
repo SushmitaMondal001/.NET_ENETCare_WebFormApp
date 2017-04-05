@@ -2,20 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ENETCareWebForm;
 
 
-namespace ENETCareWebFormApp
+namespace ENETCareBusinessLogic
 {
     public class TestDataCalculation
     {
         Details details = new Details();
-
-        // Adding to two number
-        public double AddTotalCost(double prevCost, double newCost)
-        {
-            double totalCost = prevCost + newCost;
-            return totalCost;
-        }
 
         //Searches for Site Engineer
         public string SiteEngineer(string name)
