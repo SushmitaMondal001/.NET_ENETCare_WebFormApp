@@ -83,5 +83,14 @@ namespace ENETCareWebFormApp.Tests
             bool isNumeric = int.TryParse(location, out n);
             Assert.IsTrue(isNumeric == false);
         }
+
+        [TestMethod()]
+        public void CustomerDistrictTest()
+        {
+            string clientDistrict = testData.CustomerDistrict("Customer1");
+            string siteEngineerDistrict = testData.SiteEngineerDistrict("Supreet");
+            Assert.IsTrue(clientDistrict == siteEngineerDistrict);
+
+        }
     }
 }
