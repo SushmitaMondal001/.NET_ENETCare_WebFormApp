@@ -49,7 +49,7 @@ namespace ENETCareWebFormApp.Tests
         [TestMethod]
         public void SiteEngineerLimitInterventionCostCheckTest()
         {
-            string[,] name = { {"Syed", "Supply Mosquito Net", "100" } };
+            string[,] name = { { "Syed", "Supply Mosquito Net", "100" } };
             bool result = testData.SiteEngineerLimitInterventionCostCheck(name);
             Assert.IsTrue(result == true);
         }
@@ -90,6 +90,26 @@ namespace ENETCareWebFormApp.Tests
             string clientDistrict = testData.CustomerDistrict("Customer1");
             string siteEngineerDistrict = testData.SiteEngineerDistrict("Supreet");
             Assert.IsTrue(clientDistrict == siteEngineerDistrict);
+
+        }
+
+        [TestMethod()]
+        public void GetClientNameTest()
+        {
+            int n = 0;
+            string name_of_client = testData.GetClientName();
+            bool isNumeric = int.TryParse(name_of_client, out n);
+            Assert.IsTrue(isNumeric == false);
+
+        }
+
+        [TestMethod()]
+        public void GetRemainingLifeTest()
+        {
+            int n = 0;
+            string remaining_life = testData.GetRemainingLife();
+            bool isNumeric = Int32.TryParse(remaining_life, out n);
+            Assert.IsTrue((isNumeric == true) && (n<=100));
 
         }
     }

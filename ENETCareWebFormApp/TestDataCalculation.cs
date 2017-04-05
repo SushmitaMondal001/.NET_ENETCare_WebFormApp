@@ -127,7 +127,18 @@ namespace ENETCareWebFormApp
             return customer_result;
         }
 
-        
+        public string GetClientName()
+        {
+            string client_name = "Sush";
+            return client_name;
+        }
+
+        public string GetRemainingLife()
+        {
+            string remaining_life ="30";
+            return remaining_life;
+        }
+             
 
     }
 }
