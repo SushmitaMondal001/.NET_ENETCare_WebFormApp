@@ -95,5 +95,33 @@ namespace ENETCareWebFormApp
             string location = "someString";
             return location;
         }
+        
+        public string SiteEngineerDistrict(string name)
+        {
+            string[] siteEngineerList = { "Supreet","NSW "};
+            bool search = Array.Exists(siteEngineerList, x => x.Equals(name));
+            string engineer_result = "";
+            if (search)
+            {
+                engineer_result = siteEngineerList[1] ;
+            }
+            return engineer_result;
+        }
+        public string CustomerDistrict(string name)
+        {
+            string[] CustomerList = { "Customer1", "NSW " };
+            bool search = Array.Exists(CustomerList, x => x.Equals(name));
+            string customer_result = "";
+            if (search)
+            {
+                customer_result = CustomerList[1];
+            }
+            //Console.WriteLine(customer_result);
+            //Console.ReadLine();
+            return customer_result;
+        }
+
+        
+
     }
 }
