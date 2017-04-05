@@ -82,7 +82,7 @@ namespace ENETCareWebFormApp
             return district;
         }
 
-        // Check whether a correct user
+        // Check whether a correct user is using password
         public string CheckPassword()
         {
             string typedPassword = "12345"; // will be read the input from the user
