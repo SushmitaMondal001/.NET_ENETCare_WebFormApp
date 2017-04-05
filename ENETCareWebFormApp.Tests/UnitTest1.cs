@@ -39,11 +39,19 @@ namespace ENETCareWebFormApp.Tests
         }
 
         [TestMethod]
-        public void IntervationCostTest()
+        public void InterventionCostTest()
         {
             string[,] name = { { "Supply Mosquito Net", "100" } };
-            string[,] result = testData.IntervationCost(name);
+            string[,] result = testData.InterventionCost(name);
             Assert.IsTrue(result == name);
+        }
+
+        [TestMethod]
+        public void SiteEngineerLimitInterventionCostCheckTest()
+        {
+            string[,] name = { {"Syed", "Supply Mosquito Net", "100" } };
+            bool result = testData.SiteEngineerLimitInterventionCostCheck(name);
+            Assert.IsTrue(result == true);
         }
 
         [TestMethod()]

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
+
 namespace ENETCareWebFormApp
 {
     public class TestDataCalculation
@@ -27,6 +28,7 @@ namespace ENETCareWebFormApp
             return result;
         }
 
+        //Searches for Site Engineer and his/her approval limit
         public string[,] SiteEngineerApprovalLimit(string[,] name)
         {
             string[,] result = new string[1,2];
@@ -47,22 +49,40 @@ namespace ENETCareWebFormApp
             return result;
         }
 
-        public string[,] IntervationCost(string[,] name)
+        //Searches for Intervention type and it's cost
+        public string[,] InterventionCost(string[,] name)
         {
             string[,] result = new string[1, 2];
-            string[,] intervationCostList =
+            string[,] InterventionCostList =
             {
                 {"Supply Mosquito Net","100" },
                 {"Supply and Install Storm-proof Home Kit","3000" },
                 
             };
-            for (int i = 0; i < intervationCostList.GetLength(0); i++)
+            for (int i = 0; i < InterventionCostList.GetLength(0); i++)
             {
-                if ((intervationCostList[i, 0] == name[0, 0]) && (intervationCostList[i, 1] == name[0, 1]))
+                if ((InterventionCostList[i, 0] == name[0, 0]) && (InterventionCostList[i, 1] == name[0, 1]))
                 {
                     result = name;
                 }
             }
+            return result;
+        }
+
+        public bool SiteEngineerLimitInterventionCostCheck(string[,] name)
+        {
+            bool result = false;
+
+            Details d = new Details();
+
+            for (int i = 0; i < d.approvalLimitList.GetLength(0); i++)
+            {
+                if ((name[0, 0] == d.approvalLimitList[i, 0]) && (Convert.ToInt32(name[0, 2]) <= Convert.ToInt32(d.approvalLimitList[i, 1])))
+                {
+                    result = true;
+                }
+            }
+
             return result;
         }
 
