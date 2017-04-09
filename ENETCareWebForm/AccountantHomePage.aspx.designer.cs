@@ -31,13 +31,13 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.Label accountant;
         
         /// <summary>
-        /// changePass control.
+        /// changePasswordButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button changePass;
+        protected global::System.Web.UI.WebControls.Button changePasswordButton;
         
         /// <summary>
         /// dropDownReportBox control.
@@ -58,12 +58,21 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.Label txtBoxRunReport;
         
         /// <summary>
-        /// engManagerList control.
+        /// engManagerListButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button engManagerList;
+        protected global::System.Web.UI.WebControls.Button engManagerListButton;
+        
+        /// <summary>
+        /// logout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button logout;
     }
 }

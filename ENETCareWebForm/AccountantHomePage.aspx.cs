@@ -17,16 +17,15 @@ namespace ENETCareWebForm
         protected void dropDownReportBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        } 
+        protected void changePasswordButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ChangePasswordPage.aspx");
         }
 
-        protected void changePass_Click(object sender, EventArgs e)
+        protected void engManagerListButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/ChangePasswordPage");
-        }
-
-        protected void engManagerList_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/UserListPage");
+            Response.Redirect("UserListPage.aspx");
         }
     }
 }
