@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AccountantHomePage.aspx" />
+    <Content Include="ChangePasswordPage.aspx" />
+    <Content Include="ManagerHomePage.aspx" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -76,6 +78,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ProposedInterventionListViewPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -86,8 +89,29 @@
     <Compile Include="AccountantHomePage.aspx.designer.cs">
       <DependentUpon>AccountantHomePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ChangePasswordPage.aspx.cs">
+      <DependentUpon>ChangePasswordPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangePasswordPage.aspx.designer.cs">
+      <DependentUpon>ChangePasswordPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Details.cs" />
+    <Compile Include="ManagerHomePage.aspx.cs">
+      <DependentUpon>ManagerHomePage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManagerHomePage.aspx.designer.cs">
+      <DependentUpon>ManagerHomePage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProposedInterventionListViewPage.aspx.cs">
+      <DependentUpon>ProposedInterventionListViewPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProposedInterventionListViewPage.aspx.designer.cs">
+      <DependentUpon>ProposedInterventionListViewPage.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
