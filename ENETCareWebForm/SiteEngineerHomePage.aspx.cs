@@ -13,13 +13,14 @@ namespace ENETCareWebForm
         {
 
         }
-
-        protected void Button5_Click(object sender, EventArgs e)
+        
+        
+        protected void siteEngineerlogoutButton_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("LoginPage.aspx");
         }
 
-        protected void ChangePasswordButton_Click(object sender, EventArgs e)
+        protected void changePasswordButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("ChangePasswordPage.aspx");
         }

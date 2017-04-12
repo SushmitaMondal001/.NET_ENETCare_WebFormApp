@@ -80,7 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProposedInterventionListViewPage.aspx" />
-    <Content Include="SiteEnigeerHomePage.aspx" />
+    <Content Include="SiteEngineerHomePage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -121,12 +121,12 @@
     <Compile Include="ProposedInterventionListViewPage.aspx.designer.cs">
       <DependentUpon>ProposedInterventionListViewPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SiteEnigeerHomePage.aspx.cs">
-      <DependentUpon>SiteEnigeerHomePage.aspx</DependentUpon>
+    <Compile Include="SiteEngineerHomePage.aspx.cs">
+      <DependentUpon>SiteEngineerHomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SiteEnigeerHomePage.aspx.designer.cs">
-      <DependentUpon>SiteEnigeerHomePage.aspx</DependentUpon>
+    <Compile Include="SiteEngineerHomePage.aspx.designer.cs">
+      <DependentUpon>SiteEngineerHomePage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <PropertyGroup>

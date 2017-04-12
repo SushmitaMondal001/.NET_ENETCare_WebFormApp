@@ -31,7 +31,7 @@
                 <br class="auto-style1" />
                 <br class="auto-style1" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Button ID="managerLogoutButton" runat="server" Font-Bold="True" Font-Size="Medium" Height="57px" Text="Logout" Width="456px" style="margin-right: 0px" />
+                <asp:Button ID="managerLogoutButton" runat="server" Font-Bold="True" Font-Size="Medium" Height="57px" Text="Logout" Width="456px" style="margin-right: 0px" OnClick="managerLogoutButton_Click" />
                 <br class="auto-style1" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </p>

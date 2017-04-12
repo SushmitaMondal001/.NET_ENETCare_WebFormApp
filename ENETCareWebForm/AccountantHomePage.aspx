@@ -20,7 +20,7 @@
         </asp:DropDownList>
         <asp:Label ID="txtBoxRunReport" runat="server" style="z-index: 1; left: 484px; top: 158px; position: absolute; width: 237px" Text="Run Report"></asp:Label>
         <asp:Button ID="engManagerListButton" runat="server" OnClick="engManagerListButton_Click" style="z-index: 1; left: 86px; top: 256px; position: absolute; width: 307px; height: 64px" Text="List of Site Engineer &amp; Manager" />
-        <asp:Button ID="logout" runat="server" style="z-index: 1; left: 91px; top: 375px; position: absolute; width: 161px; height: 47px" Text="Logout" />
+        <asp:Button ID="accountantLogoutButton" runat="server" style="z-index: 1; left: 91px; top: 375px; position: absolute; width: 161px; height: 47px" Text="Logout" OnClick="accountantLogoutButton_Click" />
     </form>
 </body>
 </html>

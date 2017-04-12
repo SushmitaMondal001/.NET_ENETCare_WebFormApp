@@ -23,5 +23,10 @@ namespace ENETCareWebForm
         {
             Response.Redirect("ProposedInterventionListViewPage.aspx");
         }
+
+        protected void managerLogoutButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("LoginPage.aspx");
+        }
     }
 }

@@ -27,5 +27,10 @@ namespace ENETCareWebForm
         {
             Response.Redirect("UserListPage.aspx");
         }
+
+        protected void accountantLogoutButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("LoginPage.aspx");
+        }
     }
 }
