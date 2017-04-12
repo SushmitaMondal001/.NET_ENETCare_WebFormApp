@@ -67,7 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AccountantHomePage.aspx" />
+    <Content Include="AllClientsViewPage.aspx" />
     <Content Include="ChangePasswordPage.aspx" />
+    <Content Include="ClientCreationPage.aspx" />
+    <Content Include="InterventionCreationPage.aspx" />
+    <Content Include="InterventionViewPage.aspx" />
     <Content Include="LoginPage.aspx" />
     <Content Include="ManagerHomePage.aspx" />
     <Content Include="packages.config" />
@@ -81,6 +85,7 @@
   <ItemGroup>
     <Content Include="ProposedInterventionListViewPage.aspx" />
     <Content Include="SiteEngineerHomePage.aspx" />
+    <Content Include="UserListPage.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -91,12 +96,40 @@
     <Compile Include="AccountantHomePage.aspx.designer.cs">
       <DependentUpon>AccountantHomePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AllClientsViewPage.aspx.cs">
+      <DependentUpon>AllClientsViewPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllClientsViewPage.aspx.designer.cs">
+      <DependentUpon>AllClientsViewPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePasswordPage.aspx.cs">
       <DependentUpon>ChangePasswordPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ChangePasswordPage.aspx.designer.cs">
       <DependentUpon>ChangePasswordPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ClientCreationPage.aspx.cs">
+      <DependentUpon>ClientCreationPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ClientCreationPage.aspx.designer.cs">
+      <DependentUpon>ClientCreationPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InterventionCreationPage.aspx.cs">
+      <DependentUpon>InterventionCreationPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InterventionCreationPage.aspx.designer.cs">
+      <DependentUpon>InterventionCreationPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InterventionViewPage.aspx.cs">
+      <DependentUpon>InterventionViewPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InterventionViewPage.aspx.designer.cs">
+      <DependentUpon>InterventionViewPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
@@ -126,6 +159,13 @@
     </Compile>
     <Compile Include="SiteEngineerHomePage.aspx.designer.cs">
       <DependentUpon>SiteEngineerHomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserListPage.aspx.cs">
+      <DependentUpon>UserListPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserListPage.aspx.designer.cs">
+      <DependentUpon>UserListPage.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
