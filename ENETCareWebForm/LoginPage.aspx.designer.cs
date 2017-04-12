@@ -10,7 +10,7 @@
 namespace ENET {
     
     
-    public partial class Change_Password {
+    public partial class Login {
         
         /// <summary>
         /// form1 control.
@@ -22,13 +22,13 @@ namespace ENET {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// loginTextBox control.
+        /// usernameTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox loginTextBox;
+        protected global::System.Web.UI.WebControls.TextBox usernameTextBox;
         
         /// <summary>
         /// passwordTextBox control.
@@ -40,30 +40,12 @@ namespace ENET {
         protected global::System.Web.UI.WebControls.TextBox passwordTextBox;
         
         /// <summary>
-        /// newPasswordTextBox control.
+        /// loginButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox newPasswordTextBox;
-        
-        /// <summary>
-        /// repeatPasswordTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox repeatPasswordTextBox;
-        
-        /// <summary>
-        /// confirmButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button confirmButton;
+        protected global::System.Web.UI.WebControls.Button loginButton;
     }
 }

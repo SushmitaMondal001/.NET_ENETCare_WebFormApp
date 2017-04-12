@@ -68,6 +68,7 @@
   <ItemGroup>
     <Content Include="AccountantHomePage.aspx" />
     <Content Include="ChangePasswordPage.aspx" />
+    <Content Include="LoginPage.aspx" />
     <Content Include="ManagerHomePage.aspx" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -97,6 +98,13 @@
       <DependentUpon>ChangePasswordPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Details.cs" />
+    <Compile Include="LoginPage.aspx.cs">
+      <DependentUpon>LoginPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoginPage.aspx.designer.cs">
+      <DependentUpon>LoginPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ManagerHomePage.aspx.cs">
       <DependentUpon>ManagerHomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
