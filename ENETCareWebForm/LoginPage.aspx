@@ -13,10 +13,10 @@
     <form id="form1" runat="server">
         <div>
             <p>Username:&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="usernameTextBox" Text="Enter Your Username" runat="server" Width="169px" />
+            <asp:TextBox ID="usernameTextBox" placeholder="Enter Your Username" runat="server" Width="169px" />
             </p>
             <p>Password:&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="passwordTextBox" Text="Enter Your Password" runat="server" Width="169px" />
+            <asp:TextBox ID="passwordTextBox" TextMode="Password" placeholder="Enter Your Password" runat="server" Width="169px" />
             </p>
             <asp:Button ID="loginButton" Text="Log In" runat="server" OnClick="loginEventMethod" />          
         </div>
