@@ -98,7 +98,6 @@
     <Compile Include="ChangePasswordPage.aspx.designer.cs">
       <DependentUpon>ChangePasswordPage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Details.cs" />
     <Compile Include="LoginPage.aspx.cs">
       <DependentUpon>LoginPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -128,6 +127,12 @@
     <Compile Include="SiteEngineerHomePage.aspx.designer.cs">
       <DependentUpon>SiteEngineerHomePage.aspx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ENETCareBusinessLogic\ENETCareBusinessLogic.csproj">
+      <Project>{58094f66-df6a-4af9-b5a8-a1fc8ed1b02b}</Project>
+      <Name>ENETCareBusinessLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

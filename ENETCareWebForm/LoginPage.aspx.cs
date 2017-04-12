@@ -4,30 +4,32 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ENETCareBusinessLogic;
 
 namespace ENET
 {
     public partial class Login : System.Web.UI.Page
     {
+        LoginValidation checkLogin = new LoginValidation();
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
         protected void loginEventMethod(object sender, EventArgs e)
         {
-            // For today only :) Do get angry please *_*
+            
+            string page = checkLogin.LoginCheck(usernameTextBox.Text, passwordTextBox.Text);
+            if (page.Equals("Wrong"))
+            {
+                Response.Write("Wrong Username or Password");
+            }
+            else
+            {
+                Response.Redirect(page);
+            }
+            
 
-            string userName = usernameTextBox.Text;
-            string password = passwordTextBox.Text;
-            if ((userName.Equals("Syed")) && (password.Equals("12345"))){
-                Response.Redirect("AccountantHomePage.aspx");
-            }
-            else if((userName.Equals("Sushmita")) && (password.Equals("12345"))){
-                Response.Redirect("ManagerHomePage.aspx");
-            }
-            else if((userName.Equals("Supreet")) && (password.Equals("12345"))){
-                Response.Redirect("SiteEngineerHomePage.aspx");
-            }
+          
                 
         }
     }

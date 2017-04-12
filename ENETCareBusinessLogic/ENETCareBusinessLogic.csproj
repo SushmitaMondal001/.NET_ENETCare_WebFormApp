@@ -40,14 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Details.cs" />
+    <Compile Include="LoginValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataCalculation.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ENETCareWebForm\ENETCareWebForm.csproj">
-      <Project>{7525ffb7-defd-4c41-a7f6-d45b6fa352e2}</Project>
-      <Name>ENETCareWebForm</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
