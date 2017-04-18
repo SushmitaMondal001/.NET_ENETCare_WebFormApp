@@ -22,7 +22,10 @@
 <body>
     <form id="form1" runat="server">   
         <div class="auto-style1">
-            <strong><span class="auto-style3">SiteEngineer Home Page</span><span class="auto-style2"><br />
+            <strong><span class="auto-style3">SiteEngineer Home Page<br />
+            <br />
+            <asp:Literal ID="StatusText" runat="server"></asp:Literal>
+            </span><span class="auto-style2"><br />
             </span></strong>
             <br />
             <strong><span class="auto-style2">

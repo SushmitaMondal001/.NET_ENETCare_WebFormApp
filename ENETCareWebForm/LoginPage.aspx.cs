@@ -5,6 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ENETCareBusinessLogic;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace ENET
 {
@@ -13,24 +16,61 @@ namespace ENET
         LoginValidation checkLogin = new LoginValidation();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //InsertUser(sender, e);
+            
         }
         protected void loginEventMethod(object sender, EventArgs e)
         {
-            
-            string page = checkLogin.LoginCheck(usernameTextBox.Text, passwordTextBox.Text);
-            if (page.Equals("Wrong"))
+            var userStore = new UserStore<IdentityUser>();
+            var userManager = new UserManager<IdentityUser>(userStore);
+            var user = userManager.Find(usernameTextBox.Text, passwordTextBox.Text);
+
+            if (user != null)
             {
-                Response.Write("Wrong Username or Password");
+                var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
+                Response.Redirect("~/SiteEngineerHomePage.aspx");
             }
             else
             {
-                Response.Redirect(page);
+                Response.Write("Wrong Username or Password");
+                //StatusText.Text = "Invalid username or password.";
+                //LoginStatus.Visible = true;
             }
-            
 
-          
-                
+            //string page = checkLogin.LoginCheck(usernameTextBox.Text, passwordTextBox.Text);
+            //if (page.Equals("Wrong"))
+            //{
+            //    Response.Write("Wrong Username or Password");
+            //}
+            //else
+            //{
+            //    Response.Redirect(page);
+            //}
+        }
+
+        public void InsertUser(object sender, EventArgs e)
+        {
+            // Default UserStore constructor uses the default connection string named: DefaultConnection
+            var userStore = new UserStore<IdentityUser>();
+            var manager = new UserManager<IdentityUser>(userStore);
+
+            var user = new IdentityUser() { UserName = "Richard" };
+            IdentityResult result = manager.Create(user, "12345678");
+
+            if (result.Succeeded)
+            {
+                var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                var userIdentity = manager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                authenticationManager.SignIn(new AuthenticationProperties() { }, userIdentity);
+                //Response.Redirect("~/Login.aspx");
+            }
+            else
+            {
+                StatusMessage.Text = result.Errors.FirstOrDefault();
+            }
         }
     }
 }

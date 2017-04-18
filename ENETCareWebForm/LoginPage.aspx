@@ -9,7 +9,7 @@
 
 <body>
     <h1>Login page</h1>
-<%--    <a href="LoginPage.aspx">Login</a> | <a href="ChangePasswordPage.aspx">Change Password</a> --%>
+    <%--    <a href="LoginPage.aspx">Login</a> | <a href="ChangePasswordPage.aspx">Change Password</a> --%>
     <form id="form1" runat="server">
         <div>
             <p>Username:&nbsp;&nbsp;&nbsp;
@@ -20,6 +20,9 @@
             </p>
             <asp:Button ID="loginButton" Text="Log In" runat="server" OnClick="loginEventMethod" />          
         </div>
+        <p>
+            &nbsp;</p>
+        <asp:Literal ID="StatusMessage" runat="server"></asp:Literal>
     </form>
 </body>
 </html>

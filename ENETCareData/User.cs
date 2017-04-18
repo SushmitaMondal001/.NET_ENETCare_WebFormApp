@@ -7,52 +7,13 @@ namespace ENETCareData
 {
     public class User
     {
-        public int UserID
-        {
-            private set { }
-            get { return UserID; }
-        }
-
-        public int UserName
-        {
-            private set { }
-            get { return UserName; }
-        }
-
-        public int LoginName
-        {
-            private set { }
-            get { return LoginName; }
-        }
-
-        public int Password
-        {
-            private set { }
-            get { return Password; }
-        }
-
-        public int UserType
-        {
-            private set { }
-            get { return UserType; }
-        }
-
-        public int DistrictID
-        {
-            get;
-            set;
-        }
-
-        public int MaxHour
-        {
-            private set { }
-            get { return MaxHour; }
-        }
-
-        public int MaxCost
-        {
-            private set { }
-            get { return MaxCost; }
-        }
+        public int UserID { get; set; }
+        public int UserName { get; set; }
+        public int LoginName { get; set; }
+        public string Password { get; set; }
+        public int UserType { get; set; }
+        public int DistrictID { get; set; }
+        public int MaxHour { get; set; }
+        public int MaxCost { get; set; }
     }
 }
