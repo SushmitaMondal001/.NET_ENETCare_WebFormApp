@@ -17,7 +17,7 @@
             <asp:Label ID="managerHomePageLabel" runat="server" Font-Bold="True" Font-Size="X-Large"  Text="Manager Home Page"></asp:Label>
         </div>
         <div>
-
+            <asp:Literal ID="StatusText" runat="server"></asp:Literal>
             <p class="auto-style1">
                 <br style="margin-left: 80px" />
                 <br />

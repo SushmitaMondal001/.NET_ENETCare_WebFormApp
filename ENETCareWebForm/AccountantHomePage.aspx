@@ -11,6 +11,7 @@
         <div>
             <asp:Label ID="accountant" runat="server" Font-Bold="True" Font-Size="X-Large" style="z-index: 1; left: 296px; top: 14px; position: absolute; width: 367px; height: 45px" Text="Accountant Home Page"></asp:Label>
         </div>
+        <asp:Literal ID="StatusText" runat="server"></asp:Literal>
         <asp:Button ID="changePasswordButton" runat="server" OnClick="changePasswordButton_Click" style="z-index: 1; left: 86px; top: 158px; position: absolute; height: 59px; width: 268px" Text="Change Password" />
         <asp:DropDownList ID="dropDownReportBox" runat="server" OnSelectedIndexChanged="dropDownReportBox_SelectedIndexChanged" style="z-index: 1; left: 477px; top: 185px; position: absolute; width: 279px; height: 45px" BackColor="#CCCCCC">
             <asp:ListItem Value="totalCostEng">Total Cost by Site Engineer</asp:ListItem>

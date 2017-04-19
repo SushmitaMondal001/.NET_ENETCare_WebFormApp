@@ -31,7 +31,12 @@ namespace ENET
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
 
                 authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
-                Response.Redirect("~/SiteEngineerHomePage.aspx");
+
+                var logedUser = userIdentity.GetUserId().ToString();
+                var role = userManager.GetRoles(logedUser);
+                
+                LoginRegardingRole(role[0]);
+               
             }
             else
             {
@@ -71,6 +76,17 @@ namespace ENET
             {
                 StatusMessage.Text = result.Errors.FirstOrDefault();
             }
+        }
+
+        public void LoginRegardingRole(string role)
+        {
+            if (role.Equals("Accountant"))
+                Response.Redirect("~/AccountantHomePage.aspx");
+            else if (role.Equals("SiteEng"))
+                Response.Redirect("~/SiteEngineerHomePage.aspx");
+            else if (role.Equals("manager"))
+                Response.Redirect("~/ManagerHomePage.aspx");
+
         }
     }
 }
