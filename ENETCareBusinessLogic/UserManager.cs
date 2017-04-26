@@ -10,5 +10,11 @@ namespace ENETCareBusinessLogic
     public class UserManager
     {
         UserGateway anUserGateway = new UserGateway();
+        public int GetUserDistrictID(string loginName)
+        {
+            int districtID = anUserGateway.GetUserDistrictID(loginName);
+            return districtID;
+        }
+
     }
 }

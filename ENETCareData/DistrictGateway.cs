@@ -43,5 +43,33 @@ namespace ENETCareData
             }
             return aDistrictList;
         }
+
+        public string GetDistrictName(int districtID)
+        {
+            string districtName = "";
+            connectionString = aDatabaseConfig.Setup();
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM District WHERE DistrictID=@id";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("id", districtID));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        districtName = reader["DistrictName"].ToString();
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return districtName;
+        }
     }
 }

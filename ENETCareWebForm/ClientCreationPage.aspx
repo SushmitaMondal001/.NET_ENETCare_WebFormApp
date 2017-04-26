@@ -22,22 +22,24 @@
     </div>
         <p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Label ID="clientNameLabel" runat="server" Text="Client Name"></asp:Label>
+            <asp:Label ID="clientNameLabel" runat="server" Text="Client Name:"></asp:Label>
 &nbsp;
             <asp:TextBox ID="clientNameTextBox" runat="server"></asp:TextBox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
         <p style="margin-left: 40px">
-            <asp:Label ID="locationLabel" runat="server" Text="Location"></asp:Label>
+            <asp:Label ID="locationLabel" runat="server" Text="Location:"></asp:Label>
 &nbsp;
             <asp:TextBox ID="locationTextBox" runat="server"></asp:TextBox>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </p>
         <p style="margin-left: 40px">
-            <asp:Label ID="districtLabel" runat="server" Text="District"></asp:Label>
-&nbsp;
-            <asp:DropDownList ID="districtDropDownList" runat="server">
+            <asp:Label ID="districtLabel" runat="server" Text="District:"></asp:Label>
+&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="districtNameLabel" runat="server"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:DropDownList ID="districtDropDownList" runat="server" Visible="False">
             </asp:DropDownList>
         </p>
         <p style="margin-left: 40px">

@@ -11,7 +11,17 @@ namespace ENETCareWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Response.Write((string)Session["UserName"]);
+            if (!this.IsPostBack)
+            {
+                this.BindClientListGrid();
+            }
+        }
+
+        public void BindClientListGrid()
+        {
 
         }
+        
     }
 }

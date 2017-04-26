@@ -17,5 +17,11 @@ namespace ENETCareBusinessLogic
             List<District> aDistrictList = aDistrictGateway.GetDistrictList();
             return aDistrictList;
         }
+
+        public string GetDistrictName(int districtID)
+        {
+            string districtName = aDistrictGateway.GetDistrictName(districtID);
+            return districtName;
+        }
     }
 }

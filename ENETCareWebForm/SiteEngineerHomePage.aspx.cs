@@ -19,6 +19,7 @@ namespace ENETCareWebForm
             {
                 if (User.Identity.IsAuthenticated)
                 {
+                    Session["UserName"] = User.Identity.GetUserName();
                     StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
                     //LoginStatus.Visible = true;
                     //LogoutButton.Visible = true;

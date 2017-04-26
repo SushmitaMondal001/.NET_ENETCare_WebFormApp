@@ -13,17 +13,25 @@ namespace ENETCareWebForm
     {
         ClientManager aClientManager = new ClientManager();
         DistrictManager aDistrictManager = new DistrictManager();
+        UserManager aUserManager = new UserManager();
+        int districtID = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            PopulateDistrictDropdownList();
+            if (!(IsPostBack))
+            {
+                PopulateDistrictLabel(); 
+                //PopulateDistrictDropdownList();
+            }
         }
 
         protected void saveButton_Click(object sender, EventArgs e)
         {
-            int districtID = Int32.Parse(districtDropDownList.SelectedItem.Value);
+            //int districtID = Int32.Parse(districtDropDownList.SelectedItem.Value);
             string result = aClientManager.AddNewClient(clientNameTextBox.Text, locationTextBox.Text, districtID);
             Response.Write(result);
-            ClearForm();
+            if(result.Equals("Client creation is successful."))
+                ClearForm();
         }
 
         public void PopulateDistrictDropdownList()
@@ -34,6 +42,13 @@ namespace ENETCareWebForm
             districtDropDownList.DataValueField = "DistrictID";
             districtDropDownList.DataBind();
             districtDropDownList.Items[0].Selected = true;
+        }
+
+        public void PopulateDistrictLabel()
+        {
+            districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
+            string userDistrictName = aDistrictManager.GetDistrictName(districtID);
+            districtNameLabel.Text = userDistrictName;
         }
 
         public void ClearForm()

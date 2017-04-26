@@ -85,6 +85,15 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.Label districtLabel;
         
         /// <summary>
+        /// districtNameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label districtNameLabel;
+        
+        /// <summary>
         /// districtDropDownList control.
         /// </summary>
         /// <remarks>
