@@ -10,6 +10,11 @@
     <form id="form1" runat="server">
     <div>
     
+        <br />
+            <asp:Label ID="errorMessageLabel" runat="server"></asp:Label>
+        <br />
+        <br />
+    
         <asp:Label ID="PageNameLabel" runat="server" Font-Size="Large" Text="Create Client"></asp:Label>
         <br />
         <br />
@@ -20,12 +25,15 @@
             <asp:Label ID="clientNameLabel" runat="server" Text="Client Name"></asp:Label>
 &nbsp;
             <asp:TextBox ID="clientNameTextBox" runat="server"></asp:TextBox>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </p>
         <p style="margin-left: 40px">
             <asp:Label ID="locationLabel" runat="server" Text="Location"></asp:Label>
 &nbsp;
             <asp:TextBox ID="locationTextBox" runat="server"></asp:TextBox>
-        </p>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </p>
         <p style="margin-left: 40px">
             <asp:Label ID="districtLabel" runat="server" Text="District"></asp:Label>
 &nbsp;
@@ -36,6 +44,9 @@
             &nbsp;</p>
         <p style="margin-left: 320px">
             <asp:Button ID="saveButton" runat="server" OnClick="saveButton_Click" Text="Save &amp; Create Client" />
+        </p>
+        <p style="margin-left: 320px">
+            <asp:Button ID="BackToHomePageButton" runat="server" OnClick="BackToHomePageButton_Click" Text="Site Engineer Home Page" />
         </p>
         <p style="margin-left: 40px">
             &nbsp;</p>
