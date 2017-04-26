@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENETCareData", "ENETCareDat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENETCareBusinessLogic", "ENETCareBusinessLogic\ENETCareBusinessLogic.csproj", "{58094F66-DF6A-4AF9-B5A8-A1FC8ED1B02B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ENETCareModels", "ENETCareModels\ENETCareModels.csproj", "{BD0EE5A6-DDFC-40D9-997D-65886F83B751}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{58094F66-DF6A-4AF9-B5A8-A1FC8ED1B02B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58094F66-DF6A-4AF9-B5A8-A1FC8ED1B02B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58094F66-DF6A-4AF9-B5A8-A1FC8ED1B02B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD0EE5A6-DDFC-40D9-997D-65886F83B751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD0EE5A6-DDFC-40D9-997D-65886F83B751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD0EE5A6-DDFC-40D9-997D-65886F83B751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD0EE5A6-DDFC-40D9-997D-65886F83B751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

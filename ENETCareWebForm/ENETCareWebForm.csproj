@@ -258,6 +258,10 @@
       <Project>{58094f66-df6a-4af9-b5a8-a1fc8ed1b02b}</Project>
       <Name>ENETCareBusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ENETCareModels\ENETCareModels.csproj">
+      <Project>{bd0ee5a6-ddfc-40d9-997d-65886f83b751}</Project>
+      <Name>ENETCareModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

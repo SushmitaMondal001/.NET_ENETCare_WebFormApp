@@ -40,10 +40,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientManager.cs" />
     <Compile Include="Details.cs" />
+    <Compile Include="DistrictManager.cs" />
+    <Compile Include="InterventionManager.cs" />
     <Compile Include="LoginValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDataCalculation.cs" />
+    <Compile Include="UserManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ENETCareData\ENETCareData.csproj">
+      <Project>{8f7efc5f-acdf-48f1-b842-9a8277ef458b}</Project>
+      <Name>ENETCareData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ENETCareModels\ENETCareModels.csproj">
+      <Project>{bd0ee5a6-ddfc-40d9-997d-65886f83b751}</Project>
+      <Name>ENETCareModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
