@@ -3,7 +3,7 @@
                <asp:Content ID="contentContactUs" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
  
-        <div>
+                   <div>
            <h1>UTS Students</h1> 
 
             <table>

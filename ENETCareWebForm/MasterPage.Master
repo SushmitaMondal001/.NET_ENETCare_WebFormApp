@@ -20,9 +20,7 @@
         <div id="nav">
             <ul>
                 <li><a href="HomePage.aspx">Home</a>
-                    <a>Menu A</a>
-                    <a>Menu B</a>
-                    <a href="ContactUs.aspx">Contact Us</a>
+                                       <a href="ContactUs.aspx">Contact Us</a>
                 </li>
             </ul>
         </div>
