@@ -19,9 +19,9 @@
 
         <div id="nav">
             <ul>
-                <li>
-                    <a href="LoginPage.aspx">Login</a>
-                    <a href="WebForm1.aspx">Sample</a>
+                <li><a href="HomePage.aspx">Home</a>
+                    <a>Menu A</a>
+                    <a>Menu B</a>
                     <a href="ContactUs.aspx">Contact Us</a>
                 </li>
             </ul>
