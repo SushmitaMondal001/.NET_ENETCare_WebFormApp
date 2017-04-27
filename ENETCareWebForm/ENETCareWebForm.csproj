@@ -133,6 +133,7 @@
     <Content Include="App_Data\Identity2_log.ldf">
       <DependentUpon>Identity2.mdf</DependentUpon>
     </Content>
+    <Content Include="ChangeDistrict.aspx" />
     <Content Include="ChangePasswordPage.aspx" />
     <Content Include="ClientCreationPage.aspx" />
     <Content Include="ContactUs.aspx" />
@@ -173,6 +174,13 @@
     </Compile>
     <Compile Include="AllClientsViewPage.aspx.designer.cs">
       <DependentUpon>AllClientsViewPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeDistrict.aspx.cs">
+      <DependentUpon>ChangeDistrict.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeDistrict.aspx.designer.cs">
+      <DependentUpon>ChangeDistrict.aspx</DependentUpon>
     </Compile>
     <Compile Include="ChangePasswordPage.aspx.cs">
       <DependentUpon>ChangePasswordPage.aspx</DependentUpon>

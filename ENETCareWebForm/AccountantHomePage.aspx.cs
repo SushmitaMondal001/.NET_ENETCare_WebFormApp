@@ -41,6 +41,7 @@ namespace ENETCareWebForm
         protected void engManagerListButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("UserListPage.aspx");
+
         }
 
         protected void accountantLogoutButton_Click(object sender, EventArgs e)
@@ -48,6 +49,11 @@ namespace ENETCareWebForm
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
             Response.Redirect("~/LoginPage.aspx");
+        }
+
+        protected void changeDistrict_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/ChangeDistrict.aspx");
         }
     }
 }

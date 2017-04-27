@@ -34,9 +34,9 @@ namespace ENET
 
                 var logedUser = userIdentity.GetUserId().ToString();
                 var role = userManager.GetRoles(logedUser);
-                
+
                 LoginRegardingRole(role[0]);
-               
+
             }
             else
             {

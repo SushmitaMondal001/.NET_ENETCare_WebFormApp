@@ -29,6 +29,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="proposedInterventionViewButton" runat="server" Font-Bold="True" Font-Size="Medium" Height="58px" Text="List of Proposed Intervention" Width="457px" OnClick="proposedInterventionViewButton_Click" />
                 <br class="auto-style1" />
+                
                 <br class="auto-style1" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:Button ID="managerLogoutButton" runat="server" Font-Bold="True" Font-Size="Medium" Height="57px" Text="Logout" Width="456px" style="margin-right: 0px" OnClick="managerLogoutButton_Click" />

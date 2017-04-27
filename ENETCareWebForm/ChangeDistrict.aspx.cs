@@ -11,15 +11,14 @@ using Microsoft.AspNet.Identity;
 
 namespace ENETCareWebForm
 {
-    public partial class ProposedInterventionListViewPage : System.Web.UI.Page
+    public partial class ChangeDistrict : System.Web.UI.Page
     {
-
-        string currentUserId;
         protected void Page_Load(object sender, EventArgs e)
         {
-            currentUserId = User.Identity.GetUserId();
-            Label1.Text = currentUserId;
+
         }
+
+       
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -37,10 +36,8 @@ namespace ENETCareWebForm
                 }
             }
 
-            Session["InterventionID"] = GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text;
-            
-
-
+            Session["UserID"] = GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text;
+            //Label1.Text = Session["UserID"].ToString();
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -51,18 +48,21 @@ namespace ENETCareWebForm
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
-           
-            int interventionID = int.Parse(Session["InterventionID"].ToString());
-           
+            int UserID = int.Parse(Session["UserID"].ToString());
+
             //change connection over here
             string con = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\MuhammadFaisal\Source\Repos\.NET_ENETCare_WebFormApp9\ENETCareData\ENETCareDatabase.mdf;Integrated Security=True";
 
             SqlConnection connection = new SqlConnection(con);
             connection.Open();
-            SqlCommand cmd = new SqlCommand("Update Intervention Set InterventionState= '" + RadioButtonList1.SelectedItem + "' where InterventionID = '"+ interventionID + "'",connection);
+            SqlCommand cmd = new SqlCommand("Update [User] Set DistrictID= '" + (DropDownList1.SelectedIndex+1) + "' where UserID = '" + UserID + "'", connection);
             cmd.ExecuteNonQuery();
             connection.Close();
             Response.Redirect(Request.RawUrl);

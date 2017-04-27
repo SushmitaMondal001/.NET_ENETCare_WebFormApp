@@ -10,7 +10,7 @@
 namespace ENETCareWebForm {
     
     
-    public partial class AccountantHomePage {
+    public partial class ChangeDistrict {
         
         /// <summary>
         /// form1 control.
@@ -22,75 +22,66 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// accountant control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label accountant;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// StatusText control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal StatusText;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// changePasswordButton control.
+        /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button changePasswordButton;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
         
         /// <summary>
-        /// dropDownReportBox control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropDownReportBox;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// txtBoxRunReport control.
+        /// DropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtBoxRunReport;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
-        /// engManagerListButton control.
+        /// ButtonSubmit control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button engManagerListButton;
+        protected global::System.Web.UI.WebControls.Button ButtonSubmit;
         
         /// <summary>
-        /// changeDistrict control.
+        /// SqlDataSource2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button changeDistrict;
-        
-        /// <summary>
-        /// accountantLogoutButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button accountantLogoutButton;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
     }
 }
