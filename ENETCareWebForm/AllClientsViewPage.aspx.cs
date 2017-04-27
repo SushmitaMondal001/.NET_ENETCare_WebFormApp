@@ -1,4 +1,5 @@
 ﻿using ENETCareBusinessLogic;
+using ENETCareModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,29 @@ namespace ENETCareWebForm
             if (!this.IsPostBack)
             {
                 districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
-                this.BindClientListGrid();
+                //this.BindClientListGrid();
             }
         }
 
         public void BindClientListGrid()
         {
-
+            List<Client> aClientList = aClientManager.GetClientListByDistrict(districtID);
+            PopulateViewList(aClientList);
+            if (aClientList.Count == 0)
+                ErrorMessageLabel.Text = "No client was found !!";
+            else
+            {
+                clientListGridView.DataSource = aClientList;
+                clientListGridView.DataBind();
+            }
         }
-        
+
+        public List<ClientWithIntervention> PopulateViewList(List<Client> aClientList)
+        {
+            // get intervention for each client -> foreach loop for client
+            // Populate intervention list
+            List<ClientWithIntervention> aClientWithInterventionList = new List<ClientWithIntervention>();
+            return aClientWithInterventionList;
+        }
     }
 }

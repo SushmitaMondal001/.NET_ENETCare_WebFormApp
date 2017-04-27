@@ -1,24 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SiteEngineerHomePage.aspx.cs" Inherits="ENETCareWebForm.SiteEnigeerHomePage" MasterPageFile="~/MasterPage.Master" EnableEventValidation = false %>
 
-<%--<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>    
-    <style type="text/css">
-        .auto-style1 {
-            text-align: center;
-        }
-        .auto-style2 {
-            font-size: small;
-            text-align: left;
-        }
-        .auto-style3 {
-            font-size: xx-large;
-            text-align: left;
-        }
-    </style>
-</head>--%>
 <asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <head >
     <title></title>    

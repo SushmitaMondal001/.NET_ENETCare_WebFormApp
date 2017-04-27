@@ -7,17 +7,20 @@
             <p>
                 &nbsp;</p>
             <p style="margin-left: 80px">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="ErrorMessageLabel" runat="server"></asp:Label>
+            </p>
+            <p style="margin-left: 80px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <asp:GridView ID="clientListGridView"  AutoGenerateColumns="false" runat="server" AllowCustomPaging="True" AllowPaging="True">
                     <Columns>
                         <asp:TemplateField HeaderText = "Row Number" ItemStyle-Width="100">
                              <ItemTemplate>
                                 <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
                             </ItemTemplate>
-                        </asp:TemplateField><asp:BoundField DataField="name" HeaderText="Name" />
-                        <asp:BoundField DataField="address" HeaderText="address" />
-                        <asp:BoundField DataField="interventions" HeaderText="Interventions" />
-                        <asp:BoundField DataField="interventionStatus" HeaderText="Intervention Status" />
+                        </asp:TemplateField><asp:BoundField DataField="clientName" HeaderText="Name" />
+                        <asp:BoundField DataField="clientAddress" HeaderText="address" />
+                        <%--<asp:BoundField DataField="intervention" HeaderText="Interventions" />--%>
+                        <%--<asp:BoundField DataField="interventionStatus" HeaderText="Intervention Status" />--%>
                         <asp:CommandField ShowEditButton="true" HeaderText="Change QMI" />
                     </Columns>
                 </asp:GridView>

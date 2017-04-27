@@ -56,7 +56,15 @@ namespace ENETCareData
                 try
                 {
                     connection.Open();
-                    //SqlDataReader reader = 
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Client aClient = new Client();
+                        aClient.ClientID = Int32.Parse(reader["ClientID"].ToString());
+                        aClient.ClientName = reader["ClientName"].ToString();
+                        aClient.Address = reader["ClientAddress"].ToString();
+                        aClientList.Add(aClient);
+                    }
                 }
                 catch { }
             }

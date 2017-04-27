@@ -24,7 +24,7 @@
                   <tr>
                     <td class="auto-style1">Sushmita</td>
                     <td class="auto-style2">
-                        ...................@student.uts.edu.au
+                        Sushmita.Mondal@student.uts.edu.au
                     </td>
                 </tr>
                   <tr>
