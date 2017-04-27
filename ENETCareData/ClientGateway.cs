@@ -70,5 +70,35 @@ namespace ENETCareData
             }
             return aClientList;
         }
+
+        public List<Client> GetClientList()
+        {
+            List<Client> aClientList = new List<Client>();
+            connectionString = aDatabaseConfig.Setup();
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT ClientID, ClientName FROM Client";
+
+                SqlCommand command = new SqlCommand(query, connection);
+               // command.Parameters.Add(new SqlParameter("id", districtID));
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Client aClient = new Client();
+                        aClient.ClientID = Int32.Parse(reader["ClientID"].ToString());
+                        aClient.ClientName = reader["ClientName"].ToString();
+                        //aClient.Address = reader["ClientAddress"].ToString();
+                        aClientList.Add(aClient);
+                    }
+                }
+                catch { }
+            }
+            return aClientList;
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace ENETCareBusinessLogic
     public class ClientManager
     {
         ClientGateway aClientGateway = new ClientGateway();
-
+         
         public string AddNewClient(string clientName, string address, int districtID)
         {
             string message = "Client creation is unsuccessful.";
@@ -47,6 +47,12 @@ namespace ENETCareBusinessLogic
         public List<Client> GetClientListByDistrict(int districtID)
         {
             List<Client> aClientList = aClientGateway.GetClientListByDistrict(districtID);
+            return aClientList;
+        }
+
+        public List<Client> GetClientList()
+        {
+            List<Client> aClientList = aClientGateway.GetClientList();
             return aClientList;
         }
     }

@@ -57,7 +57,7 @@ namespace ENETCareWebForm
 
         protected void createNewInterventionButton_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("InterventionCreationPage.aspx"); 
         }
 
         protected void checkOldInterventionButton_Click(object sender, EventArgs e)
