@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ENETCareData;
+using ENETCareModels;
 
 namespace ENETCareBusinessLogic
 {
@@ -41,6 +42,12 @@ namespace ENETCareBusinessLogic
                 return "Invalid " + inputType + ". " + inputType + " only contains letters and has to be between 1 to 50 letters.";
              
             return "ValidInput";
+        }
+
+        public List<Client> GetClientListByDistrict(int districtID)
+        {
+            List<Client> aClientList = aClientGateway.GetClientListByDistrict(districtID);
+            return aClientList;
         }
     }
 }

@@ -20,16 +20,17 @@ namespace ENETCareWebForm
         {
             if (!(IsPostBack))
             {
-                PopulateDistrictLabel(); 
-                //PopulateDistrictDropdownList();
+                PopulateDistrictLabel();
+            //PopulateDistrictDropdownList();
             }
-        }
+    }
 
         protected void saveButton_Click(object sender, EventArgs e)
         {
             //int districtID = Int32.Parse(districtDropDownList.SelectedItem.Value);
             string result = aClientManager.AddNewClient(clientNameTextBox.Text, locationTextBox.Text, districtID);
-            Response.Write(result);
+            errorMessageLabel.Text = result;
+            //Response.Write(result);
             if(result.Equals("Client creation is successful."))
                 ClearForm();
         }
@@ -55,6 +56,7 @@ namespace ENETCareWebForm
         {
             clientNameTextBox.Text = "";
             locationTextBox.Text = "";
+            districtID = 1;
             districtDropDownList.Items[0].Selected = true;
         }
 

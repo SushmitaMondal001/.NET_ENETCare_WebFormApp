@@ -1,9 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SiteEngineerHomePage.aspx.cs" Inherits="ENETCareWebForm.SiteEnigeerHomePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SiteEngineerHomePage.aspx.cs" Inherits="ENETCareWebForm.SiteEnigeerHomePage" MasterPageFile="~/MasterPage.Master" EnableEventValidation = false %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <head >
     <title></title>    
     <style type="text/css">
         .auto-style1 {
@@ -19,10 +17,11 @@
         }
     </style>
 </head>
-<body>
-    <form id="form1" runat="server">   
+    <body>
+    <form id="form1" >   
         <div class="auto-style1">
-            <strong><span class="auto-style3">SiteEngineer Home Page<br />
+            <p style="margin-left: 40px">
+            <strong style="margin-left: 40px"><span class="auto-style3">SiteEngineer Home Page<br />
             <br />
             <asp:Literal ID="StatusText" runat="server"></asp:Literal>
             </span><span class="auto-style2"><br />
@@ -31,9 +30,12 @@
             <strong><span class="auto-style2">
             <asp:Button ID="createNewClientButton" runat="server" Height="31px" Text="Create New Client" Width="232px" OnClick="createNewClientButton_Click" />
 &nbsp;<br />
+                <br />
             <asp:Button ID="viewListOfClientsButton" runat="server" Height="30px" Text="View List of Clients" Width="232px" OnClick="viewListOfClientsButton_Click" />
 &nbsp;<br />
+                <br />
             <asp:Button ID="createNewInterventionButton" runat="server" Height="27px" Text="Create New Intervention" Width="230px" OnClick="createNewInterventionButton_Click" />
+                <br />
             <br />
             <asp:Button ID="checkOldInterventionButton" runat="server" Height="29px" style="margin-top: 6px" Text="Check Old Interventions" Width="233px" OnClick="checkOldInterventionButton_Click" />
             <br />
@@ -52,6 +54,7 @@
             <br />
             <br />
             </span></strong>
+            </p>
         </div>
         <p>
             &nbsp;</p>
@@ -60,4 +63,5 @@
         </p>
     </form>
 </body>
-</html>
+</asp:Content>
+<%--</html>--%>
