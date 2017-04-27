@@ -32,8 +32,6 @@ namespace ENETCareData
                 {
                     connection.Open();
                     result = command.ExecuteNonQuery();
-                    
-                    //connection.Close();
                 }
                 catch
                 {
@@ -41,6 +39,28 @@ namespace ENETCareData
                 }
                 return result;
             }
+        }
+
+        public List<Client> GetClientListByDistrict(int districtID)
+        {
+            List<Client> aClientList = new List<Client>();
+            connectionString = aDatabaseConfig.Setup();
+            using(SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM Client WHERE DistrictID=@id";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("id", districtID));
+
+                try
+                {
+                    connection.Open();
+                    //SqlDataReader reader = 
+                }
+                catch { }
+            }
+            return aClientList;
         }
     }
 }

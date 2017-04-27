@@ -1,13 +1,14 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ClientCreationPage.aspx.cs" Inherits="ENETCareWebForm.ClientCreatePage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ClientCreationPage.aspx.cs" Inherits="ENETCareWebForm.ClientCreatePage" MasterPageFile="~/MasterPage.Master" EnableEventValidation = false %>
 
-<!DOCTYPE html>
+ <asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<%--<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-</head>
+</head>--%>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1">
     <div>
     
         <br />
@@ -54,4 +55,5 @@
             &nbsp;</p>
     </form>
 </body>
-</html>
+</asp:Content>
+<%--</html>--%>
