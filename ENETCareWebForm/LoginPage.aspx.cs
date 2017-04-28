@@ -16,8 +16,9 @@ namespace ENET
         LoginValidation checkLogin = new LoginValidation();
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["UserName"] = "";
             //InsertUser(sender, e);
-            
+
         }
         protected void loginEventMethod(object sender, EventArgs e)
         {

@@ -36,6 +36,7 @@ namespace ENETCareWebForm
         {
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
+            Session["UserName"] = "";
             Response.Redirect("~/LoginPage.aspx");
             //Response.Redirect("LoginPage.aspx");
         }
