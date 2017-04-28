@@ -100,5 +100,32 @@ namespace ENETCareData
             }
             return aClientList;
         }
+
+        // Check whether the username is unique
+        public bool IsUserNameExist(string clientName)
+        {
+            bool isExist = false;
+            connectionString = aDatabaseConfig.Setup();
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM Client WHERE ClientName=@clientName";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("clientName", clientName));
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        isExist = true;
+                    }
+                }
+                catch { }
+            }
+            return isExist;
+        }
     }
 }

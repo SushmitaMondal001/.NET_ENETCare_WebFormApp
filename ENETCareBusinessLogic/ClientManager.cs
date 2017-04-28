@@ -16,6 +16,12 @@ namespace ENETCareBusinessLogic
         public string AddNewClient(string clientName, string address, int districtID)
         {
             string message = "Client creation is unsuccessful.";
+
+            //USer existance check
+            if(IsUserNameExist(clientName))
+                return message + "\n" + "This user already exists";
+
+            // username password validity check
             string IsValidName = ValidateUserInput(clientName,"client name");
             string IsValidLocation = ValidateUserInput(address, "Location");
             if ((IsValidName.Equals("ValidInput")) && (IsValidLocation.Equals("ValidInput")))
@@ -54,6 +60,11 @@ namespace ENETCareBusinessLogic
         {
             List<Client> aClientList = aClientGateway.GetClientList();
             return aClientList;
+        }
+
+        public bool IsUserNameExist(string clientName)
+        {
+            return aClientGateway.IsUserNameExist(clientName);
         }
     }
 }

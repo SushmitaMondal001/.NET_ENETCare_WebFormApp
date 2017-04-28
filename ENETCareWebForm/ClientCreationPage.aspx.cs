@@ -29,6 +29,7 @@ namespace ENETCareWebForm
         protected void saveButton_Click(object sender, EventArgs e)
         {
             //int districtID = Int32.Parse(districtDropDownList.SelectedItem.Value);
+            districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
             string result = aClientManager.AddNewClient(clientNameTextBox.Text, locationTextBox.Text, districtID);
             errorMessageLabel.Text = result;
             //Response.Write(result);
@@ -58,7 +59,7 @@ namespace ENETCareWebForm
             clientNameTextBox.Text = "";
             locationTextBox.Text = "";
             districtID = 1;
-            districtDropDownList.Items[0].Selected = true;
+            //districtDropDownList.Items[0].Selected = true;
         }
 
         protected void BackToHomePageButton_Click(object sender, EventArgs e)
