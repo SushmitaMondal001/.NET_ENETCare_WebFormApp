@@ -139,13 +139,13 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.TextBox interventionDateTextBox;
         
         /// <summary>
-        /// LabourHouRequiredTextBox control.
+        /// labourHourRequiredTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LabourHouRequiredTextBox;
+        protected global::System.Web.UI.WebControls.TextBox labourHourRequiredTextBox;
         
         /// <summary>
         /// costRequiredTextBox control.

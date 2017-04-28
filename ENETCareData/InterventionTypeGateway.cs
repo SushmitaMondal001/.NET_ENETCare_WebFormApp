@@ -73,5 +73,60 @@ namespace ENETCareData
             }
             return interventionTypeID;
         }
+        public string GetEstLabourByIntTypeID(int interventionTypeID)
+        {
+            string estimatedLabour = "";
+            connectionString = aDatabaseConfig.Setup();
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT EstimatedLabour FROM [Intervention Type] WHERE InterventionTypeID=@interventionTypeID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("interventionTypeID", interventionTypeID));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        estimatedLabour = reader["EstimatedLabour"].ToString();
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return estimatedLabour;
+        }
+
+        public string GetEstCostByIntTypeID(int interventionTypeID)
+        {
+            string estimatedCost = "";
+            connectionString = aDatabaseConfig.Setup();
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT EstimatedCost FROM [Intervention Type] WHERE InterventionTypeID=@interventionTypeID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("interventionTypeID", interventionTypeID));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        estimatedCost = reader["EstimatedCost"].ToString();
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return estimatedCost;
+        }
     }
 }

@@ -61,14 +61,18 @@ namespace ENETCareWebForm
         }        
 
         protected void InterventionSaveButon_Click(object sender, EventArgs e)
-        {            
-            
+        {
+            //List<InterventionType> aInterventionTypeList = anInterventionTypeManager.GetInterventionTypeList();
+            //int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
+            //labourHourRequiredTextBox.Text = anInterventionTypeManager.GetEstLabourByIntTypeID(interventionTypeID);
+            //Response.Write(labourHourRequiredTextBox.Text);
+
             int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
             int clientID = Int32.Parse(clientNameDropDownList.SelectedItem.Value);
             int userID = aUserManager.GetUserIdByName(userNameTextBox.Text);
             string interventionState = interventionStateDropDownList.SelectedItem.Text;
 
-            string result = anInterventionManager.AddNewIntervention(interventionTypeID, clientID, float.Parse(LabourHouRequiredTextBox.Text), float.Parse(costRequiredTextBox.Text), userID, interventionDateTextBox.Text, interventionState);
+            string result = anInterventionManager.AddNewIntervention(interventionTypeID, clientID, float.Parse(labourHourRequiredTextBox.Text), float.Parse(costRequiredTextBox.Text), userID, interventionDateTextBox.Text, interventionState);
             errorMessageLabel.Text = result;
         }
 
@@ -78,6 +82,15 @@ namespace ENETCareWebForm
             Response.Redirect("SiteEngineerHomePage.aspx");
         }
 
-        
+        protected void interventionTypeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<InterventionType> aInterventionTypeList = anInterventionTypeManager.GetInterventionTypeList();
+            int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
+            labourHourRequiredTextBox.Text = anInterventionTypeManager.GetEstLabourByIntTypeID(interventionTypeID);
+            costRequiredTextBox.Text = anInterventionTypeManager.GetEstCostByIntTypeID(interventionTypeID);
+
+
+
+        }
     }
 }

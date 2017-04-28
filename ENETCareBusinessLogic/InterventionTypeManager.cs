@@ -23,5 +23,17 @@ namespace ENETCareBusinessLogic
             int interventionTypeId = aInterventionTypeGateway.GetInterventionTypeIdByName(interventionTypeName);
             return interventionTypeId;
         }
+
+        public string GetEstLabourByIntTypeID(int interventionTypeID)
+        {
+            string estimatedLabour = aInterventionTypeGateway.GetEstLabourByIntTypeID(interventionTypeID);
+            return estimatedLabour;
+        }
+
+        public string GetEstCostByIntTypeID(int interventionTypeID)
+        {
+            string estimatedCost = aInterventionTypeGateway.GetEstCostByIntTypeID(interventionTypeID);
+            return estimatedCost;
+        }
     }
 }
