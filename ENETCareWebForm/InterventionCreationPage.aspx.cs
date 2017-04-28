@@ -22,8 +22,7 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            PopulateClientDropdownList();
-            PopulateInterventionTypeDropdownList();
+            
             if (!IsPostBack)
             {
                 PopulateClientDropdownList();
@@ -38,7 +37,7 @@ namespace ENETCareWebForm
             {
 
             }
-
+            //userNameTextBox.Text = (string)Session["UserName"];
         }
 
         public void PopulateClientDropdownList()
@@ -56,35 +55,14 @@ namespace ENETCareWebForm
             List<InterventionType> aInterventionTypeList = anInterventionTypeManager.GetInterventionTypeList();
             interventionTypeDropDownList.DataSource = aInterventionTypeList;
             interventionTypeDropDownList.DataTextField = "InterventionTypeName";
-            interventionTypeDropDownList.DataValueField = "InterventionTypeID";
-            interventionTypeDropDownList.DataBind();
-            interventionTypeDropDownList.Items[0].Selected = true;
+            interventionTypeDropDownList.DataValueField = "InterventionTypeID";         
+            interventionTypeDropDownList.DataBind();          
 
-        }
-
-        protected void LabourHouRequiredTextBox_Click(object sender, EventArgs e)
-        {
-            
-            
-        }
-
-        protected void CostRequiredTextBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void InterventionDateTextBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void UserNameTextBox_CLick(object sender, EventArgs e)
-        {
-
-        }
+        }        
 
         protected void InterventionSaveButon_Click(object sender, EventArgs e)
-        {
+        {            
+            
             int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
             int clientID = Int32.Parse(clientNameDropDownList.SelectedItem.Value);
             int userID = aUserManager.GetUserIdByName(userNameTextBox.Text);
@@ -99,5 +77,7 @@ namespace ENETCareWebForm
         {
             Response.Redirect("SiteEngineerHomePage.aspx");
         }
+
+        
     }
 }

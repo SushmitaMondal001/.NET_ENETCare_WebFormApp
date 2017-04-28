@@ -20,8 +20,7 @@ namespace ENETCareData
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
-                string query = "INSERT INTO Intervention(InterventionTypeID, ClientID, LabourRequired, CostRequired, UserID, InterventionDate, InterventionState) " +
-                                                 "VALUES(@InterventionTypeID, @ClientID, @LabourRequired,@CostRequired, @UserID, @InterventionDate, @InterventionState)";
+                string query = "INSERT INTO Intervention(InterventionTypeID, ClientID, LabourRequired, CostRequired, UserID, InterventionDate, InterventionState) VALUES(@InterventionTypeID, @ClientID, @LabourRequired,@CostRequired, @UserID, @InterventionDate, @InterventionState)";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Add(new SqlParameter("InterventionTypeID", interventionTypeID));

@@ -15,12 +15,12 @@ namespace ENETCareBusinessLogic
 
         public string AddNewIntervention(int interventionTypeID, int clientID, float labourRequired, float costRequired, int userID, string interventionDate, string interventionState)
         {
-            string message = "Client creation is unsuccessful.";
+            string message = "Intervention creation is unsuccessful.";
 
             int result = anInterventionGateway.AddNewIntervention(interventionTypeID, clientID, labourRequired, costRequired, userID, interventionDate, interventionState);
             if (result > 0)
             {
-                message = "Client creation is successful.";
+                message = "Intervention creation is successful.";
             }
            
             return message;
