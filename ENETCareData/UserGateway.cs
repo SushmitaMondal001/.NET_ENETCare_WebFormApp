@@ -38,5 +38,33 @@ namespace ENETCareData
             }
             return districtID;
         }
+
+        public int GetUserIdByName(string loginName)
+        {
+            int userID = 0;
+            connectionString = aDatabaseConfig.Setup();
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM [User] WHERE LoginName=@name";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("name", loginName));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        userID = Int32.Parse(reader["UserID"].ToString());
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return userID;
+        }
     }
 }

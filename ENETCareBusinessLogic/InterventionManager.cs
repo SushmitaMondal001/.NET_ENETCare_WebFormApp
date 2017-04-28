@@ -13,7 +13,7 @@ namespace ENETCareBusinessLogic
         InterventionGateway anInterventionGateway = new InterventionGateway();
         
 
-        public string AddNewIntervention(int interventionTypeID, int clientID, double labourRequired, double costRequired, int userID, string interventionDate, string interventionState)
+        public string AddNewIntervention(int interventionTypeID, int clientID, float labourRequired, float costRequired, int userID, string interventionDate, string interventionState)
         {
             string message = "Client creation is unsuccessful.";
 

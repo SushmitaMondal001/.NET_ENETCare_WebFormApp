@@ -24,7 +24,7 @@ namespace ENETCareData
                 string query = "INSERT INTO Client(ClientName, ClientAddress, DistrictID) VALUES(@ClientName, @ClientAddress, @DistrictID)";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("ClientName",clientName));
+                command.Parameters.Add(new SqlParameter("ClientName", clientName));
                 command.Parameters.Add(new SqlParameter("ClientAddress", address));
                 command.Parameters.Add(new SqlParameter("DistrictID", districtID));
 
@@ -45,7 +45,7 @@ namespace ENETCareData
         {
             List<Client> aClientList = new List<Client>();
             connectionString = aDatabaseConfig.Setup();
-            using(SqlConnection connection = new SqlConnection())
+            using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
                 string query = "SELECT * FROM Client WHERE DistrictID=@id";
@@ -78,10 +78,10 @@ namespace ENETCareData
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
-                string query = "SELECT ClientID, ClientName FROM Client";
+                string query = "SELECT ClientID, ClientName FROM [Client]";
 
                 SqlCommand command = new SqlCommand(query, connection);
-               // command.Parameters.Add(new SqlParameter("id", districtID));
+                // command.Parameters.Add(new SqlParameter("id", districtID));
 
                 try
                 {
@@ -100,6 +100,7 @@ namespace ENETCareData
             }
             return aClientList;
         }
+
 
         // Check whether the username is unique
         public bool IsUserNameExist(string clientName)
@@ -127,5 +128,7 @@ namespace ENETCareData
             }
             return isExist;
         }
+
+        
     }
 }

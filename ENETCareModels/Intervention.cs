@@ -11,8 +11,8 @@ namespace ENETCareModels
         private int interventionID;
         private int interventionTypeID;
         private int clientID;
-        private double labourRequired;
-        private double costRequired;
+        private float labourRequired;
+        private float costRequired;
         private int userID;
         private string interventionDate;
         private string interventionState;
@@ -57,7 +57,7 @@ namespace ENETCareModels
             }
         }
 
-        public double LabourRequired
+        public float LabourRequired
         {
             get
             {
@@ -70,7 +70,7 @@ namespace ENETCareModels
             }
         }
 
-        public double CostRequired
+        public float CostRequired
         {
             get
             {

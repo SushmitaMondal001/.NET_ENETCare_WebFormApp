@@ -20,7 +20,11 @@
             <asp:Label ID="interventionTypeLabel" runat="server" Font-Bold="True" style="z-index: 1; left: 118px; top: 331px; position: absolute; width: 189px" Text="Intervention Type"></asp:Label>
             <asp:DropDownList ID="interventionTypeDropDownList" runat="server" style="z-index: 1; left: 438px; top: 327px; position: absolute; width: 406px; height: 49px;" Visible="True">
             </asp:DropDownList>
-            <asp:DropDownList ID="interventionStateDropDownList" runat="server" style="z-index: 1; left: 445px; top: 745px; position: absolute; width: 231px" Visible="False">
+            <asp:DropDownList ID="interventionStateDropDownList" runat="server" style="z-index: 1; left: 445px; top: 745px; position: absolute; width: 231px" Visible="True">
+                <asp:ListItem Value="1" Text="Proposed"></asp:ListItem>
+                <asp:ListItem Value="1" Text="Approved"></asp:ListItem>
+                <asp:ListItem Value="1" Text="Cancelled"></asp:ListItem>
+                <asp:ListItem Value="1" Text="Completed"></asp:ListItem>
             </asp:DropDownList>
             <asp:DropDownList ID="clientNameDropDownList" runat="server" style="z-index: 1; left: 440px; top: 410px; position: absolute; width: 333px" Visible="True">
             </asp:DropDownList>
