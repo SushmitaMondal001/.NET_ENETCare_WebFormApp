@@ -24,7 +24,7 @@ namespace ENET
         {
             var userStore = new UserStore<IdentityUser>();
             var userManager = new UserManager<IdentityUser>(userStore);
-            var user = userManager.Find(usernameTextBox.Text, passwordTextBox.Text);
+            var user = userManager.Find(userNameTextBox.Text, passwordTextBox.Text);
 
             if (user != null)
             {
@@ -46,7 +46,7 @@ namespace ENET
                 //LoginStatus.Visible = true;
             }
 
-            //string page = checkLogin.LoginCheck(usernameTextBox.Text, passwordTextBox.Text);
+            //string page = checkLogin.LoginCheck(userNameTextBox.Text, passwordTextBox.Text);
             //if (page.Equals("Wrong"))
             //{
             //    Response.Write("Wrong Username or Password");

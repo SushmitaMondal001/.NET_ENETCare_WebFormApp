@@ -31,19 +31,20 @@ namespace ENETCareWebForm
             }
             if (User.Identity.IsAuthenticated)
             {
-                userNameTextBox.Text = User.Identity.GetUserName();
+                userNameTextLabel.Text = User.Identity.GetUserName();
             }
             else
             {
 
             }
-            //userNameTextBox.Text = (string)Session["UserName"];
+            //userNameTextLabel.Text = (string)Session["UserName"];
         }
 
         public void PopulateClientDropdownList()
         {
-            List<Client> aClientList = aClientManager.GetClientList();
-            clientNameDropDownList.DataSource = aClientList;
+            int districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
+            List<Client> aClientListByDistrict = aClientManager.GetClientListByDistrict(districtID);
+            clientNameDropDownList.DataSource = aClientListByDistrict;
             clientNameDropDownList.DataTextField = "ClientName";
             clientNameDropDownList.DataValueField = "ClientID";
             clientNameDropDownList.DataBind();
@@ -62,18 +63,26 @@ namespace ENETCareWebForm
 
         protected void InterventionSaveButon_Click(object sender, EventArgs e)
         {
-            //List<InterventionType> aInterventionTypeList = anInterventionTypeManager.GetInterventionTypeList();
-            //int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
-            //labourHourRequiredTextBox.Text = anInterventionTypeManager.GetEstLabourByIntTypeID(interventionTypeID);
-            //Response.Write(labourHourRequiredTextBox.Text);
 
-            int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
-            int clientID = Int32.Parse(clientNameDropDownList.SelectedItem.Value);
-            int userID = aUserManager.GetUserIdByName(userNameTextBox.Text);
+            //int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
+            //int clientID = Int32.Parse(clientNameDropDownList.SelectedItem.Value);
+            int userID = aUserManager.GetUserIdByName(userNameTextLabel.Text);
             string interventionState = interventionStateDropDownList.SelectedItem.Text;
 
-            string result = anInterventionManager.AddNewIntervention(interventionTypeID, clientID, float.Parse(labourHourRequiredTextBox.Text), float.Parse(costRequiredTextBox.Text), userID, interventionDateTextBox.Text, interventionState);
-            errorMessageLabel.Text = result;
+
+            string result = anInterventionManager.AddNewIntervention(interventionTypeDropDownList.SelectedItem.Value, clientNameDropDownList.SelectedItem.Value, labourHourRequiredTextBox.Text, costRequiredTextBox.Text,
+                            userID, interventionDateTextBox.Text, interventionState);
+            if (!(result.Equals("Intervention creation is successful.")))
+            {
+                errorMessageLabel.Text = result;
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Intervention creation is successful.');window.location ='SiteEngineerHomePage.aspx';", true);
+                //Response.Redirect("SiteEngineerHomePage.aspx");
+            }
+
+
         }
 
 
@@ -91,6 +100,14 @@ namespace ENETCareWebForm
 
 
 
+        }
+
+        protected void costRequiredTextBox_Click(object sender, EventArgs e)
+        {
+            //if (anInterventionManager.ValidateLabourInput(labourHourRequiredTextBox.Text))
+            //{
+            //    labourErrorMessageLabel.Text = "Sorry this field can not be emptyand can  only contain numeric input";
+            //}
         }
     }
 }

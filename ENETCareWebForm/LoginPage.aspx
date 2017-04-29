@@ -8,7 +8,7 @@
         <h1>Login page</h1>
         <p>
             Username:&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="usernameTextBox" placeholder="Enter Your Username" runat="server" Width="169px" />
+            <asp:TextBox ID="userNameTextBox" placeholder="Enter Your Username" runat="server" Width="169px" />
         </p>
         <p>
             Password:&nbsp;&nbsp;&nbsp;

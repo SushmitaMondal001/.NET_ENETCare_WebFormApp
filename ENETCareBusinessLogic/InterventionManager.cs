@@ -13,20 +13,74 @@ namespace ENETCareBusinessLogic
         InterventionGateway anInterventionGateway = new InterventionGateway();
         
 
-        public string AddNewIntervention(int interventionTypeID, int clientID, float labourRequired, float costRequired, int userID, string interventionDate, string interventionState)
+        public string AddNewIntervention(string intTypeID, string clientId, string labour, string cost, int userID, string interventionDate, string interventionState)
         {
             string message = "Intervention creation is unsuccessful.";
 
-            int result = anInterventionGateway.AddNewIntervention(interventionTypeID, clientID, labourRequired, costRequired, userID, interventionDate, interventionState);
-            if (result > 0)
+            if (intTypeID.Equals("Select Intervention") || clientId.Equals("Select Client"))
             {
-                message = "Intervention creation is successful.";
+                return "Intervention and client must be seleted";
             }
-           
-            return message;
+            else if (!(ValidateLabourInput(labour)) || (!ValidateLabourInput(cost)))
+            {
+                return "Sorry Labour and cost field can not be empty and can  only contain numeric input";
+            }
+            else if (!(ValidateDateFormat(interventionDate)))
+            {
+                return "date must be in yyyy/mm/dd format";
+            }
+            else
+            {
+                int interventionTypeID = Int32.Parse(intTypeID);
+                int clientID = Int32.Parse(clientId);
+                float labourRequired = float.Parse(labour);
+                float costRequired = float.Parse(cost);
+                int result = anInterventionGateway.AddNewIntervention(interventionTypeID, clientID, labourRequired, costRequired, userID, interventionDate, interventionState);
+                if (result > 0)
+                {
+                    message = "Intervention creation is successful.";
+                }
+
+                return message;
+            }
+                    
+            
 
         }
 
-        
+        public bool ValidateLabourInput(string input)
+        {
+            
+            if (input.Equals(""))
+            {
+                return false;
+            }            
+            else
+            {
+                return IsDigitsOnly(input);
+            }
+
+            
+        }
+
+        public bool ValidateDateFormat(string input)
+        {
+            DateTime dateValue;
+            bool date = DateTime.TryParseExact(input, "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
+            return date;
+        }
+
+        public bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+
+            return true;
+        }
+
+
     }
 }
