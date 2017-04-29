@@ -8,6 +8,9 @@ using ENETCareBusinessLogic;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using ENETCareData;
+using System.Data.Entity;
+using ENETCareModels;
 
 namespace ENET
 {
@@ -22,8 +25,15 @@ namespace ENET
         }
         protected void loginEventMethod(object sender, EventArgs e)
         {
-            var userStore = new UserStore<IdentityUser>();
-            var userManager = new UserManager<IdentityUser>(userStore);
+            // Fetch connectionstring for Default Database
+            DatabaseConfig aDatabaseConfig = new DatabaseConfig();
+            string connectionString = aDatabaseConfig.Setup("Identity");
+
+            //var userStore = new UserStore<IdentityUser>();
+            //var userManager = new UserManager<IdentityUser>(userStore);
+
+            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(new MyDbContext(connectionString)));
+
             var user = userManager.Find(userNameTextBox.Text, passwordTextBox.Text);
 
             if (user != null)
@@ -45,16 +55,6 @@ namespace ENET
                 //StatusText.Text = "Invalid username or password.";
                 //LoginStatus.Visible = true;
             }
-
-            //string page = checkLogin.LoginCheck(userNameTextBox.Text, passwordTextBox.Text);
-            //if (page.Equals("Wrong"))
-            //{
-            //    Response.Write("Wrong Username or Password");
-            //}
-            //else
-            //{
-            //    Response.Redirect(page);
-            //}
         }
 
         public void InsertUser(object sender, EventArgs e)

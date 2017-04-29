@@ -14,7 +14,7 @@ namespace ENETCareData
         public int GetUserDistrictID(string loginName)
         {
             int districtID = 0;
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -42,7 +42,7 @@ namespace ENETCareData
         public int GetUserIdByName(string loginName)
         {
             int userID = 0;
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;

@@ -16,7 +16,7 @@ namespace ENETCareData
         public int AddNewIntervention(int interventionTypeID, int clientID, float labourRequired, float costRequired, int userID, string interventionDate, string interventionState)
         {
             int result = 0;
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;

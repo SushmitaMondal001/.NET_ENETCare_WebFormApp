@@ -44,7 +44,7 @@ namespace ENETCareBusinessLogic
             //check Input is not integer
             if (input.Equals(""))
                 return "Please insert " + inputType + ". " + inputType + " can not be blank.";
-            else if (!(System.Text.RegularExpressions.Regex.IsMatch(input, "^[a-zA-Z'.]{1,50}$")))
+            else if (!(System.Text.RegularExpressions.Regex.IsMatch(input, "^[a-zA-Z'. ]{1,50}$")))
                 return "Invalid " + inputType + ". " + inputType + " only contains letters and has to be between 1 to 50 letters.";
              
             return "ValidInput";

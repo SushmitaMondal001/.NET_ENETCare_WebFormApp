@@ -17,7 +17,7 @@ namespace ENETCareData
         {
             int result = 0;
             Client aClient = new Client();
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -44,7 +44,7 @@ namespace ENETCareData
         public List<Client> GetClientListByDistrict(int districtID)
         {
             List<Client> aClientList = new List<Client>();
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -74,7 +74,7 @@ namespace ENETCareData
         public List<Client> GetClientList()
         {
             List<Client> aClientList = new List<Client>();
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -106,7 +106,7 @@ namespace ENETCareData
         public bool IsUserNameExist(string clientName)
         {
             bool isExist = false;
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;

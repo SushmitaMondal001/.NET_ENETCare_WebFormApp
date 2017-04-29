@@ -12,12 +12,22 @@ namespace ENETCareData
 {
     public class DatabaseConfig
     {
-        public string Setup()
+        public string Setup(string database)
         {
-            string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\ENETCareData"));
-            AppDomain.CurrentDomain.SetData("DataDirectory", path);
-            string connectionString = WebConfigurationManager.ConnectionStrings["ENETCareAppConnection"].ConnectionString;
-            return connectionString;
+            if (database.Equals("ENETCareDatabase"))
+            {
+                string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\ENETCareData"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", path);
+                string connectionString = WebConfigurationManager.ConnectionStrings["ENETCareAppConnection"].ConnectionString;
+                return connectionString;
+            }
+            else
+            {
+                string path = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\ENETCareWebForm\App_Data"));
+                AppDomain.CurrentDomain.SetData("DataDirectory", path);
+                string connectionString = WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+                return connectionString;
+            }
         }
     }
 }

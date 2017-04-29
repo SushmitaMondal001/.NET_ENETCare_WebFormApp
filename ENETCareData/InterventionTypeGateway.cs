@@ -18,7 +18,7 @@ namespace ENETCareData
         public List<InterventionType> GetInterventionTypeList()
         {
             List<InterventionType> aInterventionTypeList = new List<InterventionType>();
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -49,7 +49,7 @@ namespace ENETCareData
         public int GetInterventionTypeIdByName(string interventionTypeName)
         {
             int interventionTypeID = 0;
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -76,7 +76,7 @@ namespace ENETCareData
         public string GetEstLabourByIntTypeID(int interventionTypeID)
         {
             string estimatedLabour = "";
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -104,7 +104,7 @@ namespace ENETCareData
         public string GetEstCostByIntTypeID(int interventionTypeID)
         {
             string estimatedCost = "";
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;

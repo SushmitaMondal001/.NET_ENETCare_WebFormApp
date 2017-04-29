@@ -16,7 +16,7 @@ namespace ENETCareData
         public List<District> GetDistrictList()
         {
             List<District> aDistrictList = new List<District>();
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -47,7 +47,7 @@ namespace ENETCareData
         public string GetDistrictName(int districtID)
         {
             string districtName = "";
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
