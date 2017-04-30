@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 using System.Data.SqlClient;
 using ENETCareModels;
 
@@ -77,13 +78,14 @@ namespace ENETCareData
 
         public List<Intervention> GetInterventionListByUserID(int userID)
         {
+            DateTime dateValue;
             List<Intervention> anInterventionList = new List<Intervention>();
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
 
-                string query = "SELECT * FROM [Intervention] WHERE UserID=@id";
+                string query = "SELECT * FROM [Intervention] WHERE UserID=@id AND InterventionState != 'Cancelled'";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Add(new SqlParameter("id", userID));
@@ -97,6 +99,9 @@ namespace ENETCareData
                         Intervention anIntervention = new Intervention();
                         anIntervention.InterventionID = Int32.Parse(reader["InterventionID"].ToString());
                         anIntervention.InterventionTypeID = Int32.Parse(reader["InterventionTypeID"].ToString());
+                        bool date = DateTime.TryParse(reader["InterventionDate"].ToString(), System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
+                        string interventionDate = dateValue.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        anIntervention.InterventionDate = interventionDate;
                         anIntervention.ClientID = Int32.Parse(reader["ClientID"].ToString());
                         anIntervention.InterventionState = reader["InterventionState"].ToString();
                         anInterventionList.Add(anIntervention);
@@ -154,9 +159,30 @@ namespace ENETCareData
         }
 
 
-        public int ChangeInterventionStatusByID(int interventionID)
+        public int UpdateInterventionStatusByID(int interventionID, string status)
         {
-            return 0;
+            int result = 0;
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "UPDATE [Intervention] SET InterventionState = @status WHERE InterventionID = @interventionID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("status", status));
+                command.Parameters.Add(new SqlParameter("interventionID", interventionID));
+
+                try
+                {
+                    connection.Open();
+                    result = command.ExecuteNonQuery();
+                }
+                catch
+                {
+
+                }
+            }
+            return result;
         }
         
 

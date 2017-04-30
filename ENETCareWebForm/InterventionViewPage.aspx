@@ -16,7 +16,7 @@
 &nbsp;<p style="margin-left: 80px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     
-                <asp:GridView ID="interventionListGridView" AutoGenerateColumns="False" runat="server" AllowPaging="True" PageSize="5" EnableSortingAndPagingCallbacks="false" OnPageIndexChanging="interventionListGridView_PageIndexChanging" OnSelectedIndexChanged="interventionListGridView_SelectedIndexChanged" OnRowCommand="interventionListGridView_RowCommand">
+                <asp:GridView ID="interventionListGridView" AutoGenerateColumns="False" runat="server" AllowPaging="True" PageSize="5" EnableSortingAndPagingCallbacks="false" OnPageIndexChanging="interventionListGridView_PageIndexChanging" OnRowCommand="interventionListGridView_RowCommand">
                     <Columns>
                         <asp:TemplateField HeaderText = "Row Number" ItemStyle-Width="100">
                              <ItemTemplate>
@@ -31,25 +31,15 @@
                                 <asp:Label runat="server" Text='<%#Eval("InterventionType")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>                        
-                        <%--<asp:BoundField DataField="intervention" HeaderText="Interventions" />--%>
+                       
                         <asp:BoundField DataField="ClientName" HeaderText="Client Name" />
+                        <asp:BoundField DataField="InterventionDate" HeaderText="Intervention Date" />
                         <asp:BoundField DataField="InterventionStatus" HeaderText="Intervention Status" />
-                        <%--<asp:CommandField showselectbutton="true" HeaderText="Approve" SelectText="Approve" />--%>
-                        <%--<asp:CommandField showselectbutton="true" HeaderText="Complete" SelectText="Complete"  />--%>
+                        
                         <asp:ButtonField CommandName="Approve" Text="Approve" HeaderText="Approve"  />
                         <asp:ButtonField CommandName="Complete" Text="Complete" HeaderText="Complete"  />
-                        <%--<asp:TemplateField HeaderText="Change Status">
-                        <ItemTemplate>
-                                <asp:HiddenField runat="server" ID="idStatusHiddenField" Value='<%#Eval("InterventionTypeID")%>'/>
-                                <asp:Button Text="Complete" CommandName="showselectbutton" runat="server" Enabled='<%# Eval("InterventionStatus").ToString() != "Disabled" %>'></asp:Button>
-                            </ItemTemplate>
-                        </asp:TemplateField>--%>
-                        <%--<asp:TemplateField HeaderText="Change Status">
-                              <ItemTemplate>
-                                <asp:Button ID="changeStatusButton" runat="server" CommandName="AddToCart" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
-                                  Text="Complete" />
-                              </ItemTemplate> 
-                            </asp:TemplateField>--%>
+                        <asp:ButtonField CommandName="Remove" Text="Cancel" HeaderText="Cancel"  />
+                        
                         
                     </Columns>
                 </asp:GridView>

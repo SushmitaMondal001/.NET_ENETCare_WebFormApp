@@ -59,6 +59,7 @@ namespace ENETCareWebForm
                 anInterventionViewByUser.InterventionID = anIntervention.InterventionID;
                 anInterventionViewByUser.InterventionTypeID = anIntervention.InterventionTypeID;
                 anInterventionViewByUser.InterventionType = anInterventionTypeManager.GetInterventionNameByTypeId(anIntervention.InterventionTypeID);
+                anInterventionViewByUser.InterventionDate = anIntervention.InterventionDate;
                 anInterventionViewByUser.ClientID = anIntervention.ClientID;
                 anInterventionViewByUser.ClientName = aClientManager.GetClientNameByID(anIntervention.ClientID);                                    
                 anInterventionViewByUser.InterventionStatus = anIntervention.InterventionState;
@@ -69,10 +70,7 @@ namespace ENETCareWebForm
             return anInterventionViewByUserList;
         }
 
-        protected void interventionListGridView_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            
-        }
+        
 
         protected void interventionListGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -87,34 +85,43 @@ namespace ENETCareWebForm
 
         protected void interventionListGridView_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            
-            int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow selectedRow = interventionListGridView.Rows[index];
-            TableCell status = selectedRow.Cells[3];
-            string interventionStatus = status.Text;
-            if ((e.CommandName == "Complete") && ((interventionStatus.Equals("Approved")) || (interventionStatus.Equals("Proposed"))))
+            if (e.CommandName != "Page")
             {
+
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow selectedRow = interventionListGridView.Rows[index];
+                TableCell status = selectedRow.Cells[3];
+                string interventionStatus = status.Text;
                 HiddenField interventionIDHiddenField = (HiddenField)selectedRow.FindControl("interventionIDHiddenField");
+                string interventionID = interventionIDHiddenField.Value;
+                if ((e.CommandName == "Complete") && ((interventionStatus.Equals("Approved")) || (interventionStatus.Equals("Proposed"))))
+                {
+                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Completed");
+                    BindInterventionListGrid();
+                    ErrorMessageLabel.Text = result;
+                }
+                else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Proposed")))
+                {
+                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Approved");
+                    BindInterventionListGrid();
+                    ErrorMessageLabel.Text = result;
+                }
+                else if ((e.CommandName == "Remove") && ((interventionStatus.Equals("Approved")) || (interventionStatus.Equals("Proposed"))))
+                {
+                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Cancelled");
+                    BindInterventionListGrid();
+                    ErrorMessageLabel.Text = "Intervention Cancelled";
+                }
+                else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Approved")))
+                {
+                    ErrorMessageLabel.Text = "The Intervention is already Approved";
+                }
+                else if (interventionStatus.Equals("Completed"))
+                {
+                    ErrorMessageLabel.Text = "The Intervention is already Completed";
+                }
                 
-                    ErrorMessageLabel.Text = "Hi Mate" + interventionIDHiddenField.Value;
-                
-
-                //ErrorMessageLabel.Text = "Hi Mate";
             }
-            else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Proposed")))
-            {
-                ErrorMessageLabel.Text = "Hi Dude";
-            }
-            else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Approved")))
-            {
-                ErrorMessageLabel.Text = "The Intervention is already Approved";
-            }
-            else if (interventionStatus.Equals("Completed"))
-            {
-                ErrorMessageLabel.Text = "The Intervention is already Completed";
-            }
-            //ErrorMessageLabel.Text = row.Cells[4].Text;
-
 
         }
     }

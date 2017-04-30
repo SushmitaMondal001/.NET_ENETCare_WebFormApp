@@ -11,6 +11,7 @@ namespace ENETCareModels
         private int interventionID;
         private int interventionTypeID;
         private string interventionType;
+        private string interventionDate;
         private int clientID;
         private string clientName;        
         private string interventionStatus;
@@ -54,6 +55,19 @@ namespace ENETCareModels
             set
             {
                 interventionType = value;
+            }
+        }
+
+        public string InterventionDate
+        {
+            get
+            {
+                return interventionDate;
+            }
+
+            set
+            {
+                interventionDate = value;
             }
         }
 
