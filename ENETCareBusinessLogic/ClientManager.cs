@@ -8,7 +8,6 @@ using ENETCareModels;
 
 namespace ENETCareBusinessLogic
 {
-
     public class ClientManager
     {
         ClientGateway aClientGateway = new ClientGateway();
@@ -66,6 +65,11 @@ namespace ENETCareBusinessLogic
         public bool IsUserNameExist(string clientName)
         {
             return aClientGateway.IsUserNameExist(clientName);
+        }
+
+        public string GetClientNameByClientID(int clientID)
+        {
+            return aClientGateway.GetClientNameByClientID(clientID);
         }
     }
 }

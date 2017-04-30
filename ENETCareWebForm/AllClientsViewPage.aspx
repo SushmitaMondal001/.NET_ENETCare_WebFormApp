@@ -12,10 +12,7 @@
             </p>
             <p style="margin-left: 80px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <%-- <asp:ScriptManager ID="scriptManagerToCheck" runat="server"></asp:ScriptManager>
-                 <asp:UpdatePanel ID="updatePannelToCheck" runat="server">
-                <ContentTemplate>--%>
-                <asp:GridView ID="clientListGridView"  AutoGenerateColumns="false" runat="server" AllowPaging="True" OnSelectedIndexChanged="clientListGridView_SelectedIndexChanged" PageSize="2" OnPageIndexChanging="clientListGridView_PageIndexChanging" EnableSortingAndPagingCallbacks="false" > <%----%> 
+                <asp:GridView ID="clientListGridView"  AutoGenerateColumns="false" runat="server" AllowPaging="True" OnSelectedIndexChanged="clientListGridView_SelectedIndexChanged" PageSize="4" OnPageIndexChanging="clientListGridView_PageIndexChanging" EnableSortingAndPagingCallbacks="false" > <%----%> 
                     <Columns>
                         <asp:TemplateField HeaderText = "Row Number" ItemStyle-Width="100">
                              <ItemTemplate>
@@ -25,21 +22,38 @@
 
                         <asp:TemplateField HeaderText="Name">
                         <ItemTemplate>
-                                <asp:HiddenField runat="server" ID="idHiddenField" Value='<%#Eval("ClientID")%>'/>
-                                <asp:Label runat="server" Text='<%#Eval("ClientName")%>'></asp:Label>
+                                <asp:HiddenField runat="server" ID="clientIDHiddenField" Value='<%#Eval("ClientID")%>'/>
+                                <asp:Label ID="clientNameLabel" runat="server" Text='<%#Eval("ClientName")%>'></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>                
             
                         <asp:BoundField DataField="ClientAddress" HeaderText="address" />
-                        <asp:BoundField DataField="Intervention" HeaderText="Interventions" />
-                        <asp:BoundField DataField="InterventionStatus" HeaderText="Intervention Status" />
+
+                        <asp:TemplateField HeaderText="Intervention">
+                        <ItemTemplate>
+                                <asp:HiddenField runat="server" ID="interventionTypeIDHiddenField" Value='<%#Eval("InterventionTypeID")%>'/>
+                                <asp:Label runat="server" Text='<%#Eval("Intervention")%>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <%--<asp:BoundField DataField="Intervention" HeaderText="Interventions" />--%>
+
+                        <asp:TemplateField HeaderText="Intervention Status">
+                        <ItemTemplate>
+                                <asp:HiddenField runat="server" ID="interventionIDHiddenField" Value='<%#Eval("InterventionID")%>'/>
+                                <asp:Label runat="server" Text='<%#Eval("InterventionStatus")%>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:ButtonField Text="Change QMI" CommandName="Select" ItemStyle-Width="150" runat="server"/>
+                        <%--<asp:BoundField DataField="InterventionStatus" HeaderText="Intervention Status" />--%>
                         <%--<asp:CommandField ShowEditButton="true" HeaderText="Change QMI" />--%>
-                        <asp:TemplateField>
+                        <%--<asp:TemplateField>
                               <ItemTemplate>
-                                <asp:Button ID="changeQMIButton" runat="server" CommandName="AddToCart" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                <asp:Button ID="changeQMIButton" runat="server" CommandName="changeQMI" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
                                   Text="Change QMI" />
                               </ItemTemplate> 
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
                     </Columns>
                 </asp:GridView>
             </p>

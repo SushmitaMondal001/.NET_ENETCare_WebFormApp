@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProposedInterventionListViewPage.aspx" />
+    <Content Include="QMIEditPage.aspx" />
     <Content Include="SiteEngineerHomePage.aspx" />
     <Content Include="StyleSheet.css" />
     <Content Include="UserListPage.aspx" />
@@ -245,6 +246,13 @@
     </Compile>
     <Compile Include="ProposedInterventionListViewPage.aspx.designer.cs">
       <DependentUpon>ProposedInterventionListViewPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="QMIEditPage.aspx.cs">
+      <DependentUpon>QMIEditPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QMIEditPage.aspx.designer.cs">
+      <DependentUpon>QMIEditPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="SiteEngineerHomePage.aspx.cs">
       <DependentUpon>SiteEngineerHomePage.aspx</DependentUpon>
