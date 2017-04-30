@@ -27,6 +27,6 @@ namespace ENETCareBusinessLogic
         public void SetNewDistrict(int newDistrict, int userID)
         {
             aDistrictGateway.UpdateUserDistrict(newDistrict, userID);
-        }
+        } 
     }
 }
