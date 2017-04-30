@@ -21,9 +21,9 @@ namespace ENETCareWebForm
         protected void Page_Load(object sender, EventArgs e)
         {
             //Response.Write((string)Session["UserName"]);
+            districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
             if (!this.IsPostBack)
             {
-                districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
                 this.BindClientListGrid();
             }
         }
@@ -73,6 +73,13 @@ namespace ENETCareWebForm
         {
             clientListGridView.PageIndex = e.NewPageIndex;
             BindClientListGrid();
+
+            //updatePannelToCheck.Update();
+        }
+
+        protected void siteEngineerHomePageButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("SiteEngineerHomePage.aspx");
         }
     }
 }
