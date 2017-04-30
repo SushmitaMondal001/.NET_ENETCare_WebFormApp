@@ -66,5 +66,33 @@ namespace ENETCareData
             }
             return userID;
         }
+
+        public string GetUserNameByUserID(int userID)
+        {
+            string userName = "";
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM [User] WHERE userID=@id";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("id", userID));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        userName = reader["UserName"].ToString();
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return userName;
+        }
     }
 }

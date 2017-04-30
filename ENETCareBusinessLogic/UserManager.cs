@@ -22,5 +22,10 @@ namespace ENETCareBusinessLogic
             return userID;
         }
 
+        public string GetUserNameByUserID(int userID)
+        {
+            return anUserGateway.GetUserNameByUserID(userID);
+        }
+
     }
 }

@@ -67,14 +67,16 @@ namespace ENETCareWebForm
 
         protected void clientListGridView_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            GridViewRow row = clientListGridView.SelectedRow;
+            HiddenField id = (HiddenField)row.FindControl("interventionIDHiddenField");
+            int interventionID = Int32.Parse(id.Value);
+            Session["InterventionID"] = interventionID.ToString();
+            Response.Redirect("QMIEditPage.aspx");
         }
         protected void clientListGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             clientListGridView.PageIndex = e.NewPageIndex;
             BindClientListGrid();
-
-            //updatePannelToCheck.Update();
         }
 
         protected void siteEngineerHomePageButton_Click(object sender, EventArgs e)

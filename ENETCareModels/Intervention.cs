@@ -17,7 +17,10 @@ namespace ENETCareModels
         private string interventionDate;
         private string interventionState;
         private int approvalUserID;
-        
+        private string notes;
+        private int? remainingLife;
+        private string lastEditDate;
+
         public int InterventionID
         {
             get
@@ -131,6 +134,45 @@ namespace ENETCareModels
             set
             {
                 approvalUserID = value;
+            }
+        }
+
+        public string Notes
+        {
+            get
+            {
+                return notes;
+            }
+
+            set
+            {
+                notes = value;
+            }
+        }
+
+        public int? RemainingLife
+        {
+            get
+            {
+                return remainingLife;
+            }
+
+            set
+            {
+                remainingLife = value;
+            }
+        }
+
+        public string LastEditDate
+        {
+            get
+            {
+                return lastEditDate;
+            }
+
+            set
+            {
+                lastEditDate = value;
             }
         }
     }

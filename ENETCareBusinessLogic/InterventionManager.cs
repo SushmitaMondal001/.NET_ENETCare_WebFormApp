@@ -86,11 +86,51 @@ namespace ENETCareBusinessLogic
             return anInterventionList;
         }
 
+
         public List<Intervention> GetInterventionListByUserID(int userID)
         {
             List<Intervention> anInterventionList = anInterventionGateway.GetInterventionListByUserID(userID);
             return anInterventionList;
         }
 
+
+        public Intervention GetInterventionListByInterventionID(int interventionID)
+        {
+            Intervention anIntervention = anInterventionGateway.GetInterventionListByInterventionID(interventionID);
+            return anIntervention;
+        }
+
+        public string UpdateIntervention(int interventionID, string lastEditDate, string notes, string remainingLife)
+        {
+            string message = "Quality management information update is unsuccessful.";
+            string isValidInput = IsValidRemainingLife(remainingLife);
+            if (isValidInput.Equals("Valid"))
+            {
+                int remainingLifeInt = Int32.Parse(remainingLife);
+                int result = anInterventionGateway.UpdateIntervention(interventionID, lastEditDate, notes, remainingLifeInt);
+                if(result > 0)
+                    message = "Quality management information update is successful.";
+            }
+            else
+            {
+                message = isValidInput;
+            }
+            return message;
+        }
+
+        public string IsValidRemainingLife(string remainingLife)
+        {
+            string result = "Valid";
+            int remainingLifeInt;
+            bool isInt = Int32.TryParse(remainingLife, out remainingLifeInt);
+            if (isInt == false)
+                return "Remaining life must be integer.";
+            else if (remainingLifeInt < 0 || remainingLifeInt > 100)
+                return "Remaining life must be between 0 to 100.";
+            return result;
+        }
+
+
+>>>>>>> 7d18b414e57a3d6fee20e316b428fa43b8641d38
     }
 }
