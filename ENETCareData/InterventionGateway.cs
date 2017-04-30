@@ -190,6 +190,26 @@ namespace ENETCareData
             }
         }
 
+        public void UpdateInterventionStatus(string changedStatus, int interventionID)
+        {
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "Update Intervention Set InterventionState= '" + changedStatus + "' where InterventionID = '" + interventionID + "'";
+                try
+                {
+                    connection.Open();
+                    SqlCommand cmd = new SqlCommand(query, connection);
+                    cmd.ExecuteNonQuery();
+                    connection.Close();
+
+                }
+                catch { }
+
+            }
+        }
+
     }
     
 }

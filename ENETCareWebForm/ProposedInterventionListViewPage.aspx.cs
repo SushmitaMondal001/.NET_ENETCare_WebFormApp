@@ -14,13 +14,12 @@ namespace ENETCareWebForm
     public partial class ProposedInterventionListViewPage : System.Web.UI.Page
     {
 
-        string currentUserId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            currentUserId = User.Identity.GetUserId();
-            Label1.Text = currentUserId;
+            
         }
-
+        ENETCareBusinessLogic.InterventionManager inter = new ENETCareBusinessLogic.InterventionManager();
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (GridViewRow row in GridView1.Rows)
@@ -56,15 +55,8 @@ namespace ENETCareWebForm
         {
            
             int interventionID = int.Parse(Session["InterventionID"].ToString());
-           
-            //change connection over here
-            string con = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\MuhammadFaisal\Source\Repos\.NET_ENETCare_WebFormApp9\ENETCareData\ENETCareDatabase.mdf;Integrated Security=True";
 
-            SqlConnection connection = new SqlConnection(con);
-            connection.Open();
-            SqlCommand cmd = new SqlCommand("Update Intervention Set InterventionState= '" + RadioButtonList1.SelectedItem + "' where InterventionID = '"+ interventionID + "'",connection);
-            cmd.ExecuteNonQuery();
-            connection.Close();
+            inter.SetInterventionStatus(RadioButtonList1.SelectedItem.ToString(), interventionID);
             Response.Redirect(Request.RawUrl);
         }
     }
