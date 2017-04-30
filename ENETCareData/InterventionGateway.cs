@@ -43,5 +43,35 @@ namespace ENETCareData
                 return result;
             }
         }
+
+        public List<Intervention> GetInterventionListByClient(int clientID)
+        {
+            List<Intervention> anInterventionList = new List<Intervention>();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM Intervention WHERE ClientID=@id";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("id", clientID));
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Intervention anIntertervention = new Intervention();
+                        anIntertervention.InterventionID = Int32.Parse(reader["InterventionID"].ToString());
+                        anIntertervention.InterventionTypeID = Int32.Parse(reader["InterventionTypeID"].ToString());
+                        anIntertervention.InterventionState = reader["InterventionState"].ToString();
+                        anInterventionList.Add(anIntertervention);
+                    }
+                }
+                catch { }
+            }
+            return anInterventionList;
+        }
     }
 }

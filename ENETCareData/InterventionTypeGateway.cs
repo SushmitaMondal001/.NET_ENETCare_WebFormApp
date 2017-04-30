@@ -128,5 +128,34 @@ namespace ENETCareData
             }
             return estimatedCost;
         }
+
+        public string GetInterventionNameByTypeId(int interventionTypeID)
+        {
+            string interventionName = "";
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM [Intervention Type] WHERE InterventionTypeID=@interventionTypeID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("interventionTypeID", interventionTypeID));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        interventionName = reader["InterventionTypeName"].ToString();
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return interventionName;
+        }
+
     }
 }

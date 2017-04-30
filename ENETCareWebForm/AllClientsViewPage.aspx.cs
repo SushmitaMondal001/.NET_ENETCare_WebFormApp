@@ -14,6 +14,8 @@ namespace ENETCareWebForm
         ClientManager aClientManager = new ClientManager();
         DistrictManager aDistrictManager = new DistrictManager();
         UserManager aUserManager = new UserManager();
+        InterventionManager anInterventionManager = new InterventionManager();
+        InterventionTypeManager anInterventionTypeManager = new InterventionTypeManager();
         int districtID = 0;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -22,19 +24,19 @@ namespace ENETCareWebForm
             if (!this.IsPostBack)
             {
                 districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
-                //this.BindClientListGrid();
+                this.BindClientListGrid();
             }
         }
 
         public void BindClientListGrid()
         {
             List<Client> aClientList = aClientManager.GetClientListByDistrict(districtID);
-            PopulateViewList(aClientList);
+            List<ClientWithIntervention> aClientWithInterventionList = PopulateViewList(aClientList);
             if (aClientList.Count == 0)
                 ErrorMessageLabel.Text = "No client was found !!";
             else
             {
-                clientListGridView.DataSource = aClientList;
+                clientListGridView.DataSource = aClientWithInterventionList;
                 clientListGridView.DataBind();
             }
         }
@@ -44,7 +46,33 @@ namespace ENETCareWebForm
             // get intervention for each client -> foreach loop for client
             // Populate intervention list
             List<ClientWithIntervention> aClientWithInterventionList = new List<ClientWithIntervention>();
+            foreach(Client aClient in aClientList)
+            {
+                List<Intervention> anInterventionList = anInterventionManager.GetInterventionListByClient(aClient.ClientID);
+                foreach(Intervention anIntervention in anInterventionList)
+                {
+                    ClientWithIntervention aClientWithIntervention = new ClientWithIntervention();
+                    aClientWithIntervention.ClientID = aClient.ClientID;
+                    aClientWithIntervention.ClientName = aClient.ClientName;
+                    aClientWithIntervention.ClientAddress = aClient.Address;
+                    aClientWithIntervention.InterventionID = anIntervention.InterventionID;
+                    aClientWithIntervention.InterventionTypeID = anIntervention.InterventionTypeID;
+                    aClientWithIntervention.Intervention = anInterventionTypeManager.GetInterventionNameByTypeId(anIntervention.InterventionTypeID);
+                    aClientWithIntervention.InterventionStatus = anIntervention.InterventionState;
+                    aClientWithInterventionList.Add(aClientWithIntervention);
+                }
+            }
             return aClientWithInterventionList;
+        }
+
+        protected void clientListGridView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void clientListGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            clientListGridView.PageIndex = e.NewPageIndex;
+            BindClientListGrid();
         }
     }
 }

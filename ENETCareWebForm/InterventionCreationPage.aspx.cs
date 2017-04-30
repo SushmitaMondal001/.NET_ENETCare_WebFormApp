@@ -81,8 +81,6 @@ namespace ENETCareWebForm
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Intervention creation is successful.');window.location ='SiteEngineerHomePage.aspx';", true);
                 //Response.Redirect("SiteEngineerHomePage.aspx");
             }
-
-
         }
 
 
@@ -97,9 +95,6 @@ namespace ENETCareWebForm
             int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
             labourHourRequiredTextBox.Text = anInterventionTypeManager.GetEstLabourByIntTypeID(interventionTypeID);
             costRequiredTextBox.Text = anInterventionTypeManager.GetEstCostByIntTypeID(interventionTypeID);
-
-
-
         }
 
         protected void costRequiredTextBox_Click(object sender, EventArgs e)

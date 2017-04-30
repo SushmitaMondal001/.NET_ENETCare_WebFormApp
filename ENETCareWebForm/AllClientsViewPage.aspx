@@ -11,17 +11,31 @@
             </p>
             <p style="margin-left: 80px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:GridView ID="clientListGridView"  AutoGenerateColumns="false" runat="server" AllowCustomPaging="True" AllowPaging="True">
+                <asp:GridView ID="clientListGridView"  AutoGenerateColumns="false" runat="server" AllowPaging="True" OnSelectedIndexChanged="clientListGridView_SelectedIndexChanged" PageSize="10"> <%--OnPageIndexChanging="clientListGridView_PageIndexChanging"--%> 
                     <Columns>
                         <asp:TemplateField HeaderText = "Row Number" ItemStyle-Width="100">
                              <ItemTemplate>
                                 <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
                             </ItemTemplate>
-                        </asp:TemplateField><asp:BoundField DataField="clientName" HeaderText="Name" />
-                        <asp:BoundField DataField="clientAddress" HeaderText="address" />
-                        <%--<asp:BoundField DataField="intervention" HeaderText="Interventions" />--%>
-                        <%--<asp:BoundField DataField="interventionStatus" HeaderText="Intervention Status" />--%>
-                        <asp:CommandField ShowEditButton="true" HeaderText="Change QMI" />
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="Name">
+                        <ItemTemplate>
+                                <asp:HiddenField runat="server" ID="idHiddenField" Value='<%#Eval("ClientID")%>'/>
+                                <asp:Label runat="server" Text='<%#Eval("ClientName")%>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>                
+            
+                        <asp:BoundField DataField="ClientAddress" HeaderText="address" />
+                        <asp:BoundField DataField="Intervention" HeaderText="Interventions" />
+                        <asp:BoundField DataField="InterventionStatus" HeaderText="Intervention Status" />
+                        <%--<asp:CommandField ShowEditButton="true" HeaderText="Change QMI" />--%>
+                        <asp:TemplateField>
+                              <ItemTemplate>
+                                <asp:Button ID="changeQMIButton" runat="server" CommandName="AddToCart" CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"
+                                  Text="Change QMI" />
+                              </ItemTemplate> 
+                            </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </p>

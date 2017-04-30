@@ -35,5 +35,10 @@ namespace ENETCareBusinessLogic
             string estimatedCost = aInterventionTypeGateway.GetEstCostByIntTypeID(interventionTypeID);
             return estimatedCost;
         }
+
+        public string GetInterventionNameByTypeId(int interventionTypeID)
+        {
+            return aInterventionTypeGateway.GetInterventionNameByTypeId(interventionTypeID);
+        }
     }
 }

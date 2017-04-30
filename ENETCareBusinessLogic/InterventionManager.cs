@@ -11,7 +11,6 @@ namespace ENETCareBusinessLogic
     public class InterventionManager
     {
         InterventionGateway anInterventionGateway = new InterventionGateway();
-        
 
         public string AddNewIntervention(string intTypeID, string clientId, string labour, string cost, int userID, string interventionDate, string interventionState)
         {
@@ -81,6 +80,11 @@ namespace ENETCareBusinessLogic
             return true;
         }
 
+        public List<Intervention> GetInterventionListByClient(int clientID)
+        {
+            List<Intervention> anInterventionList = anInterventionGateway.GetInterventionListByClient(clientID);
+            return anInterventionList;
+        }
 
     }
 }
