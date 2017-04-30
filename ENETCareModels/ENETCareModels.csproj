@@ -60,6 +60,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="ClientWithIntervention.cs" />
     <Compile Include="District.cs" />
+    <Compile Include="InterventionViewByUser.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Intervention.cs" />
     <Compile Include="InterventionType.cs" />

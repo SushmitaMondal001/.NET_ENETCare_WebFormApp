@@ -13,12 +13,39 @@ namespace ENETCareWebForm {
     public partial class InterventionViewPage {
         
         /// <summary>
-        /// form1 control.
+        /// viewAllInterventionTitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label viewAllInterventionTitleLabel;
+        
+        /// <summary>
+        /// ErrorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorMessageLabel;
+        
+        /// <summary>
+        /// interventionListGridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView interventionListGridView;
+        
+        /// <summary>
+        /// siteEngineerHomePageButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button siteEngineerHomePageButton;
     }
 }

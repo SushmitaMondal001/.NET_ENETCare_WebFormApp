@@ -64,7 +64,7 @@ namespace ENETCareWebForm
 
         protected void checkOldInterventionButton_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("InterventionViewPage.aspx");
         }
     }
 }

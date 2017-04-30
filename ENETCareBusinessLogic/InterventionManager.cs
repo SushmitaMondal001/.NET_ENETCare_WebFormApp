@@ -86,5 +86,11 @@ namespace ENETCareBusinessLogic
             return anInterventionList;
         }
 
+        public List<Intervention> GetInterventionListByUserID(int userID)
+        {
+            List<Intervention> anInterventionList = anInterventionGateway.GetInterventionListByUserID(userID);
+            return anInterventionList;
+        }
+
     }
 }

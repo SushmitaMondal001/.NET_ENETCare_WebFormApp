@@ -129,5 +129,33 @@ namespace ENETCareData
             return isExist;
         }
 
+        public string GetClientNameByID(int clientID)
+        {
+            string clientName = "";
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM [Client] WHERE ClientID=@clientID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("clientID", clientID));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        clientName = reader["ClientName"].ToString();
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return clientName;
+        }
+
     }
 }
