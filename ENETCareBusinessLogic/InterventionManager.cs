@@ -142,6 +142,13 @@ namespace ENETCareBusinessLogic
             return result;
         }
 
+        public void SetInterventionStatus(string status, int intervID)
+        {
+            anInterventionGateway.UpdateInterventionStatus(status, intervID);
+        }
+
+
+
 
 
     }

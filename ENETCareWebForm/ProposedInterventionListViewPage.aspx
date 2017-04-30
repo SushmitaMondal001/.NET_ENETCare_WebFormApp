@@ -10,9 +10,7 @@
     <form id="form1" runat="server">
     <div>
 
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="InterventionID" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="InterventionID" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White">
             <Columns>
                 <asp:BoundField DataField="InterventionID" HeaderText="InterventionID" InsertVisible="False" ReadOnly="True" SortExpression="InterventionID" />
                 <asp:BoundField DataField="InterventionTypeID" HeaderText="InterventionTypeID" SortExpression="InterventionTypeID" />
@@ -27,7 +25,13 @@
                 <asp:BoundField DataField="RemainingLife" HeaderText="RemainingLife" SortExpression="RemainingLife" />
                 <asp:BoundField DataField="LatestVisitDate" HeaderText="LatestVisitDate" SortExpression="LatestVisitDate" />
             </Columns>
+
+<HeaderStyle BackColor="#3AC0F2" ForeColor="White"></HeaderStyle>
         </asp:GridView>
+
+
+
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ENETCareDatabaseConnectionString2 %>" SelectCommand="SELECT * FROM [Intervention]"></asp:SqlDataSource>
 
 
 

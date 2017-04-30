@@ -12,17 +12,25 @@
 
              <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
 
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="UserID" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White">
+            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="UserID" DataSourceID="SqlDataSource3" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White">
                 <Columns>
                     <asp:BoundField DataField="UserID" HeaderText="UserID" InsertVisible="False" ReadOnly="True" SortExpression="UserID" />
                     <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />
                     <asp:BoundField DataField="LoginName" HeaderText="LoginName" SortExpression="LoginName" />
+                    <asp:BoundField DataField="UserType" HeaderText="UserType" SortExpression="UserType" />
                     <asp:BoundField DataField="DistrictID" HeaderText="DistrictID" SortExpression="DistrictID" />
                     <asp:BoundField DataField="MaxHour" HeaderText="MaxHour" SortExpression="MaxHour" />
                     <asp:BoundField DataField="MaxCost" HeaderText="MaxCost" SortExpression="MaxCost" />
-                    <asp:BoundField DataField="UserType" HeaderText="UserType" SortExpression="UserType" />
                 </Columns>
+
+<HeaderStyle BackColor="#3AC0F2" ForeColor="White"></HeaderStyle>
             </asp:GridView>
+
+             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ENETCareDatabaseConnectionString2 %>" SelectCommand="SELECT [UserID], [UserName], [LoginName], [UserType], [DistrictID], [MaxHour], [MaxCost] FROM [User] WHERE ([UserType] NOT LIKE '%' + @UserType + '%')">
+                 <SelectParameters>
+                     <asp:Parameter DefaultValue="Accountant" Name="UserType" Type="String" />
+                 </SelectParameters>
+             </asp:SqlDataSource>
 
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ENETCareDatabaseConnectionString %>" SelectCommand="SELECT [UserID], [UserName], [LoginName], [DistrictID], [MaxHour], [MaxCost], [UserType] FROM [User] WHERE ([UserType] NOT LIKE '%' + @UserType + '%')">
                 <SelectParameters>

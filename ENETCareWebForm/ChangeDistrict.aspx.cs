@@ -18,8 +18,7 @@ namespace ENETCareWebForm
 
         }
 
-       
-
+        ENETCareBusinessLogic.DistrictManager dis = new ENETCareBusinessLogic.DistrictManager();
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (GridViewRow row in GridView1.Rows)
@@ -37,7 +36,6 @@ namespace ENETCareWebForm
             }
 
             Session["UserID"] = GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text;
-            //Label1.Text = Session["UserID"].ToString();
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -55,16 +53,9 @@ namespace ENETCareWebForm
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
-            int UserID = int.Parse(Session["UserID"].ToString());
+            int userID = int.Parse(Session["UserID"].ToString());
+            dis.SetNewDistrict((DropDownList1.SelectedIndex + 1), userID);
 
-            //change connection over here
-            string con = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\MuhammadFaisal\Source\Repos\.NET_ENETCare_WebFormApp9\ENETCareData\ENETCareDatabase.mdf;Integrated Security=True";
-
-            SqlConnection connection = new SqlConnection(con);
-            connection.Open();
-            SqlCommand cmd = new SqlCommand("Update [User] Set DistrictID= '" + (DropDownList1.SelectedIndex+1) + "' where UserID = '" + UserID + "'", connection);
-            cmd.ExecuteNonQuery();
-            connection.Close();
             Response.Redirect(Request.RawUrl);
         }
     }
