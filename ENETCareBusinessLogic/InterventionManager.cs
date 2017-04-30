@@ -11,18 +11,26 @@ namespace ENETCareBusinessLogic
     public class InterventionManager
     {
         InterventionGateway anInterventionGateway = new InterventionGateway();
+        UserManager aUserManager = new UserManager();
 
         public string AddNewIntervention(string intTypeID, string clientId, string labour, string cost, int userID, string interventionDate, string interventionState)
         {
+            float maxHour = aUserManager.GetMaxHourByUserID(userID);
+            float maxCost = aUserManager.GetMaxCostByUserID(userID);
+
             string message = "Intervention creation is unsuccessful.";
 
             if (intTypeID.Equals("Select Intervention") || clientId.Equals("Select Client"))
             {
                 return "Intervention and client must be seleted";
             }
-            else if (!(ValidateLabourInput(labour)) || (!ValidateLabourInput(cost)))
+            else if (!(ValidateLabourInput(labour)) || (!ValidateCostInput(cost)))
             {
-                return "Sorry Labour and cost field can not be empty and can  only contain numeric input";
+                return "Labour and cost field must be less than 360 hour & A$100000 respectively";
+            }
+            else if((((float.Parse(labour)) >= maxHour) || ((float.Parse(cost)) >= maxCost)) && !(interventionState.Equals("Proposed")))
+            {
+                return "Sorry!You can only approve upto " + maxHour + " Hour and A$" + maxCost;
             }
             else if (!(ValidateDateFormat(interventionDate)))
             {
@@ -53,13 +61,35 @@ namespace ENETCareBusinessLogic
             if (input.Equals(""))
             {
                 return false;
-            }            
+            }
+            else if ((float.Parse(input) < 0) || (float.Parse(input) > 360))
+            {
+                return false;
+            }
+            else
+            {
+                return IsDigitsOnly(input);           }
+
+            
+        }
+
+        public bool ValidateCostInput(string input)
+        {
+
+            if (input.Equals(""))
+            {
+                return false;
+            }
+            else if ((float.Parse(input) < 0) || (float.Parse(input) > 100000))
+            {
+                return false;
+            }
             else
             {
                 return IsDigitsOnly(input);
             }
 
-            
+
         }
 
         public bool ValidateDateFormat(string input)

@@ -13,15 +13,6 @@ namespace ENETCareWebForm {
     public partial class InterventionCreationPage {
         
         /// <summary>
-        /// interventionPageLbel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label interventionPageLbel;
-        
-        /// <summary>
         /// errorMessageLabel control.
         /// </summary>
         /// <remarks>
@@ -31,40 +22,13 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.Label errorMessageLabel;
         
         /// <summary>
-        /// interventionDateLabel control.
+        /// interventionPageLbel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label interventionDateLabel;
-        
-        /// <summary>
-        /// userNameLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label userNameLabel;
-        
-        /// <summary>
-        /// interventionStateLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label interventionStateLabel;
-        
-        /// <summary>
-        /// costRequiredLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label costRequiredLabel;
+        protected global::System.Web.UI.WebControls.Label interventionPageLbel;
         
         /// <summary>
         /// interventionTypeLabel control.
@@ -85,13 +49,13 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.DropDownList interventionTypeDropDownList;
         
         /// <summary>
-        /// interventionStateDropDownList control.
+        /// clientNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList interventionStateDropDownList;
+        protected global::System.Web.UI.WebControls.Label clientNameLabel;
         
         /// <summary>
         /// clientNameDropDownList control.
@@ -112,13 +76,40 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.Label labourHourRequiredLabel;
         
         /// <summary>
-        /// clientNameLabel control.
+        /// labourHourRequiredTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label clientNameLabel;
+        protected global::System.Web.UI.WebControls.TextBox labourHourRequiredTextBox;
+        
+        /// <summary>
+        /// costRequiredLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label costRequiredLabel;
+        
+        /// <summary>
+        /// costRequiredTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox costRequiredTextBox;
+        
+        /// <summary>
+        /// interventionDateLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label interventionDateLabel;
         
         /// <summary>
         /// interventionDateTextBox control.
@@ -130,22 +121,40 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.TextBox interventionDateTextBox;
         
         /// <summary>
-        /// labourHourRequiredTextBox control.
+        /// interventionStateLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox labourHourRequiredTextBox;
+        protected global::System.Web.UI.WebControls.Label interventionStateLabel;
         
         /// <summary>
-        /// costRequiredTextBox control.
+        /// interventionStateDropDownList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox costRequiredTextBox;
+        protected global::System.Web.UI.WebControls.DropDownList interventionStateDropDownList;
+        
+        /// <summary>
+        /// userNameLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label userNameLabel;
+        
+        /// <summary>
+        /// userNameTextLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label userNameTextLabel;
         
         /// <summary>
         /// interventionSaveButon control.
@@ -164,14 +173,5 @@ namespace ENETCareWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button siteEngineerHomePageButton;
-        
-        /// <summary>
-        /// userNameTextLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label userNameTextLabel;
     }
 }

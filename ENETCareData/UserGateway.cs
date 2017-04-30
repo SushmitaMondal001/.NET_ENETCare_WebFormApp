@@ -94,5 +94,61 @@ namespace ENETCareData
             }
             return userName;
         }
+
+        public float GetMaxHourByUserID(int userID)
+        {
+            float maxHour = 0;
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM [User] WHERE userID=@id";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("id", userID));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        maxHour = float.Parse(reader["MaxHour"].ToString());
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return maxHour;
+        }
+
+        public float GetMaxCostByUserID(int userID)
+        {
+            float maxCost = 0;
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM [User] WHERE userID=@id";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("id", userID));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        maxCost = float.Parse(reader["MaxCost"].ToString());
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+            return maxCost;
+        }
     }
 }

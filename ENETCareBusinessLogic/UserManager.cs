@@ -27,5 +27,15 @@ namespace ENETCareBusinessLogic
             return anUserGateway.GetUserNameByUserID(userID);
         }
 
+        public float GetMaxHourByUserID(int userID)
+        {
+            return anUserGateway.GetMaxHourByUserID(userID);
+        }
+
+        public float GetMaxCostByUserID(int userID)
+        {
+            return anUserGateway.GetMaxCostByUserID(userID);
+        }
+
     }
 }

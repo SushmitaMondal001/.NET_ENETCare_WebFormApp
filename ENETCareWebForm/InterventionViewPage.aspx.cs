@@ -90,7 +90,7 @@ namespace ENETCareWebForm
 
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow selectedRow = interventionListGridView.Rows[index];
-                TableCell status = selectedRow.Cells[3];
+                TableCell status = selectedRow.Cells[4];
                 string interventionStatus = status.Text;
                 HiddenField interventionIDHiddenField = (HiddenField)selectedRow.FindControl("interventionIDHiddenField");
                 string interventionID = interventionIDHiddenField.Value;
