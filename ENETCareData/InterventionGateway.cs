@@ -275,6 +275,38 @@ namespace ENETCareData
             }
             return aSiteEngineerTotalCostList;
         }
+
+        public List<CostByDistrict> GetCostLabourListByDistrict()
+        {
+            List<CostByDistrict> aCostByDistrictList = new List<CostByDistrict>();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "Select u.DistrictName, SUM(i.LabourRequired) as LabourHour, sum(i.CostRequired) as Cost from (Select u.UserID as UserID, d.DistrictName as DistrictName from [User] as u join [District] as d on u.DistrictID = d.DistrictID) as u join [Intervention] as i on u.UserID = i. UserID where i.InterventionState='Completed' Group By DistrictName";
+                                //"from (Select u.UserID as UserID, d.DistrictName as DistrictName from [User] as u join [District] as d on u.DistrictID = d.DistrictID) as u join [Intervention] as i" +
+                                //"on u.UserID = i. UserID Group By DistrictName";
+
+
+                SqlCommand command = new SqlCommand(query, connection);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        CostByDistrict aCostByDistrict = new CostByDistrict();
+                        aCostByDistrict.DistrictName = reader["DistrictName"].ToString();
+                        aCostByDistrict.LabourHour = float.Parse(reader["LabourHour"].ToString());
+                        aCostByDistrict.Cost = float.Parse(reader["Cost"].ToString());
+                        aCostByDistrictList.Add(aCostByDistrict);
+                    }
+                }
+                catch { }
+            }
+
+                return aCostByDistrictList;
+        }
         
     }
 

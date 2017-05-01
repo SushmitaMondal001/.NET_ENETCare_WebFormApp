@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="ClientWithIntervention.cs" />
+    <Compile Include="CostByDistrict.cs" />
     <Compile Include="District.cs" />
     <Compile Include="InterventionViewByUser.cs" />
     <Compile Include="MyDbContext.cs" />

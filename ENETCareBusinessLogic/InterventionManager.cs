@@ -28,7 +28,7 @@ namespace ENETCareBusinessLogic
             {
                 return "Labour and cost field must be less than 360 hour & A$100000 respectively";
             }
-            else if((((float.Parse(labour)) >= maxHour) || ((float.Parse(cost)) >= maxCost)) && !(interventionState.Equals("Proposed")))
+            else if ((((float.Parse(labour)) >= maxHour) || ((float.Parse(cost)) >= maxCost)) && !(interventionState.Equals("Proposed")))
             {
                 return "Sorry!You can only approve upto " + maxHour + " Hour and A$" + maxCost;
             }
@@ -50,14 +50,14 @@ namespace ENETCareBusinessLogic
 
                 return message;
             }
-                    
-            
+
+
 
         }
 
         public bool ValidateLabourInput(string input)
         {
-            
+
             if (input.Equals(""))
             {
                 return false;
@@ -68,9 +68,10 @@ namespace ENETCareBusinessLogic
             }
             else
             {
-                return IsDigitsOnly(input);           }
+                return IsDigitsOnly(input);
+            }
 
-            
+
         }
 
         public bool ValidateCostInput(string input)
@@ -138,7 +139,7 @@ namespace ENETCareBusinessLogic
             {
                 int remainingLifeInt = Int32.Parse(remainingLife);
                 int result = anInterventionGateway.UpdateIntervention(interventionID, lastEditDate, notes, remainingLifeInt);
-                if(result > 0)
+                if (result > 0)
                     message = "Quality management information update is successful.";
             }
             else
@@ -183,5 +184,10 @@ namespace ENETCareBusinessLogic
             return anInterventionGateway.GetTotalCostList(reportType);
         }
 
+
+        public List<CostByDistrict> GetCostLabourListByDistrict()
+        {
+            return anInterventionGateway.GetCostLabourListByDistrict();
+        }
     }
 }
