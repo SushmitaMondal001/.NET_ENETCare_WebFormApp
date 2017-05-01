@@ -11,11 +11,13 @@ namespace ENET
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
+             usernameTextBox.Text =User.Identity.Name;
+            
+                  }
         protected void confirmEventMethod(object sender, EventArgs e)
         {
-
+          
         }
+        
     }
 }
