@@ -14,11 +14,12 @@
             Password:&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="passwordTextBox" TextMode="Password" placeholder="Enter Your Password" runat="server" Width="169px" />
         </p>
-        <asp:Button ID="loginButton" Text="Log In" runat="server" OnClick="loginEventMethod" />
+        <asp:Button ID="loginButton" Text="Log In" runat="server" OnClick="loginEventMethod" Width="59px" />
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Literal ID="StatusMessage" runat="server"></asp:Literal>
         <p>
             &nbsp;
         </p>
-        <asp:Literal ID="StatusMessage" runat="server"></asp:Literal>
     </div>
      </asp:Content>
 
