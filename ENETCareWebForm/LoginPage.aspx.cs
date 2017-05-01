@@ -51,7 +51,8 @@ namespace ENET
             }
             else
             {
-                Response.Write("Wrong Username or Password");
+                StatusMessage.Text=" Wrong Username or Password";
+                    //Response.Write("Wrong Username or Password");
                 //StatusText.Text = "Invalid username or password.";
                 //LoginStatus.Visible = true;
             }
