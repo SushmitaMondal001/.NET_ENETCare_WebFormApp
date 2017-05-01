@@ -243,9 +243,10 @@ namespace ENETCareData
             {
                 connection.ConnectionString = connectionString;
 
-                string query = "SELECT SUM(LabourRequired), SUM(CostRequired), UserID FROM Intervention WHERE InterventionState='Completed' GROUP BY UserID";
+                string query = "SELECT SUM(LabourRequired), SUM(CostRequired), UserID FROM Intervention WHERE InterventionState=@state GROUP BY UserID";
 
                 SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("state", "Completed"));
                 try
                 {
                     connection.Open();
