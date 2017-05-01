@@ -27,7 +27,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>                
             
-                        <asp:BoundField DataField="ClientAddress" HeaderText="address" />
+                        <asp:BoundField DataField="ClientAddress" HeaderText="Address" />
 
                         <asp:TemplateField HeaderText="Intervention">
                         <ItemTemplate>
@@ -45,7 +45,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:ButtonField Text="Change QMI" CommandName="Select" ItemStyle-Width="150" runat="server"/>
+                        <asp:ButtonField Text="Change QMI" CommandName="Select" ItemStyle-Width="150" />
                         <%--<asp:BoundField DataField="InterventionStatus" HeaderText="Intervention Status" />--%>
                         <%--<asp:CommandField ShowEditButton="true" HeaderText="Change QMI" />--%>
                         <%--<asp:TemplateField>

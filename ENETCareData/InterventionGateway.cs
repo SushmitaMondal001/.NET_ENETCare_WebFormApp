@@ -13,6 +13,7 @@ namespace ENETCareData
     {
         string connectionString = "";
         DatabaseConfig aDatabaseConfig = new DatabaseConfig();
+        UserGateway aUserGateway = new UserGateway();
 
         public int AddNewIntervention(int interventionTypeID, int clientID, float labourRequired, float costRequired, int userID, string interventionDate, string interventionState)
         {
@@ -186,8 +187,6 @@ namespace ENETCareData
         }
         
 
-           
-
         public int UpdateIntervention(int interventionID, string lastEditDate, string notes, int remainingLife)
         {
             int result = 0;
@@ -236,6 +235,36 @@ namespace ENETCareData
             }
         }
 
+        public List<SiteEngineerTotalCost> GetTotalCostList()
+        {
+            List<SiteEngineerTotalCost> aSiteEngineerTotalCostList = new List<SiteEngineerTotalCost>();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+
+                string query = "SELECT SUM(LabourRequired), SUM(CostRequired), UserID FROM Intervention WHERE InterventionState='Completed' GROUP BY UserID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        SiteEngineerTotalCost aSiteEngineerTotalCost = new SiteEngineerTotalCost();
+                        aSiteEngineerTotalCost.TotalLabour = reader[0].ToString();
+                        aSiteEngineerTotalCost.TotalCost = reader[1].ToString();
+                        aSiteEngineerTotalCost.UserName = aUserGateway.GetUserNameByUserID(Int32.Parse(reader[2].ToString()));
+                        aSiteEngineerTotalCostList.Add(aSiteEngineerTotalCost);
+                    }
+                }
+                catch { }
+            }
+            List<SiteEngineerTotalCost> sortedList = aSiteEngineerTotalCostList.OrderBy(o => o.UserName).ToList();
+            return sortedList;
+        }
+        
     }
-    
+
 }

@@ -4,6 +4,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ENETCareModels;
+using System.Data;
 
 namespace ENETCareData
 {
@@ -67,6 +69,7 @@ namespace ENETCareData
             return userID;
         }
 
+        // Can't be private because of report generating
         public string GetUserNameByUserID(int userID)
         {
             string userName = "";
@@ -150,5 +153,27 @@ namespace ENETCareData
             }
             return maxCost;
         }
+
+        //private DataTable GetData()
+        //{
+        //    SiteEngineerTotalCost aSiteEngineerTotalCost = new SiteEngineerTotalCost();
+        //    connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        string query = "";
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        using (SqlDataAdapter sda = new SqlDataAdapter())
+        //        {
+        //            command.Connection = connection;
+
+        //            sda.SelectCommand = cmd;
+        //            using (Customers dsCustomers = new Customers())
+        //            {
+        //                sda.Fill(dsCustomers, "DataTable1");
+        //                return dsCustomers;
+        //            }
+        //        }
+        //    }
+        //}
     }
 }

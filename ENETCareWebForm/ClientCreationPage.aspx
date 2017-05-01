@@ -10,13 +10,14 @@
 <body>
     <form id="form1">
     <div>
-    
-        <br />
-            <asp:Label ID="errorMessageLabel" runat="server"></asp:Label>
-        <br />
         <br />
     
         <asp:Label ID="PageNameLabel" runat="server" Font-Size="Large" Text="Create Client"></asp:Label>
+        <br />
+        <br />
+    
+        <br />
+            <asp:Label ID="errorMessageLabel" runat="server"></asp:Label>
         <br />
         <br />
     

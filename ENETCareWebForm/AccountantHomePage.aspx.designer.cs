@@ -13,15 +13,6 @@ namespace ENETCareWebForm {
     public partial class AccountantHomePage {
         
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// accountant control.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.Literal StatusText;
         
         /// <summary>
+        /// errorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorMessageLabel;
+        
+        /// <summary>
         /// changePasswordButton control.
         /// </summary>
         /// <remarks>
@@ -47,24 +47,6 @@ namespace ENETCareWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button changePasswordButton;
-        
-        /// <summary>
-        /// dropDownReportBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dropDownReportBox;
-        
-        /// <summary>
-        /// txtBoxRunReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label txtBoxRunReport;
         
         /// <summary>
         /// engManagerListButton control.
@@ -83,6 +65,33 @@ namespace ENETCareWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button changeDistrict;
+        
+        /// <summary>
+        /// txtBoxRunReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label txtBoxRunReport;
+        
+        /// <summary>
+        /// dropDownReportBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList dropDownReportBox;
+        
+        /// <summary>
+        /// generateReportButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button generateReportButton;
         
         /// <summary>
         /// accountantLogoutButton control.

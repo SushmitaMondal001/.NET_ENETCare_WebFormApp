@@ -88,6 +88,7 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -155,6 +156,7 @@
     <Content Include="ProposedInterventionListViewPage.aspx" />
     <Content Include="QMIEditPage.aspx" />
     <Content Include="SiteEngineerHomePage.aspx" />
+    <Content Include="SiteEngineerTotalCostReport.aspx" />
     <Content Include="StyleSheet.css" />
     <Content Include="UserListPage.aspx" />
     <Content Include="Web.config">
@@ -261,6 +263,13 @@
     <Compile Include="SiteEngineerHomePage.aspx.designer.cs">
       <DependentUpon>SiteEngineerHomePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SiteEngineerTotalCostReport.aspx.cs">
+      <DependentUpon>SiteEngineerTotalCostReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteEngineerTotalCostReport.aspx.designer.cs">
+      <DependentUpon>SiteEngineerTotalCostReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="UserListPage.aspx.cs">
       <DependentUpon>UserListPage.aspx</DependentUpon>
@@ -291,7 +300,9 @@
       <Name>ENETCareModels</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="SiteEngineerTotalCostReport.rdlc" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
