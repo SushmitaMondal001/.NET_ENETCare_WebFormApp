@@ -6,6 +6,11 @@
     <div>
 
         <h1>Login page</h1>
+
+        
+        <br />
+        <asp:Literal ID="StatusMessage" runat="server"></asp:Literal>
+        <br />
         <p>
             Username:&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="userNameTextBox" placeholder="Enter Your Username" runat="server" Width="169px" />
@@ -16,7 +21,6 @@
         </p>
         <asp:Button ID="loginButton" Text="Log In" runat="server" OnClick="loginEventMethod" Width="59px" />
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Literal ID="StatusMessage" runat="server"></asp:Literal>
         <p>
             &nbsp;
         </p>

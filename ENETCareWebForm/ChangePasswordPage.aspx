@@ -1,19 +1,20 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChangePasswordPage.aspx.cs" Inherits="ENET.Change_Password" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ChangePasswordPage.aspx.cs" Inherits="ENET.Change_Password" MasterPageFile="MasterPage.Master" EnableEventValidation = "false" %>
 
-<!DOCTYPE html>
+<asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <title>Change Password Page</title>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title>Change Password Page</title>
-</head>
-
-<body>
+    <%--    <a href="LoginPage.aspx">Login</a> | <a href="ChangePasswordPage.aspx">Change Password</a> --%>
+    <form id="form1">
+        
     <h1>Change Password page</h1>
-<%--    <a href="LoginPage.aspx">Login</a> | <a href="ChangePasswordPage.aspx">Change Password</a> --%>
-    <form id="form1" runat="server">
+        <br />
+        
+    <asp:label runat="server" ID="errorMessage"></asp:label>
+        <br />
+        <br />
         <div>
             <p>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="userNameTextBox" placeholder="Enter Your username" runat="server" Width="169px" />
+                <asp:Label ID="userNameLabel" runat="server"></asp:Label>
             </p>
             <p>Previous Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="passwordTextBox" TextMode="Password" placeholder="Enter Your Password" runat="server" Width="169px" />
@@ -21,11 +22,10 @@
             <p>New Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
             <asp:TextBox ID="newPasswordTextBox" TextMode="Password" placeholder="Enter Your New Password" runat="server" Width="169px" />
             </p>
-            <p>Repeat Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
-            <asp:TextBox ID="repeatPasswordTextBox" TextMode="Password" placeholder="Enter Your Password Again" runat="server" Width="169px" />
-            </p>
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="confirmButton" Text="Confirm" runat="server" OnClick="confirmEventMethod" />          
         </div>
     </form>
 </body>
-</html>
+</asp:Content>
