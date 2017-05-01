@@ -60,6 +60,11 @@
     <Compile Include="ClientGateway.cs" />
     <Compile Include="DatabaseConfig.cs" />
     <Compile Include="DistrictGateway.cs" />
+    <Compile Include="ENETCareDatabaseDataSet.Designer.cs">
+      <DependentUpon>ENETCareDatabaseDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="InterventionGateway.cs" />
     <Compile Include="InterventionTypeGateway.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +95,19 @@
     <Content Include="ENETCareDatabase_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>ENETCareDatabase.mdf</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ENETCareDatabaseDataSet.xsc">
+      <DependentUpon>ENETCareDatabaseDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="ENETCareDatabaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ENETCareDatabaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="ENETCareDatabaseDataSet.xss">
+      <DependentUpon>ENETCareDatabaseDataSet.xsd</DependentUpon>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
