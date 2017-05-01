@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ENETCareData;
+using ENETCareModels;
 
 namespace ENETCareBusinessLogic
 {
@@ -36,6 +37,9 @@ namespace ENETCareBusinessLogic
         {
             return anUserGateway.GetMaxCostByUserID(userID);
         }
-
+        public List<User> GetUserListByUserType(string userType)
+        {
+            return anUserGateway.GetUserListByUserType(userType);
+        }
     }
 }

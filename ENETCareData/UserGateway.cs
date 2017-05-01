@@ -68,8 +68,7 @@ namespace ENETCareData
             }
             return userID;
         }
-
-        // Can't be private because of report generating
+        
         public string GetUserNameByUserID(int userID)
         {
             string userName = "";
@@ -153,27 +152,36 @@ namespace ENETCareData
             }
             return maxCost;
         }
+        
+        public List<User> GetUserListByUserType(string userType)
+        {
+            List<User> aUserList = new List<User>();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM [User] WHERE UserType=@userType";
 
-        //private DataTable GetData()
-        //{
-        //    SiteEngineerTotalCost aSiteEngineerTotalCost = new SiteEngineerTotalCost();
-        //    connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
-        //    using (SqlConnection connection = new SqlConnection(connectionString))
-        //    {
-        //        string query = "";
-        //        SqlCommand command = new SqlCommand(query, connection);
-        //        using (SqlDataAdapter sda = new SqlDataAdapter())
-        //        {
-        //            command.Connection = connection;
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("userType", userType));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        User anUser = new User();
+                        anUser.UserID = Int32.Parse(reader["UserID"].ToString());
+                        anUser.UserName = reader["UserName"].ToString();
+                        aUserList.Add(anUser);
+                    }
+                }
+                catch
+                {
 
-        //            sda.SelectCommand = cmd;
-        //            using (Customers dsCustomers = new Customers())
-        //            {
-        //                sda.Fill(dsCustomers, "DataTable1");
-        //                return dsCustomers;
-        //            }
-        //        }
-        //    }
-        //}
+                }
+            }
+            return aUserList;
+        }
     }
 }

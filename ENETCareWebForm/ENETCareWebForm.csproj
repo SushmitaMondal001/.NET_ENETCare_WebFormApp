@@ -155,6 +155,7 @@
   <ItemGroup>
     <Content Include="ProposedInterventionListViewPage.aspx" />
     <Content Include="QMIEditPage.aspx" />
+    <Content Include="SiteEngineerAverageCostReportPage.aspx" />
     <Content Include="SiteEngineerHomePage.aspx" />
     <Content Include="SiteEngineerTotalCostReport.aspx" />
     <Content Include="StyleSheet.css" />
@@ -255,6 +256,13 @@
     </Compile>
     <Compile Include="QMIEditPage.aspx.designer.cs">
       <DependentUpon>QMIEditPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SiteEngineerAverageCostReportPage.aspx.cs">
+      <DependentUpon>SiteEngineerAverageCostReportPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteEngineerAverageCostReportPage.aspx.designer.cs">
+      <DependentUpon>SiteEngineerAverageCostReportPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="SiteEngineerHomePage.aspx.cs">
       <DependentUpon>SiteEngineerHomePage.aspx</DependentUpon>

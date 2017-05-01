@@ -178,9 +178,9 @@ namespace ENETCareBusinessLogic
         }
 
 
-        public List<SiteEngineerTotalCost> GetTotalCostList()
+        public List<SiteEngineerTotalCost> GetTotalCostList(string reportType)
         {
-            return anInterventionGateway.GetTotalCostList();
+            return anInterventionGateway.GetTotalCostList(reportType);
         }
 
     }

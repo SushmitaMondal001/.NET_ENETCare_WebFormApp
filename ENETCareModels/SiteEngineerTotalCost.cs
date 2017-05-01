@@ -8,6 +8,7 @@ namespace ENETCareModels
 {
     public class SiteEngineerTotalCost
     {
+        private int userID;
         private string userName;
         private string totalCost;
         private string totalLabour;
@@ -48,6 +49,19 @@ namespace ENETCareModels
             set
             {
                 totalLabour = value;
+            }
+        }
+
+        public int UserID
+        {
+            get
+            {
+                return userID;
+            }
+
+            set
+            {
+                userID = value;
             }
         }
     }

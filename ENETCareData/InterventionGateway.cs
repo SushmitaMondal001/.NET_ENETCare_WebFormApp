@@ -235,15 +235,18 @@ namespace ENETCareData
             }
         }
 
-        public List<SiteEngineerTotalCost> GetTotalCostList()
+        public List<SiteEngineerTotalCost> GetTotalCostList(string reportType)
         {
             List<SiteEngineerTotalCost> aSiteEngineerTotalCostList = new List<SiteEngineerTotalCost>();
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
-
-                string query = "SELECT SUM(LabourRequired), SUM(CostRequired), UserID FROM Intervention WHERE InterventionState=@state GROUP BY UserID";
+                string query = "";
+                if (reportType.Equals("Total"))
+                    query = "SELECT SUM(LabourRequired), SUM(CostRequired), UserID FROM Intervention WHERE InterventionState=@state GROUP BY UserID";
+                else
+                    query = "SELECT AVG(LabourRequired), AVG(CostRequired), UserID FROM Intervention WHERE InterventionState=@state GROUP BY UserID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Add(new SqlParameter("state", "Completed"));
@@ -254,16 +257,23 @@ namespace ENETCareData
                     while (reader.Read())
                     {
                         SiteEngineerTotalCost aSiteEngineerTotalCost = new SiteEngineerTotalCost();
-                        aSiteEngineerTotalCost.TotalLabour = reader[0].ToString();
-                        aSiteEngineerTotalCost.TotalCost = reader[1].ToString();
+
+                        float SELabourDouble = float.Parse(reader[0].ToString());
+                        double x = Math.Truncate(SELabourDouble * 100) / 100;
+                        aSiteEngineerTotalCost.TotalLabour = x.ToString();
+
+                        float SECostDouble = float.Parse(reader[1].ToString());
+                        double y = Math.Truncate(SECostDouble * 100) / 100;
+                        aSiteEngineerTotalCost.TotalCost = y.ToString();
+                        
+                        aSiteEngineerTotalCost.UserID = Int32.Parse(reader[2].ToString());
                         aSiteEngineerTotalCost.UserName = aUserGateway.GetUserNameByUserID(Int32.Parse(reader[2].ToString()));
                         aSiteEngineerTotalCostList.Add(aSiteEngineerTotalCost);
                     }
                 }
                 catch { }
             }
-            List<SiteEngineerTotalCost> sortedList = aSiteEngineerTotalCostList.OrderBy(o => o.UserName).ToList();
-            return sortedList;
+            return aSiteEngineerTotalCostList;
         }
         
     }

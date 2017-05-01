@@ -39,7 +39,7 @@
         <asp:DropDownList ID="dropDownReportBox" runat="server" OnSelectedIndexChanged="dropDownReportBox_SelectedIndexChanged" AutoPostBack="True" >
             <asp:ListItem Value="Nothing"> <-- SelectReportType --> </asp:ListItem>
             <asp:ListItem Value="/SiteEngineerTotalCostReport.aspx">Total Cost by Site Engineer</asp:ListItem>
-            <asp:ListItem Value="avgCostEng">Average Cost By Site Engineer</asp:ListItem>
+            <asp:ListItem Value="/SiteEngineerAverageCostReportPage.aspx">Average Cost By Site Engineer</asp:ListItem>
             <asp:ListItem Value="districtCost">Cost By District</asp:ListItem>
             <asp:ListItem Value="monthlyCostDistrict">Monthly Cost for District</asp:ListItem>
         </asp:DropDownList>
