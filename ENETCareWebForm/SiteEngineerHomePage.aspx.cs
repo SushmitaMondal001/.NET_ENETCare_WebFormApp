@@ -8,6 +8,7 @@ using ENETCareBusinessLogic;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using Owin;
 
 namespace ENETCareWebForm
 {
@@ -36,6 +37,7 @@ namespace ENETCareWebForm
         {
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
             authenticationManager.SignOut();
+            Session["UserName"] = "";
             Response.Redirect("~/LoginPage.aspx");
             //Response.Redirect("LoginPage.aspx");
         }
@@ -57,12 +59,12 @@ namespace ENETCareWebForm
 
         protected void createNewInterventionButton_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("InterventionCreationPage.aspx"); 
         }
 
         protected void checkOldInterventionButton_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("InterventionViewPage.aspx");
         }
     }
 }

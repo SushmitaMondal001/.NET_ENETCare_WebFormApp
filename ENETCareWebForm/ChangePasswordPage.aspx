@@ -13,7 +13,7 @@
     <form id="form1" runat="server">
         <div>
             <p>Username:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="usernameTextBox" placeholder="Enter Your username" runat="server" Width="169px" />
+            <asp:TextBox ID="userNameTextBox" placeholder="Enter Your username" runat="server" Width="169px" />
             </p>
             <p>Previous Password:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="passwordTextBox" TextMode="Password" placeholder="Enter Your Password" runat="server" Width="169px" />

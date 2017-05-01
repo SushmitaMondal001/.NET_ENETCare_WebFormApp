@@ -16,5 +16,26 @@ namespace ENETCareBusinessLogic
             return districtID;
         }
 
+        public int GetUserIdByName(string loginName)
+        {
+            int userID = anUserGateway.GetUserIdByName(loginName);
+            return userID;
+        }
+
+        public string GetUserNameByUserID(int userID)
+        {
+            return anUserGateway.GetUserNameByUserID(userID);
+        }
+
+        public float GetMaxHourByUserID(int userID)
+        {
+            return anUserGateway.GetMaxHourByUserID(userID);
+        }
+
+        public float GetMaxCostByUserID(int userID)
+        {
+            return anUserGateway.GetMaxCostByUserID(userID);
+        }
+
     }
 }

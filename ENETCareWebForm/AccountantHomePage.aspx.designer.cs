@@ -76,6 +76,15 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.Button engManagerListButton;
         
         /// <summary>
+        /// changeDistrict control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button changeDistrict;
+        
+        /// <summary>
         /// accountantLogoutButton control.
         /// </summary>
         /// <remarks>

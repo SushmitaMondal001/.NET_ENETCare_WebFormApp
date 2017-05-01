@@ -16,7 +16,7 @@ namespace ENETCareData
         public List<District> GetDistrictList()
         {
             List<District> aDistrictList = new List<District>();
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -47,7 +47,7 @@ namespace ENETCareData
         public string GetDistrictName(int districtID)
         {
             string districtName = "";
-            connectionString = aDatabaseConfig.Setup();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
@@ -70,6 +70,21 @@ namespace ENETCareData
                 }
             }
             return districtName;
+        }
+
+        public void UpdateUserDistrict(int newDistrict, int userID)
+        {
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                connection.Open();
+                string query = "Update [User] Set DistrictID= '" + newDistrict + "' where UserID = '" + userID + "'";
+                SqlCommand cmd = new SqlCommand(query, connection);
+                cmd.ExecuteNonQuery();
+                connection.Close();
+
+            }
         }
     }
 }

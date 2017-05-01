@@ -20,8 +20,12 @@
             <asp:ListItem Value="monthlyCostDistrict">Monthly Cost for District</asp:ListItem>
         </asp:DropDownList>
         <asp:Label ID="txtBoxRunReport" runat="server" style="z-index: 1; left: 484px; top: 158px; position: absolute; width: 237px" Text="Run Report"></asp:Label>
-        <asp:Button ID="engManagerListButton" runat="server" OnClick="engManagerListButton_Click" style="z-index: 1; left: 86px; top: 256px; position: absolute; width: 307px; height: 64px" Text="List of Site Engineer &amp; Manager" />
-        <asp:Button ID="accountantLogoutButton" runat="server" style="z-index: 1; left: 91px; top: 375px; position: absolute; width: 161px; height: 47px" Text="Logout" OnClick="accountantLogoutButton_Click" />
+        
+        <asp:Button ID="engManagerListButton" runat="server" OnClick="engManagerListButton_Click" style="z-index: 1; left: 85px; top: 247px; position: absolute; width: 307px; height: 64px" Text="List of Site Engineer &amp; Manager" />
+        
+        <asp:Button ID="changeDistrict" runat="server" OnClick="changeDistrict_Click" style="z-index: 1; left: 87px; top: 335px; position: absolute; width: 307px; height: 64px" Text="Change District" />
+        
+        <asp:Button ID="accountantLogoutButton" runat="server" style="z-index: 1; left: 83px; top: 447px; position: absolute; width: 161px; height: 47px" Text="Logout" OnClick="accountantLogoutButton_Click" />
     </form>
 </body>
 </html>

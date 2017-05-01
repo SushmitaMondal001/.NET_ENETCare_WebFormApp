@@ -11,15 +11,14 @@ using Microsoft.AspNet.Identity;
 
 namespace ENETCareWebForm
 {
-    public partial class ProposedInterventionListViewPage : System.Web.UI.Page
+    public partial class ChangeDistrict : System.Web.UI.Page
     {
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
-        ENETCareBusinessLogic.InterventionManager inter = new ENETCareBusinessLogic.InterventionManager();
+
+        ENETCareBusinessLogic.DistrictManager dis = new ENETCareBusinessLogic.DistrictManager();
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (GridViewRow row in GridView1.Rows)
@@ -36,10 +35,7 @@ namespace ENETCareWebForm
                 }
             }
 
-            Session["InterventionID"] = GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text;
-            
-
-
+            Session["UserID"] = GridView1.Rows[GridView1.SelectedIndex].Cells[0].Text;
         }
 
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -50,13 +46,16 @@ namespace ENETCareWebForm
                 e.Row.ToolTip = "Click to select this row.";
             }
         }
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
 
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
-           
-            int interventionID = int.Parse(Session["InterventionID"].ToString());
+            int userID = int.Parse(Session["UserID"].ToString());
+            dis.SetNewDistrict((DropDownList1.SelectedIndex + 1), userID);
 
-            inter.SetInterventionStatus(RadioButtonList1.SelectedItem.ToString(), interventionID);
             Response.Redirect(Request.RawUrl);
         }
     }

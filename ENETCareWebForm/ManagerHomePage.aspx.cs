@@ -45,5 +45,7 @@ namespace ENETCareWebForm
             authenticationManager.SignOut();
             Response.Redirect("~/LoginPage.aspx");
         }
+
+        
     }
 }

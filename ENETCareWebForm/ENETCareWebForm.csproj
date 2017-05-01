@@ -133,6 +133,7 @@
     <Content Include="App_Data\Identity2_log.ldf">
       <DependentUpon>Identity2.mdf</DependentUpon>
     </Content>
+    <Content Include="ChangeDistrict.aspx" />
     <Content Include="ChangePasswordPage.aspx" />
     <Content Include="ClientCreationPage.aspx" />
     <Content Include="ContactUs.aspx" />
@@ -152,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProposedInterventionListViewPage.aspx" />
+    <Content Include="QMIEditPage.aspx" />
     <Content Include="SiteEngineerHomePage.aspx" />
     <Content Include="StyleSheet.css" />
     <Content Include="UserListPage.aspx" />
@@ -173,6 +175,13 @@
     </Compile>
     <Compile Include="AllClientsViewPage.aspx.designer.cs">
       <DependentUpon>AllClientsViewPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeDistrict.aspx.cs">
+      <DependentUpon>ChangeDistrict.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ChangeDistrict.aspx.designer.cs">
+      <DependentUpon>ChangeDistrict.aspx</DependentUpon>
     </Compile>
     <Compile Include="ChangePasswordPage.aspx.cs">
       <DependentUpon>ChangePasswordPage.aspx</DependentUpon>
@@ -238,6 +247,13 @@
     <Compile Include="ProposedInterventionListViewPage.aspx.designer.cs">
       <DependentUpon>ProposedInterventionListViewPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="QMIEditPage.aspx.cs">
+      <DependentUpon>QMIEditPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="QMIEditPage.aspx.designer.cs">
+      <DependentUpon>QMIEditPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SiteEngineerHomePage.aspx.cs">
       <DependentUpon>SiteEngineerHomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -265,6 +281,10 @@
     <ProjectReference Include="..\ENETCareBusinessLogic\ENETCareBusinessLogic.csproj">
       <Project>{58094f66-df6a-4af9-b5a8-a1fc8ed1b02b}</Project>
       <Name>ENETCareBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ENETCareData\ENETCareData.csproj">
+      <Project>{8F7EFC5F-ACDF-48F1-B842-9A8277EF458B}</Project>
+      <Name>ENETCareData</Name>
     </ProjectReference>
     <ProjectReference Include="..\ENETCareModels\ENETCareModels.csproj">
       <Project>{bd0ee5a6-ddfc-40d9-997d-65886f83b751}</Project>

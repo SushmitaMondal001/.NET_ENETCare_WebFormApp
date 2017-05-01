@@ -23,5 +23,10 @@ namespace ENETCareBusinessLogic
             string districtName = aDistrictGateway.GetDistrictName(districtID);
             return districtName;
         }
+
+        public void SetNewDistrict(int newDistrict, int userID)
+        {
+            aDistrictGateway.UpdateUserDistrict(newDistrict, userID);
+        } 
     }
 }

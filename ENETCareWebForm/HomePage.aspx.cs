@@ -11,7 +11,12 @@ namespace ENETCareWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-        }
+            if (Session["UserName"].ToString() != "")
+            {
+                loginLink.HRef = "javascript:void(0);";
+            }
+            else
+                loginLink.HRef = "LoginPage.aspx";
+         }
     }
 }

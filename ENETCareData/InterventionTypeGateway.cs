@@ -1,34 +1,69 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ENETCareModels;
+using System.Data.SqlClient;
+
 
 namespace ENETCareData
 {
-    public class UserGateway
+    public class InterventionTypeGateway
     {
         string connectionString = "";
         DatabaseConfig aDatabaseConfig = new DatabaseConfig();
-        public int GetUserDistrictID(string loginName)
+
+
+        public List<InterventionType> GetInterventionTypeList()
         {
-            int districtID = 0;
+            List<InterventionType> aInterventionTypeList = new List<InterventionType>();
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
-                string query = "SELECT * FROM [User] WHERE LoginName=@name";
+                string query = "SELECT * FROM [Intervention Type]";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("name", loginName));
+
                 try
                 {
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        districtID = Int32.Parse(reader["DistrictID"].ToString());
+                        InterventionType aInterventionType = new InterventionType();
+                        aInterventionType.InterventionTypeID = Int32.Parse(reader["InterventionTypeID"].ToString());
+                        aInterventionType.InterventionTypeName = reader["InterventionTypeName"].ToString();
+                        aInterventionType.EstimatedLabour = double.Parse(reader["EstimatedLabour"].ToString());
+                        aInterventionType.EstimatedCost = double.Parse(reader["EstimatedCost"].ToString());
+                        aInterventionTypeList.Add(aInterventionType);
+                    }
+                }
+                catch { }
+            }
+            return aInterventionTypeList;
+
+        }
+
+        public int GetInterventionTypeIdByName(string interventionTypeName)
+        {
+            int interventionTypeID = 0;
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "SELECT * FROM [Intervention Type] WHERE InterventionTypeName=@interventionTypeName";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("interventionTypeName", interventionTypeName));
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        interventionTypeID = Int32.Parse(reader["InterventionTypeID"].ToString());
                     }
                 }
                 catch
@@ -36,27 +71,26 @@ namespace ENETCareData
 
                 }
             }
-            return districtID;
+            return interventionTypeID;
         }
-
-        public int GetUserIdByName(string loginName)
+        public string GetEstLabourByIntTypeID(int interventionTypeID)
         {
-            int userID = 0;
+            string estimatedLabour = "";
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
-                string query = "SELECT * FROM [User] WHERE LoginName=@name";
+                string query = "SELECT EstimatedLabour FROM [Intervention Type] WHERE InterventionTypeID=@interventionTypeID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("name", loginName));
+                command.Parameters.Add(new SqlParameter("interventionTypeID", interventionTypeID));
                 try
                 {
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        userID = Int32.Parse(reader["UserID"].ToString());
+                        estimatedLabour = reader["EstimatedLabour"].ToString();
                     }
                 }
                 catch
@@ -64,27 +98,27 @@ namespace ENETCareData
 
                 }
             }
-            return userID;
+            return estimatedLabour;
         }
 
-        public string GetUserNameByUserID(int userID)
+        public string GetEstCostByIntTypeID(int interventionTypeID)
         {
-            string userName = "";
+            string estimatedCost = "";
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
-                string query = "SELECT * FROM [User] WHERE userID=@id";
+                string query = "SELECT EstimatedCost FROM [Intervention Type] WHERE InterventionTypeID=@interventionTypeID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("id", userID));
+                command.Parameters.Add(new SqlParameter("interventionTypeID", interventionTypeID));
                 try
                 {
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        userName = reader["UserName"].ToString();
+                        estimatedCost = reader["EstimatedCost"].ToString();
                     }
                 }
                 catch
@@ -92,27 +126,27 @@ namespace ENETCareData
 
                 }
             }
-            return userName;
+            return estimatedCost;
         }
 
-        public float GetMaxHourByUserID(int userID)
+        public string GetInterventionNameByTypeId(int interventionTypeID)
         {
-            float maxHour = 0;
+            string interventionName = "";
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
-                string query = "SELECT * FROM [User] WHERE userID=@id";
+                string query = "SELECT * FROM [Intervention Type] WHERE InterventionTypeID=@interventionTypeID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("id", userID));
+                command.Parameters.Add(new SqlParameter("interventionTypeID", interventionTypeID));
                 try
                 {
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        maxHour = float.Parse(reader["MaxHour"].ToString());
+                        interventionName = reader["InterventionTypeName"].ToString();
                     }
                 }
                 catch
@@ -120,35 +154,10 @@ namespace ENETCareData
 
                 }
             }
-            return maxHour;
+            return interventionName;
         }
 
-        public float GetMaxCostByUserID(int userID)
-        {
-            float maxCost = 0;
-            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
-            using (SqlConnection connection = new SqlConnection())
-            {
-                connection.ConnectionString = connectionString;
-                string query = "SELECT * FROM [User] WHERE userID=@id";
+       
 
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("id", userID));
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        maxCost = float.Parse(reader["MaxCost"].ToString());
-                    }
-                }
-                catch
-                {
-
-                }
-            }
-            return maxCost;
-        }
     }
 }
