@@ -26,7 +26,7 @@ namespace ENETCareBusinessLogic
             }
             else if (!(ValidateLabourInput(labour)) || (!ValidateCostInput(cost)))
             {
-                return "Labour and cost field must be a positve number and less than 360 hour & A$100000 respectively";
+                return "Labour&cost must be positve number and less than 360 hour & A$100000 respectively";
             }
             else if ((((float.Parse(labour)) >= maxHour) || ((float.Parse(cost)) >= maxCost)) && !(interventionState.Equals("Proposed")))
             {
