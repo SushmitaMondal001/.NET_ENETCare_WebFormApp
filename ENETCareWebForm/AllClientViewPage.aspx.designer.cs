@@ -10,78 +10,60 @@
 namespace ENETCareWebForm {
     
     
-    public partial class SiteEnigeerHomePage {
+    public partial class AllClientViewPage {
         
         /// <summary>
-        /// StatusText control.
+        /// ClientListTitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal StatusText;
+        protected global::System.Web.UI.WebControls.Label ClientListTitleLabel;
         
         /// <summary>
-        /// createNewClientButton control.
+        /// ErrorMessageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button createNewClientButton;
+        protected global::System.Web.UI.WebControls.Label ErrorMessageLabel;
         
         /// <summary>
-        /// viewListOfAllClientsButton control.
+        /// districtNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button viewListOfAllClientsButton;
+        protected global::System.Web.UI.WebControls.Label districtNameLabel;
         
         /// <summary>
-        /// viewListOfClientsButton control.
+        /// districtNameValueLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button viewListOfClientsButton;
+        protected global::System.Web.UI.WebControls.Label districtNameValueLabel;
         
         /// <summary>
-        /// createNewInterventionButton control.
+        /// clientListGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button createNewInterventionButton;
+        protected global::System.Web.UI.WebControls.GridView clientListGridView;
         
         /// <summary>
-        /// checkOldInterventionButton control.
+        /// siteEngineerHomePageButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button checkOldInterventionButton;
-        
-        /// <summary>
-        /// changePasswordButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button changePasswordButton;
-        
-        /// <summary>
-        /// siteEngineerlogoutButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button siteEngineerlogoutButton;
+        protected global::System.Web.UI.WebControls.Button siteEngineerHomePageButton;
     }
 }

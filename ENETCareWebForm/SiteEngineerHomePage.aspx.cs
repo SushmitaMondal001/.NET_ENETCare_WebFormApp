@@ -67,9 +67,9 @@ namespace ENETCareWebForm
             Response.Redirect("ClientCreationPage.aspx");
         }
 
-        protected void viewListOfClientsButton_Click(object sender, EventArgs e)
+        protected void viewListOfClientsWithInterventionButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AllClientsViewPage.aspx");
+            Response.Redirect("AllClientsWithInterventionViewPage.aspx");
         }
 
         protected void createNewInterventionButton_Click(object sender, EventArgs e)
@@ -85,6 +85,11 @@ namespace ENETCareWebForm
         {
             HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
             navDiv.Visible = false;
+        }
+
+        protected void viewListOfAllClientsButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AllClientViewPage.aspx");
         }
     }
 }

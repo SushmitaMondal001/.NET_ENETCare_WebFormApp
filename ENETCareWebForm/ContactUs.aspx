@@ -30,13 +30,13 @@
                   <tr>
                     <td class="auto-style3">Syed Shean</td>
                     <td class="auto-style4">
-                        ...................@student.uts.edu.au
+                        Syed.Shean@student.uts.edu.au
                     </td>
                 </tr>
                   <tr>
                     <td class="auto-style1">Talha Bin Saeed</td>
                     <td class="auto-style2">
-                        ...................@student.uts.edu.au
+                        TalhaBin.Saeed@student.uts.edu.au
                     </td>
                 </tr>
             </table>

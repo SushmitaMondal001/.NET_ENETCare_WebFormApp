@@ -129,7 +129,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AccountantHomePage.aspx" />
-    <Content Include="AllClientsViewPage.aspx" />
+    <Content Include="AllClientsWithInterventionViewPage.aspx" />
+    <Content Include="AllClientViewPage.aspx" />
     <Content Include="ApprovedInterventionListViewPage.aspx" />
     <Content Include="App_Data\Identity2.mdf" />
     <Content Include="App_Data\Identity2_log.ldf">
@@ -175,12 +176,19 @@
     <Compile Include="AccountantHomePage.aspx.designer.cs">
       <DependentUpon>AccountantHomePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AllClientsViewPage.aspx.cs">
-      <DependentUpon>AllClientsViewPage.aspx</DependentUpon>
+    <Compile Include="AllClientsWithInterventionViewPage.aspx.cs">
+      <DependentUpon>AllClientsWithInterventionViewPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AllClientsViewPage.aspx.designer.cs">
-      <DependentUpon>AllClientsViewPage.aspx</DependentUpon>
+    <Compile Include="AllClientsWithInterventionViewPage.aspx.designer.cs">
+      <DependentUpon>AllClientsWithInterventionViewPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllClientViewPage.aspx.cs">
+      <DependentUpon>AllClientViewPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllClientViewPage.aspx.designer.cs">
+      <DependentUpon>AllClientViewPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ApprovedInterventionListViewPage.aspx.cs">
       <DependentUpon>ApprovedInterventionListViewPage.aspx</DependentUpon>

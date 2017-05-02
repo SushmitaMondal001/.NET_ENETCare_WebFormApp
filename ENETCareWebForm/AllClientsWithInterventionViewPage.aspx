@@ -1,10 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AllClientsViewPage.aspx.cs" Inherits="ENETCareWebForm.AllClientsViewPage" MasterPageFile="~/MasterPage.Master" EnableEventValidation = "false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AllClientsWithInterventionViewPage.aspx.cs" Inherits="ENETCareWebForm.AllClientsViewPage" MasterPageFile="~/MasterPage.Master" EnableEventValidation = "false" %>
 
 
 <asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <body>
         <form id="form1" >
-            <asp:Label ID="ClientListTitleLabel" runat="server" Font-Size="X-Large" Text="All Client List"></asp:Label>
+            <asp:Label ID="ClientListTitleLabel" runat="server" Font-Size="X-Large" Text="All Client List With Interventions"></asp:Label>
             <p>
                 &nbsp;</p>
             <p style="margin-left: 80px">
