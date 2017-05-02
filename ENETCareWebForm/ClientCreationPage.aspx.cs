@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
-
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -20,6 +20,7 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            DisableMasterPageButtons();
             if (!(IsPostBack))
             {
                 PopulateDistrictLabel();
@@ -35,7 +36,10 @@ namespace ENETCareWebForm
             errorMessageLabel.Text = result;
             //Response.Write(result);
             if(result.Equals("Client creation is successful."))
-                ClearForm();
+            {
+                //ClearForm();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('New Client has been created successfully.');window.location ='SiteEngineerHomePage.aspx';", true);
+            }
         }
 
         public void PopulateDistrictDropdownList()
@@ -66,6 +70,12 @@ namespace ENETCareWebForm
         protected void BackToHomePageButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("SiteEngineerHomePage.aspx");
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

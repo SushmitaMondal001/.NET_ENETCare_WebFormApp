@@ -9,6 +9,7 @@ using ENETCareModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -19,8 +20,10 @@ namespace ENETCareWebForm
         InterventionManager anInterventionManager = new InterventionManager();
         InterventionTypeManager anInterventionTypeManager = new InterventionTypeManager();
         int userID = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            DisableMasterPageButtons();
             userID = aUserManager.GetUserIdByName((string)Session["UserName"]);
             if (!this.IsPostBack)
             {
@@ -123,6 +126,11 @@ namespace ENETCareWebForm
                 
             }
 
+        }
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ENETCareWebForm
@@ -16,6 +17,7 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            DisableMasterPageButtons();
             if(!IsPostBack)
                 GenerateReport();
         }
@@ -57,6 +59,16 @@ namespace ENETCareWebForm
         {
             totalCostListGridView.PageIndex = e.NewPageIndex;
             GenerateReport();
+        }
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
+        }
+
+        protected void accountantHomePageButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AccountantHomePage.aspx");
         }
     }
 }

@@ -9,7 +9,7 @@
     <h1>Change Password page</h1>
         <br />
         
-    <asp:label runat="server" ID="errorMessage"></asp:label>
+    <asp:label runat="server" ID="errorMessage" Style="color:darkred"></asp:label>
         <br />
         <br />
         <div>
@@ -23,8 +23,10 @@
             <asp:TextBox ID="newPasswordTextBox" TextMode="Password" placeholder="Enter Your New Password" runat="server" Width="169px" />
             </p>
             <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Button ID="confirmButton" Text="Confirm" runat="server" OnClick="confirmEventMethod" />          
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="BackButton" runat="server" OnClick="BackButton_Click" Text="Go Back" />
         </div>
     </form>
 </body>

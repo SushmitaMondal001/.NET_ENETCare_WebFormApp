@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ENETCareWebForm
@@ -21,6 +22,7 @@ namespace ENETCareWebForm
         protected void Page_Load(object sender, EventArgs e)
         {
             //Response.Write(Session["InterventionID"].ToString());
+            DisableMasterPageButtons();
             interventionID = Int32.Parse(Session["InterventionID"].ToString());
             if (!IsPostBack)
             {
@@ -71,6 +73,12 @@ namespace ENETCareWebForm
         protected void CancelButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("AllClientsViewPage.aspx");
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

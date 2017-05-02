@@ -9,6 +9,7 @@ using ENETCareModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -22,7 +23,7 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            DisableMasterPageButtons();
             if (!IsPostBack)
             {
                 PopulateClientDropdownList();
@@ -103,6 +104,12 @@ namespace ENETCareWebForm
             //{
             //    labourErrorMessageLabel.Text = "Sorry this field can not be emptyand can  only contain numeric input";
             //}
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

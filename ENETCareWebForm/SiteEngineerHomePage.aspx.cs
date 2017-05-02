@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Owin;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -16,14 +17,13 @@ namespace ENETCareWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            DisableMasterPageButtons();
             if (!IsPostBack)
             {
                 if (User.Identity.IsAuthenticated)
                 {
                     Session["UserName"] = User.Identity.GetUserName();
                     StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-                    //LoginStatus.Visible = true;
-                    //LogoutButton.Visible = true;
                 }
                 else
                 {
@@ -65,6 +65,11 @@ namespace ENETCareWebForm
         protected void checkOldInterventionButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("InterventionViewPage.aspx");
+        }
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

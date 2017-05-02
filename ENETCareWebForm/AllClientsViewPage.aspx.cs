@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ENETCareWebForm
@@ -21,6 +22,7 @@ namespace ENETCareWebForm
         protected void Page_Load(object sender, EventArgs e)
         {
             //Response.Write((string)Session["UserName"]);
+            DisableMasterPageButtons();
             districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
             if (!this.IsPostBack)
             {
@@ -82,6 +84,13 @@ namespace ENETCareWebForm
         protected void siteEngineerHomePageButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("SiteEngineerHomePage.aspx");
+        }
+
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }
