@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ENETCareBusinessLogic;
 using ENETCareModels;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -15,6 +16,7 @@ namespace ENETCareWebForm
         DistrictManager aDistrictManager = new DistrictManager();
         protected void Page_Load(object sender, EventArgs e)
         {
+            DisableMasterPageButtons();
             if (!User.Identity.IsAuthenticated)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
@@ -86,6 +88,12 @@ namespace ENETCareWebForm
         protected void AccountantHomePageButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("/AccountantHomePage.aspx");
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }
