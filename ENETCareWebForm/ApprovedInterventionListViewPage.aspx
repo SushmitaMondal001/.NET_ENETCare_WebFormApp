@@ -1,16 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProposedInterventionListViewPage.aspx.cs" Inherits="ENETCareWebForm.ProposedInterventionListViewPage" MasterPageFile="MasterPage.Master" EnableEventValidation = "false"%>
-
-<%--<!DOCTYPE html>--%>
-
-<%--<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>--%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ApprovedInterventionListViewPage.aspx.cs" Inherits="ENETCareWebForm.ApprovedInterventionListViewPage" EnableEventValidation = "false" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
 
 <asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <body>
         <form id="form1">
-            <asp:Label ID="viewProposedInterventionTitleLabel" runat="server" Text="View Proposed Intervention" Font-Bold="True" Font-Size="Large"></asp:Label>
+            <asp:Label ID="viewApprovedInterventionTitleLabel" runat="server" Text="View Approved Intervention" Font-Bold="True" Font-Size="Large"></asp:Label>
             
                 
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -20,7 +15,7 @@
 &nbsp;<p style="margin-left: 80px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     
-                <asp:GridView ID="interventionListGridView" AutoGenerateColumns="False" runat="server" AllowPaging="True" PageSize="5" EnableSortingAndPagingCallbacks="false" OnPageIndexChanging="interventionListGridView_PageIndexChanging" OnRowCommand="interventionListGridView_RowCommand">
+                <asp:GridView ID="interventionListGridView" AutoGenerateColumns="False" runat="server" AllowPaging="True" PageSize="5" EnableSortingAndPagingCallbacks="false" OnPageIndexChanging="interventionListGridView_PageIndexChanging" >
                     <Columns>
                         <asp:TemplateField HeaderText = "Row Number" ItemStyle-Width="100">
                              <ItemTemplate>
@@ -40,7 +35,7 @@
                         <asp:BoundField DataField="InterventionDate" HeaderText="Intervention Date" />
                         <asp:BoundField DataField="InterventionStatus" HeaderText="Intervention Status" />
                         
-                        <asp:ButtonField CommandName="Approve" Text="Approve" HeaderText="Approve"  />
+                        <%--<asp:ButtonField CommandName="Approve" Text="Approve" HeaderText="Approve"  />--%>
                         <%--<asp:ButtonField CommandName="Complete" Text="Complete" HeaderText="Complete"  />
                         <asp:ButtonField CommandName="Remove" Text="Cancel" HeaderText="Cancel"  />
                         --%>

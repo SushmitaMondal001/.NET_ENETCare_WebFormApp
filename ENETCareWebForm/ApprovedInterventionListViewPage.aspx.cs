@@ -1,20 +1,17 @@
-﻿using System;
+﻿using ENETCareBusinessLogic;
+using ENETCareModels;
+using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.Sql;
-using System.Data.SqlClient;
-using Microsoft.AspNet.Identity;
 using System.Web.UI.HtmlControls;
-using ENETCareBusinessLogic;
-using ENETCareModels;
+using System.Web.UI.WebControls;
 
 namespace ENETCareWebForm
 {
-    public partial class ProposedInterventionListViewPage : System.Web.UI.Page
+    public partial class ApprovedInterventionListViewPage : System.Web.UI.Page
     {
         ClientManager aClientManager = new ClientManager();
         UserManager anUserManager = new UserManager();
@@ -56,6 +53,7 @@ namespace ENETCareWebForm
         {
             List<InterventionViewByUser> anInterventionViewByUserList = new List<InterventionViewByUser>();
             anInterventionViewByUserList = GetListWithValue(anInterventionViewByUserList);
+
             if (anInterventionViewByUserList.Count == 0)
                 ErrorMessageLabel.Text = "No Intervention was found !!";
             else
@@ -67,11 +65,8 @@ namespace ENETCareWebForm
 
         public List<InterventionViewByUser> GetListWithValue(List<InterventionViewByUser> anInterventionViewByUserList)
         {
-            List<Client> aClientList = aClientManager.GetClientListByDistrict(districtID);
-            foreach (Client aClient in aClientList)
-            {
-                List<Intervention> anInterventionList = anInterventionManager.GetInterventionListByClient(aClient.ClientID);
-                foreach (Intervention anIntervention in anInterventionList)
+            List<Intervention> anInterventionList = anInterventionManager.GetInterventionListByApprovalUserID(userID);
+            foreach (Intervention anIntervention in anInterventionList)
                 {
                     InterventionViewByUser anInterventionViewByUser = new InterventionViewByUser();
                     anInterventionViewByUser.InterventionStatus = anIntervention.InterventionState;
@@ -79,38 +74,15 @@ namespace ENETCareWebForm
                     anInterventionViewByUser.InterventionTypeID = anIntervention.InterventionTypeID;
                     anInterventionViewByUser.InterventionType = anInterventionTypeManager.GetInterventionNameByTypeId(anIntervention.InterventionTypeID);
                     anInterventionViewByUser.InterventionDate = anIntervention.InterventionDate;
-                    anInterventionViewByUser.ClientID = aClient.ClientID;
-                    anInterventionViewByUser.ClientName = aClientManager.GetClientNameByID(aClient.ClientID);
+                    anInterventionViewByUser.ClientID = anIntervention.ClientID;
+                    anInterventionViewByUser.ClientName = aClientManager.GetClientNameByID(anIntervention.ClientID);
                     anInterventionViewByUser.CostRequired = anIntervention.CostRequired;
                     anInterventionViewByUser.LabourRequired = anIntervention.LabourRequired;
-                    if (anInterventionManager.IsEligibleForProposedList(anInterventionViewByUser.InterventionStatus,
-                                                                        anIntervention.CostRequired,
-                                                                        anIntervention.LabourRequired,
-                                                                        anUserManager.GetMaxCostByUserID(userID),
-                                                                        anUserManager.GetMaxHourByUserID(userID)))
-                    {
-                        anInterventionViewByUserList.Add(anInterventionViewByUser);
-                    }
+                    anInterventionViewByUserList.Add(anInterventionViewByUser);
                 }
-            }
             return anInterventionViewByUserList;
         }
 
-        protected void interventionListGridView_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            if (e.CommandName != "Page")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow selectedRow = interventionListGridView.Rows[index];
-                TableCell status = selectedRow.Cells[4];
-                string interventionStatus = status.Text;
-                HiddenField interventionIDHiddenField = (HiddenField)selectedRow.FindControl("interventionIDHiddenField");
-                string interventionID = interventionIDHiddenField.Value;
-                string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Approved", userID);
-                PopulateProposedInterventionList();
-                ErrorMessageLabel.Text = result;
-            }
-        }
         public void DisableMasterPageButtons()
         {
             HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");

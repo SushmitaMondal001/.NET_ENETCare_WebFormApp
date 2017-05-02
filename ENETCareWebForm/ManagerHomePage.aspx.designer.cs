@@ -13,15 +13,6 @@ namespace ENETCareWebForm {
     public partial class ManagerHomePage {
         
         /// <summary>
-        /// form1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
-        
-        /// <summary>
         /// managerHomePageLabel control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace ENETCareWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label managerHomePageLabel;
+        
+        /// <summary>
+        /// errorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorMessageLabel;
         
         /// <summary>
         /// StatusText control.
@@ -47,6 +47,15 @@ namespace ENETCareWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button changePasswordButton;
+        
+        /// <summary>
+        /// approvedInterventionViewButton0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button approvedInterventionViewButton0;
         
         /// <summary>
         /// proposedInterventionViewButton control.

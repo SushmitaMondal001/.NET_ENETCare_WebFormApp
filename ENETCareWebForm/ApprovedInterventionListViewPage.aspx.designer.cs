@@ -10,16 +10,16 @@
 namespace ENETCareWebForm {
     
     
-    public partial class ProposedInterventionListViewPage {
+    public partial class ApprovedInterventionListViewPage {
         
         /// <summary>
-        /// viewProposedInterventionTitleLabel control.
+        /// viewApprovedInterventionTitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label viewProposedInterventionTitleLabel;
+        protected global::System.Web.UI.WebControls.Label viewApprovedInterventionTitleLabel;
         
         /// <summary>
         /// ErrorMessageLabel control.
