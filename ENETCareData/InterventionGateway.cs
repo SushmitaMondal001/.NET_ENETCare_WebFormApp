@@ -71,10 +71,10 @@ namespace ENETCareData
                         anIntervention.InterventionState = reader["InterventionState"].ToString();
                         anIntervention.CostRequired = float.Parse(reader["CostRequired"].ToString());
                         anIntervention.LabourRequired = float.Parse(reader["LabourRequired"].ToString());
-                        anIntervention.InterventionDate = reader["InterventionDate"].ToString();
-                        //bool date = DateTime.TryParse(reader["InterventionDate"].ToString(), System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
-                        //string interventionDate = dateValue.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
-                        //anIntervention.InterventionDate = interventionDate;
+                        //anIntervention.InterventionDate = reader["InterventionDate"].ToString();
+                        bool date = DateTime.TryParse(reader["InterventionDate"].ToString(), System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
+                        string interventionDate = dateValue.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        anIntervention.InterventionDate = interventionDate;
                         anInterventionList.Add(anIntervention);
                     }
                 }
@@ -121,6 +121,7 @@ namespace ENETCareData
         }
         public Intervention GetInterventionListByInterventionID(int interventionID)
         {
+            DateTime dateValue;
             Intervention anIntervention = new Intervention();
 
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
@@ -147,8 +148,12 @@ namespace ENETCareData
                         anIntervention.LabourRequired = float.Parse(reader["LabourRequired"].ToString());
                         anIntervention.CostRequired = float.Parse(reader["CostRequired"].ToString());
                         anIntervention.UserID = Int32.Parse(reader["UserID"].ToString());
-                        anIntervention.InterventionDate = reader["InterventionDate"].ToString();
+                        //anIntervention.InterventionDate = reader["InterventionDate"].ToString();
                         //anIntervention.ApprovalUserID = Int32.Parse(reader["ApprovalUserID"].ToString());
+                        bool date = DateTime.TryParse(reader["InterventionDate"].ToString(), System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
+                        string interventionDate = dateValue.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        anIntervention.InterventionDate = interventionDate;
+
                         anIntervention.Notes = reader["Notes"] as string ;
                         if (reader["RemainingLife"] != DBNull.Value)
                             anIntervention.RemainingLife = Int32.Parse(reader["RemainingLife"].ToString());

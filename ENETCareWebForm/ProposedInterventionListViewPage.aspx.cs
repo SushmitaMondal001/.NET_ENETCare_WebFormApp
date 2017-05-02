@@ -107,9 +107,9 @@ namespace ENETCareWebForm
                 HiddenField interventionIDHiddenField = (HiddenField)selectedRow.FindControl("interventionIDHiddenField");
                 string interventionID = interventionIDHiddenField.Value;
                 string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Approved", userID);
-                PopulateProposedInterventionList();
                 ErrorMessageLabel.Text = result;
             }
+            PopulateProposedInterventionList();
         }
         public void DisableMasterPageButtons()
         {
