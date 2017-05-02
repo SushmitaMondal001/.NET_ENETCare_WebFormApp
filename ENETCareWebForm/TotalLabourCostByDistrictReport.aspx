@@ -11,7 +11,7 @@
         <br />
         <br />
         <br />
-            <asp:Label ID="errorMessageLabel" runat="server" Style="color:red"></asp:Label>
+            <asp:Label ID="errorMessageLabel" runat="server" Style="color:darkred"></asp:Label>
         <br />
         <br />
     
@@ -37,14 +37,12 @@
             <asp:Label ID="totalCostByDistrictLabel" runat="server"> Total Cost:</asp:Label>
             <asp:Label ID="totalCostByDistrictTextBox" runat="server"></asp:Label>
         <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="accountantHomePageButton" runat="server" OnClick="accountantHomePageButton_Click" Text="Accountant Home Page " />
+        <br />
         </div>
 
-        <%--<asp:ScriptManager ID="totalCostScriptManager" runat="server"></asp:ScriptManager>
-       
-        <div>
-            <rsweb:ReportViewer ID="siteEngineerTotalCostReportViewer" runat="server"></rsweb:ReportViewer>
-        </div>
-        --%>
+        <%----%>
 
     </form>
         </body>

@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Owin;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -16,21 +17,9 @@ namespace ENETCareWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    if (User.Identity.IsAuthenticated)
-            //    {
-            //        Session["UserName"] = User.Identity.GetUserName();
-            //        StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-            //        //LoginStatus.Visible = true;
-            //        //LogoutButton.Visible = true;
-            //    }
-            //    else
-            //    {
-            //        //LoginForm.Visible = true;
-            //    }
-            //}
+            
 
+            DisableMasterPageButtons();
             if (!User.Identity.IsAuthenticated)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
@@ -38,17 +27,23 @@ namespace ENETCareWebForm
             }
             else
             {
-                if (!User.IsInRole("SiteEng"))
+                if (!IsPostBack)
                 {
-                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-                    authenticationManager.SignOut();
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
-                }
-                else
-                {
-                    StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-                }
+                    if (!User.IsInRole("SiteEng"))
+                    {
 
+                        var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                        authenticationManager.SignOut();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+
+
+                    }
+                    else
+                    {
+                        StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
+                    }
+
+                }
             }
         }
         
@@ -85,6 +80,11 @@ namespace ENETCareWebForm
         protected void checkOldInterventionButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("InterventionViewPage.aspx");
+        }
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

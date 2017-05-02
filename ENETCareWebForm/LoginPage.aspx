@@ -2,14 +2,23 @@
 
 
  <asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     
+         <script type = "text/javascript" >
+       function preventBack(){window.history.forward();}
+        setTimeout("preventBack()", 0);
+        window.onunload=function(){null};
+    </script>
+     
                
     <div>
 
         <h1>Login page</h1>
 
         
+        <asp:Label ID="StatusMessage" runat="server" Style="color:darkred"></asp:Label>
+
+        
         <br />
-        <asp:Literal ID="StatusMessage" runat="server"></asp:Literal>
         <br />
         <p>
             Username:&nbsp;&nbsp;&nbsp;

@@ -8,15 +8,19 @@ using System.Web.UI.WebControls;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using Microsoft.AspNet.Identity;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
     public partial class ProposedInterventionListViewPage : System.Web.UI.Page
     {
+        ENETCareBusinessLogic.InterventionManager inter = new ENETCareBusinessLogic.InterventionManager();
 
 
+        
         protected void Page_Load(object sender, EventArgs e)
         {
+            DisableMasterPageButtons();
             if (!User.Identity.IsAuthenticated)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
@@ -37,8 +41,11 @@ namespace ENETCareWebForm
 
             }
 
+
+            
+
         }
-        ENETCareBusinessLogic.InterventionManager inter = new ENETCareBusinessLogic.InterventionManager();
+
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             foreach (GridViewRow row in GridView1.Rows)
@@ -77,6 +84,12 @@ namespace ENETCareWebForm
 
             inter.SetInterventionStatus(RadioButtonList1.SelectedItem.ToString(), interventionID);
             Response.Redirect(Request.RawUrl);
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

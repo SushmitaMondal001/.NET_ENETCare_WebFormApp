@@ -5,7 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace ENETCareWebForm
 {
@@ -20,6 +24,7 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            DisableMasterPageButtons();
             if (!User.Identity.IsAuthenticated)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
@@ -27,29 +32,27 @@ namespace ENETCareWebForm
             }
             else
             {
-                if (!User.IsInRole("SiteEng"))
+                if (!this.IsPostBack)
+
                 {
-                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
-                    authenticationManager.SignOut();
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
-                }
-                else
-                {
-                    districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
-                    if (!this.IsPostBack)
+                    if (!User.IsInRole("SiteEng"))
                     {
-                        this.BindClientListGrid();
+                        var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                        authenticationManager.SignOut();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
                     }
+                    else
+                    {
+                        districtID = aUserManager.GetUserDistrictID(User.Identity.GetUserName());
+                        if (!this.IsPostBack)
+                        {
+                            this.BindClientListGrid();
+                        }
+                    }
+
                 }
-
             }
-
-            //Response.Write((string)Session["UserName"]);
-            //districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
-            //if (!this.IsPostBack)
-            //{
-            //    this.BindClientListGrid();
-            //}
+            
         }
 
         public void BindClientListGrid()
@@ -106,6 +109,13 @@ namespace ENETCareWebForm
         protected void siteEngineerHomePageButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("SiteEngineerHomePage.aspx");
+        }
+
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

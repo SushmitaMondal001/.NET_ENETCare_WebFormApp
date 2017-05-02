@@ -8,6 +8,7 @@ using System.Web.UI.WebControls;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using Microsoft.AspNet.Identity;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -15,7 +16,7 @@ namespace ENETCareWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            DisableMasterPageButtons();
         }
 
         ENETCareBusinessLogic.DistrictManager dis = new ENETCareBusinessLogic.DistrictManager();
@@ -57,6 +58,12 @@ namespace ENETCareWebForm
             dis.SetNewDistrict((DropDownList1.SelectedIndex + 1), userID);
 
             Response.Redirect(Request.RawUrl);
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

@@ -10,7 +10,7 @@
         <br />
         <br />
         <br />
-            <asp:Label ID="errorMessageLabel" runat="server"></asp:Label>
+            <asp:Label ID="errorMessageLabel" runat="server" Style="color:darkred"></asp:Label>
         <br />
         <br />
     
@@ -36,14 +36,12 @@
                     </Columns>
         </asp:GridView>
         <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <asp:Button ID="accoutantHomePageButton" runat="server" OnClick="accoutantHomePageButton_Click" Text="Accountant Home Page" />
+        <br />
         </div>
 
-        <%--<asp:ScriptManager ID="totalCostScriptManager" runat="server"></asp:ScriptManager>
-       
-        <div>
-            <rsweb:ReportViewer ID="siteEngineerTotalCostReportViewer" runat="server"></rsweb:ReportViewer>
-        </div>
-        --%>
+        <%----%>
 
     </form>
         </body>

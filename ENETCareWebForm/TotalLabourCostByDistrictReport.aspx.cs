@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ENETCareBusinessLogic;
 using ENETCareModels;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -15,7 +16,8 @@ namespace ENETCareWebForm
         InterventionManager anInterventionManager = new InterventionManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!User.Identity.IsAuthenticated)
+            DisableMasterPageButtons();
+            if (!User.Identity.IsAuthenticated)            
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
 
@@ -37,15 +39,9 @@ namespace ENETCareWebForm
                 }
 
             }
-            //if (!IsPostBack)
-            //{
-            //    GenerateReport();
-            //}
+            
         }
-
-
-
-
+        
         public void GenerateReport()
         {
             List<CostByDistrict> aCostByDistrictList = anInterventionManager.GetCostLabourListByDistrict();
@@ -59,7 +55,6 @@ namespace ENETCareWebForm
                 labourCostListByDistrictGridView.DataSource = aCostByDistrictList;
                 labourCostListByDistrictGridView.DataBind();
             }
-
         }
 
         protected void labourCostListByDistrictGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -68,15 +63,25 @@ namespace ENETCareWebForm
             GenerateReport();
         }
 
-      
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
+        }
+
+
+        protected void accountantHomePageButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AccountantHomePage.aspx");
+        }
 
 
         float sumLabour = 0;
         float sumCost = 0;
         protected void labourCostListByDistrictGridView_RowDataBound(object sender, GridViewRowEventArgs e)
-        {           
+        {         
 
-            if(e.Row.RowType == DataControlRowType.DataRow)
+            if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 sumLabour = sumLabour + float.Parse(e.Row.Cells[2].Text);
                 sumCost = sumCost + float.Parse(e.Row.Cells[3].Text);

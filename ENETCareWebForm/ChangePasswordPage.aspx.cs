@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using ENETCareData;
 using System.Data.Entity;
 using ENETCareModels;
+using System.Web.UI.HtmlControls;
 
 namespace ENET
 {
@@ -18,6 +19,7 @@ namespace ENET
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            DisableMasterPageButtons();
             userNameLabel.Text = string.Format(User.Identity.GetUserName());
             if (!IsPostBack)
             {
@@ -38,6 +40,17 @@ namespace ENET
                 }
                 else
                     errorMessage.Text = "Password change is unsuccessful!! " + result.Errors.FirstOrDefault();
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
+        }
+
+        protected void BackButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Session["PageURL"].ToString());
         }
     }
 }

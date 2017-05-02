@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -14,20 +15,11 @@ namespace ENETCareWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!IsPostBack)
-            //{
-            //    if (User.Identity.IsAuthenticated)
-            //    {
-            //        StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-            //        //LoginStatus.Visible = true;
-            //        //LogoutButton.Visible = true;
-            //    }
-            //    else
-            //    {
-            //        //LoginForm.Visible = true;
-            //    }
-            //}
-            if (!User.Identity.IsAuthenticated)
+
+            DisableMasterPageButtons();
+            Session["UserName"] = User.Identity.GetUserName();
+
+            if (!User.Identity.IsAuthenticated)                   
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
                 
@@ -82,6 +74,12 @@ namespace ENETCareWebForm
                 errorMessageLabel.Text = "Please select a report type to generate report.";
             else
                 Response.Redirect(selectedValue);
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

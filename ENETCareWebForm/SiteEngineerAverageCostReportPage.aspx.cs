@@ -6,6 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ENETCareBusinessLogic;
 using ENETCareModels;
+using System.Web.UI.HtmlControls;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace ENETCareWebForm
 {
@@ -16,6 +20,7 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            DisableMasterPageButtons();
             if (!User.Identity.IsAuthenticated)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
@@ -37,10 +42,8 @@ namespace ENETCareWebForm
                     }
                 }
 
-            }
+            }          
 
-            //if (!IsPostBack)
-            //    GenerateReport();
         }
 
         public void GenerateReport()
@@ -80,6 +83,17 @@ namespace ENETCareWebForm
         {
             averageCostListGridView.PageIndex = e.NewPageIndex;
             GenerateReport();
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
+        }
+
+        protected void accoutantHomePageButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AccountantHomePage.aspx");
         }
     }
 }

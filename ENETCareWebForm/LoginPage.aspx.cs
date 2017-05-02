@@ -88,7 +88,6 @@ namespace ENET
                 Response.Redirect("~/SiteEngineerHomePage.aspx");
             else if (role.Equals("manager"))
                 Response.Redirect("~/ManagerHomePage.aspx");
-
         }
     }
 }
