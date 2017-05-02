@@ -28,7 +28,7 @@ namespace ENETCareBusinessLogic
             {
                 return "Labour&cost must be positve number and less than 360 hour & A$100000 respectively";
             }
-            else if ((((float.Parse(labour)) >= maxHour) || ((float.Parse(cost)) >= maxCost)) && !(interventionState.Equals("Proposed")))
+            else if ((((float.Parse(labour)) > maxHour) || ((float.Parse(cost)) > maxCost)) && !(interventionState.Equals("Proposed")))
             {
                 return "Sorry!You can only approve upto " + maxHour + " Hour and A$" + maxCost;
             }
