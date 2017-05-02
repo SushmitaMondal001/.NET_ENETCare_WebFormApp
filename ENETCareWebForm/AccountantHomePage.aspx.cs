@@ -39,10 +39,7 @@ namespace ENETCareWebForm
                 
             }
         }
-
-        protected void dropDownReportBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        } 
+        
         protected void changePasswordButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("ChangePasswordPage.aspx");
@@ -61,15 +58,9 @@ namespace ENETCareWebForm
             Response.Redirect("~/LoginPage.aspx");
         }
 
-        protected void changeDistrict_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/ChangeDistrict.aspx");
-        }
-
         protected void generateReportButton_Click(object sender, EventArgs e)
         {
             string selectedValue = dropDownReportBox.SelectedItem.Value;
-                //Request.Form[dropDownReportBox.UniqueID];
             if (selectedValue.Equals("Nothing"))
                 errorMessageLabel.Text = "Please select a report type to generate report.";
             else

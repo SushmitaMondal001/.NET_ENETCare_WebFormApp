@@ -13,30 +13,39 @@ namespace ENETCareWebForm {
     public partial class UserListPage {
         
         /// <summary>
-        /// form1 control.
+        /// userListTitleLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label userListTitleLabel;
         
         /// <summary>
-        /// GridView1 control.
+        /// ErrorMessageLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label ErrorMessageLabel;
         
         /// <summary>
-        /// SqlDataSource1 control.
+        /// userListGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.GridView userListGridView;
+        
+        /// <summary>
+        /// accountantHomePageButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button accountantHomePageButton;
     }
 }

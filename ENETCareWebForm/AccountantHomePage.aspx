@@ -31,20 +31,21 @@
          <br />
          <%--style="z-index: 1; left: 484px; top: 158px; position: absolute; width: 237px"--%>
          <br />
-        <asp:Button ID="engManagerListButton" runat="server" OnClick="engManagerListButton_Click"  Text="List of Site Engineer &amp; Manager" />
+         <asp:Label ID="Label1" runat="server" Text="[Click on Site engineer and Manager list to change the district of them]"></asp:Label>
+         <br />
+         <br />
+        <asp:Button ID="engManagerListButton" runat="server" OnClick="engManagerListButton_Click"  Text="List of Site Engineer &amp; Manager " />
         
         <%--style="z-index: 1; left: 87px; top: 335px; position: absolute; width: 307px; height: 64px"--%>
-         <br />
-         <br />
-        <asp:Button ID="changeDistrict" runat="server" OnClick="changeDistrict_Click"  Text="Change District" />
         
         <%--style="z-index: 1; left: 83px; top: 447px; position: absolute; width: 161px; height: 47px"--%>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
          <br />
          <br />
         <asp:Label ID="txtBoxRunReport" runat="server" Text="Run Report"></asp:Label>
 
          <br />
-        <asp:DropDownList ID="dropDownReportBox" runat="server" OnSelectedIndexChanged="dropDownReportBox_SelectedIndexChanged" AutoPostBack="True" >
+        <asp:DropDownList ID="dropDownReportBox" runat="server" AutoPostBack="True" >
             <asp:ListItem Value="Nothing"> <-- SelectReportType --> </asp:ListItem>
             <asp:ListItem Value="/SiteEngineerTotalCostReport.aspx">Total Cost by Site Engineer</asp:ListItem>
             <asp:ListItem Value="/SiteEngineerAverageCostReportPage.aspx">Average Cost By Site Engineer</asp:ListItem>

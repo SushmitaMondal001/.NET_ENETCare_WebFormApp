@@ -12,7 +12,7 @@
             </p>
             <p style="margin-left: 80px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:GridView ID="clientListGridView"  AutoGenerateColumns="false" runat="server" AllowPaging="True" OnSelectedIndexChanged="clientListGridView_SelectedIndexChanged" PageSize="4" OnPageIndexChanging="clientListGridView_PageIndexChanging" EnableSortingAndPagingCallbacks="false" > <%----%> 
+                <asp:GridView ID="clientListGridView"  AutoGenerateColumns="false" runat="server" AllowPaging="True" OnSelectedIndexChanged="clientListGridView_SelectedIndexChanged" PageSize="5" OnPageIndexChanging="clientListGridView_PageIndexChanging" EnableSortingAndPagingCallbacks="false" > <%----%> 
                     <Columns>
                         <asp:TemplateField HeaderText = "Row Number" ItemStyle-Width="100">
                              <ItemTemplate>

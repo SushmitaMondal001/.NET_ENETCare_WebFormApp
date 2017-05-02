@@ -41,5 +41,14 @@ namespace ENETCareBusinessLogic
         {
             return anUserGateway.GetUserListByUserType(userType);
         }
+
+        public string UpdateUserDistrict(int userID, int districtID)
+        {
+            string message = "District change is unsuccessful.";
+            int result = anUserGateway.UpdateUserDistrict(userID, districtID);
+            if (result > 0)
+                message = "District change is successful.";
+            return message;
+        }
     }
 }

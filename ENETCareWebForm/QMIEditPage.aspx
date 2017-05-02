@@ -7,13 +7,14 @@
     <div>
     
         <br />
-            <asp:Label ID="errorMessageLabel" runat="server" Style="color:darkred"></asp:Label>
+           
+        <asp:Label ID="PageNameLabel" runat="server" Font-Size="X-Large" Text="Edit QMI"></asp:Label>
+        <br />
+        <br /> 
+        <asp:Label ID="errorMessageLabel" runat="server" Style="color:darkred"></asp:Label>
         <br />
         <br />
     
-        <asp:Label ID="PageNameLabel" runat="server" Font-Size="X-Large" Text="Edit QMI"></asp:Label>
-        <br />
-        <br />
     
     </div>
         <p style="margin-left: 40px">

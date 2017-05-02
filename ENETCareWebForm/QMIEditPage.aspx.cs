@@ -23,10 +23,27 @@ namespace ENETCareWebForm
         {
             //Response.Write(Session["InterventionID"].ToString());
             DisableMasterPageButtons();
-            interventionID = Int32.Parse(Session["InterventionID"].ToString());
-            if (!IsPostBack)
+            if (!User.Identity.IsAuthenticated)
             {
-                PopulateFields();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
+            }
+            else
+            {
+                if (!User.IsInRole("SiteEng"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    interventionID = Int32.Parse(Session["InterventionID"].ToString());
+                    if (!IsPostBack)
+                    {
+                        PopulateFields();
+                    }
+                }
             }
         }
 

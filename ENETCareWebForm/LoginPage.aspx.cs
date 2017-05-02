@@ -64,7 +64,7 @@ namespace ENET
             var userStore = new UserStore<IdentityUser>();
             var manager = new UserManager<IdentityUser>(userStore);
 
-            var user = new IdentityUser() { UserName = "Diana" };
+            var user = new IdentityUser() { UserName = "John" };
             IdentityResult result = manager.Create(user, "12345678");
 
             if (result.Succeeded)

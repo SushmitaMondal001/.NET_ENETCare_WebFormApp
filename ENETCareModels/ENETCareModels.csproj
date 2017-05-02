@@ -69,6 +69,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SiteEngineerTotalCost.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UserListWithDistrict.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -13,15 +13,6 @@ namespace ENETCareWebForm {
     public partial class QMIEditPage {
         
         /// <summary>
-        /// errorMessageLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorMessageLabel;
-        
-        /// <summary>
         /// PageNameLabel control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace ENETCareWebForm {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label PageNameLabel;
+        
+        /// <summary>
+        /// errorMessageLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorMessageLabel;
         
         /// <summary>
         /// interventionTypeLabel control.
