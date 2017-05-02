@@ -45,5 +45,27 @@ namespace ENETCareWebForm
             labourCostListByDistrictGridView.PageIndex = e.NewPageIndex;
             GenerateReport();
         }
+
+        protected void labourCostListByDistrictGridView_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            
+        }
+
+
+        float sumLabour = 0;
+        float sumCost = 0;
+        protected void labourCostListByDistrictGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            
+
+            if(e.Row.RowType == DataControlRowType.DataRow)
+            {
+                sumLabour = sumLabour + float.Parse(e.Row.Cells[2].Text);
+                sumCost = sumCost + float.Parse(e.Row.Cells[3].Text);
+                totalLabourByDistrictTextBox.Text = sumLabour.ToString();
+                totalCostByDistrictTextBox.Text = sumCost.ToString();
+            }
+
+        }
     }
 }

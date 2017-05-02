@@ -307,7 +307,42 @@ namespace ENETCareData
 
                 return aCostByDistrictList;
         }
-        
+
+
+        public List<MonthlyCostsByDistrict> GetMonthlyCostLabourListByDistrict(string district)
+        {
+            List<MonthlyCostsByDistrict> aMonthlyCostByDistrictList = new List<MonthlyCostsByDistrict>();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "Select Month(i.InterventionDate) as InterventionMonth, Sum(i.LabourRequired) as LabourRequired, Sum(i.CostRequired) as Cost from (Select  InterventionID, UserID,InterventionDate, LabourRequired, CostRequired from[Intervention] where  InterventionState = 'Completed' And UserID IN (Select u.UserID from[User] as u join[District] as d on u.DistrictID = d.DistrictID  where DistrictName = @district)) as i Group By Month(i.InterventionDate) Order BY Month(i.InterventionDate)";
+                                 //"from (Select  InterventionID, UserID,InterventionDate, LabourRequired, CostRequired from[Intervention] where  InterventionState = 'Completed'" +
+                                 //"And UserID IN (Select u.UserID from[User] as u join[District] as d on u.DistrictID = d.DistrictID  where DistrictName = @district)) as i"
+                                 //+ "Group By Month(i.InterventionDate) Order BY Month(i.InterventionDate)");
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("district", district));
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        MonthlyCostsByDistrict aMonthlyCostByDistrict = new MonthlyCostsByDistrict();
+                        aMonthlyCostByDistrict.InterventionMonth = Int32.Parse(reader["InterventionMonth"].ToString());
+                        aMonthlyCostByDistrict.LabourRequired = float.Parse(reader["LabourRequired"].ToString());
+                        aMonthlyCostByDistrict.Cost = float.Parse(reader["Cost"].ToString());
+                        aMonthlyCostByDistrictList.Add(aMonthlyCostByDistrict);
+                    }
+                }
+                catch { }
+            }
+
+            return aMonthlyCostByDistrictList;
+        }
+
     }
 
 }

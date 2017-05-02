@@ -41,7 +41,7 @@
             <asp:ListItem Value="/SiteEngineerTotalCostReport.aspx">Total Cost by Site Engineer</asp:ListItem>
             <asp:ListItem Value="/SiteEngineerAverageCostReportPage.aspx">Average Cost By Site Engineer</asp:ListItem>
             <asp:ListItem Value="/TotalLabourCostByDistrictReport.aspx">Cost By District</asp:ListItem>
-            <asp:ListItem Value="monthlyCostDistrict">Monthly Cost for District</asp:ListItem>
+            <asp:ListItem Value="/TotalMonthlyLabourCostByDistrictReport.aspx">Monthly Cost for District</asp:ListItem>
         </asp:DropDownList>
         &nbsp;
          <asp:Button ID="generateReportButton" runat="server" OnClick="generateReportButton_Click" Text="Generate Report" />

@@ -91,7 +91,7 @@ namespace ENETCareWebForm
 
         protected void interventionTypeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<InterventionType> aInterventionTypeList = anInterventionTypeManager.GetInterventionTypeList();
+            //List<InterventionType> aInterventionTypeList = anInterventionTypeManager.GetInterventionTypeList();
             int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
             labourHourRequiredTextBox.Text = anInterventionTypeManager.GetEstLabourByIntTypeID(interventionTypeID);
             costRequiredTextBox.Text = anInterventionTypeManager.GetEstCostByIntTypeID(interventionTypeID);
