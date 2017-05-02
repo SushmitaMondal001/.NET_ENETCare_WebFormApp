@@ -15,7 +15,7 @@
         <br />
         <br />
     
-        <asp:GridView ID="labourCostListByDistrictGridView" runat="server" AllowPaging="True" AutoGenerateColumns="false" EnableSortingAndPagingCallbacks="false" OnPageIndexChanging="labourCostListByDistrictGridView_PageIndexChanging" PageSize="10" OnRowCommand="labourCostListByDistrictGridView_RowCommand" OnRowDataBound="labourCostListByDistrictGridView_RowDataBound">
+        <asp:GridView ID="labourCostListByDistrictGridView" runat="server" AllowPaging="True" AutoGenerateColumns="false" EnableSortingAndPagingCallbacks="false" OnPageIndexChanging="labourCostListByDistrictGridView_PageIndexChanging" PageSize="10" OnRowDataBound="labourCostListByDistrictGridView_RowDataBound">
             <%----%> 
                     <Columns>
                         <asp:TemplateField HeaderText="Row Number" ItemStyle-Width="100">

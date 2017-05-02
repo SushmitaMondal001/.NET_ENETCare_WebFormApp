@@ -22,10 +22,7 @@ namespace ENETCareWebForm
                 GenerateReport();
             }
         }
-
-
-
-
+        
         public void GenerateReport()
         {
             List<CostByDistrict> aCostByDistrictList = anInterventionManager.GetCostLabourListByDistrict();
@@ -39,7 +36,6 @@ namespace ENETCareWebForm
                 labourCostListByDistrictGridView.DataSource = aCostByDistrictList;
                 labourCostListByDistrictGridView.DataBind();
             }
-
         }
 
         protected void labourCostListByDistrictGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -57,6 +53,21 @@ namespace ENETCareWebForm
         protected void accountantHomePageButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("AccountantHomePage.aspx");
+        }
+
+        float sumLabour = 0;
+        float sumCost = 0;
+        protected void labourCostListByDistrictGridView_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                sumLabour = sumLabour + float.Parse(e.Row.Cells[2].Text);
+                sumCost = sumCost + float.Parse(e.Row.Cells[3].Text);
+                totalLabourByDistrictTextBox.Text = sumLabour.ToString();
+                totalCostByDistrictTextBox.Text = sumCost.ToString();
+            }
+
         }
     }
 }
