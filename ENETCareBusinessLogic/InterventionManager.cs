@@ -26,7 +26,7 @@ namespace ENETCareBusinessLogic
             }
             else if (!(ValidateLabourInput(labour)) || (!ValidateCostInput(cost)))
             {
-                return "Labour and cost field must be less than 360 hour & A$100000 respectively";
+                return "Labour&cost must be positve number and less than 360 hour & A$100000 respectively";
             }
             else if ((((float.Parse(labour)) >= maxHour) || ((float.Parse(cost)) >= maxCost)) && !(interventionState.Equals("Proposed")))
             {
@@ -62,15 +62,16 @@ namespace ENETCareBusinessLogic
             {
                 return false;
             }
+            else if (!(float.TryParse(input, out float i)))
+            {
+                return false;
+            }
             else if ((float.Parse(input) < 0) || (float.Parse(input) > 360))
             {
                 return false;
             }
-            else
-            {
-                return IsDigitsOnly(input);
-            }
 
+            return true;
 
         }
 
@@ -81,16 +82,16 @@ namespace ENETCareBusinessLogic
             {
                 return false;
             }
-            else if ((float.Parse(input) < 0) || (float.Parse(input) > 100000))
+            else if(!(float.TryParse(input,out float i)))
             {
                 return false;
             }
-            else
+            else if ((float.Parse(input) < 0) || (float.Parse(input) > 100000))
             {
-                return IsDigitsOnly(input);
-            }
+                return false;
+            }            
 
-
+            return true;
         }
 
         public bool ValidateDateFormat(string input)
@@ -99,18 +100,7 @@ namespace ENETCareBusinessLogic
             bool date = DateTime.TryParseExact(input, "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
             return date;
         }
-
-        public bool IsDigitsOnly(string str)
-        {
-            foreach (char c in str)
-            {
-                if (c < '0' || c > '9')
-                    return false;
-            }
-
-            return true;
-        }
-
+       
         public List<Intervention> GetInterventionListByClient(int clientID)
         {
             List<Intervention> anInterventionList = anInterventionGateway.GetInterventionListByClient(clientID);
