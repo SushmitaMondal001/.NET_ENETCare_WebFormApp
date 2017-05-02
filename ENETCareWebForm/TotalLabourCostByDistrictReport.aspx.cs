@@ -15,10 +15,32 @@ namespace ENETCareWebForm
         InterventionManager anInterventionManager = new InterventionManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!User.Identity.IsAuthenticated)
             {
-                GenerateReport();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
             }
+            else
+            {
+                if (!User.IsInRole("Accountant"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    if (!IsPostBack)
+                    {
+                        GenerateReport();
+                    }
+                }
+
+            }
+            //if (!IsPostBack)
+            //{
+            //    GenerateReport();
+            //}
         }
 
 
@@ -46,17 +68,13 @@ namespace ENETCareWebForm
             GenerateReport();
         }
 
-        protected void labourCostListByDistrictGridView_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            
-        }
+      
 
 
         float sumLabour = 0;
         float sumCost = 0;
         protected void labourCostListByDistrictGridView_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            
+        {           
 
             if(e.Row.RowType == DataControlRowType.DataRow)
             {

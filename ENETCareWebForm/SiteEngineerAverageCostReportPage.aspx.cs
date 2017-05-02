@@ -16,8 +16,31 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-                GenerateReport();
+            if (!User.Identity.IsAuthenticated)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
+            }
+            else
+            {
+                if (!User.IsInRole("Accountant"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    if (!IsPostBack)
+                    {
+                        GenerateReport();
+                    }
+                }
+
+            }
+
+            //if (!IsPostBack)
+            //    GenerateReport();
         }
 
         public void GenerateReport()

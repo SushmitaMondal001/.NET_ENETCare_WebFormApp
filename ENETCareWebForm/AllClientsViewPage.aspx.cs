@@ -20,12 +20,36 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Response.Write((string)Session["UserName"]);
-            districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
-            if (!this.IsPostBack)
+            if (!User.Identity.IsAuthenticated)
             {
-                this.BindClientListGrid();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
             }
+            else
+            {
+                if (!User.IsInRole("SiteEng"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
+                    if (!this.IsPostBack)
+                    {
+                        this.BindClientListGrid();
+                    }
+                }
+
+            }
+
+            //Response.Write((string)Session["UserName"]);
+            //districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
+            //if (!this.IsPostBack)
+            //{
+            //    this.BindClientListGrid();
+            //}
         }
 
         public void BindClientListGrid()

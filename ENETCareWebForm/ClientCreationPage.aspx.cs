@@ -20,11 +20,35 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!(IsPostBack))
+            if (!User.Identity.IsAuthenticated)
             {
-                PopulateDistrictLabel();
-                //PopulateDistrictDropdownList();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
             }
+            else
+            {
+                if (!User.IsInRole("SiteEng"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    if (!(IsPostBack))
+                    {
+                        PopulateDistrictLabel();
+                        
+                    }
+                }
+
+            }
+
+            //if (!(IsPostBack))
+            //{
+            //    PopulateDistrictLabel();
+            //    //PopulateDistrictDropdownList();
+            //}
     }
 
         protected void saveButton_Click(object sender, EventArgs e)

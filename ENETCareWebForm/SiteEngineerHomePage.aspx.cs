@@ -16,19 +16,39 @@ namespace ENETCareWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            //if (!IsPostBack)
+            //{
+            //    if (User.Identity.IsAuthenticated)
+            //    {
+            //        Session["UserName"] = User.Identity.GetUserName();
+            //        StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
+            //        //LoginStatus.Visible = true;
+            //        //LogoutButton.Visible = true;
+            //    }
+            //    else
+            //    {
+            //        //LoginForm.Visible = true;
+            //    }
+            //}
+
+            if (!User.Identity.IsAuthenticated)
             {
-                if (User.Identity.IsAuthenticated)
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
+            }
+            else
+            {
+                if (!User.IsInRole("SiteEng"))
                 {
-                    Session["UserName"] = User.Identity.GetUserName();
-                    StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-                    //LoginStatus.Visible = true;
-                    //LogoutButton.Visible = true;
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
                 }
                 else
                 {
-                    //LoginForm.Visible = true;
+                    StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
                 }
+
             }
         }
         

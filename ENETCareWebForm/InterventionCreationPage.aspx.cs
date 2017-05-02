@@ -22,21 +22,46 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if (!IsPostBack)
+            if (!User.Identity.IsAuthenticated)
             {
-                PopulateClientDropdownList();
-                PopulateInterventionTypeDropdownList();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
 
-            }
-            if (User.Identity.IsAuthenticated)
-            {
-                userNameTextLabel.Text = User.Identity.GetUserName();
             }
             else
             {
+                if (!User.IsInRole("SiteEng"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    userNameTextLabel.Text = User.Identity.GetUserName();
+                    if (!IsPostBack)
+                    {
+                        PopulateClientDropdownList();
+                        PopulateInterventionTypeDropdownList();
 
+                    }
+                    
+                }
             }
+
+            //if (!IsPostBack)
+            //{
+            //    PopulateClientDropdownList();
+            //    PopulateInterventionTypeDropdownList();
+
+            //}
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    userNameTextLabel.Text = User.Identity.GetUserName();
+            //}
+            //else
+            //{
+
+            //}
             //userNameTextLabel.Text = (string)Session["UserName"];
         }
 

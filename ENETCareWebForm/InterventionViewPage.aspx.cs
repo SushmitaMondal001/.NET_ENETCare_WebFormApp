@@ -21,15 +21,34 @@ namespace ENETCareWebForm
         int userID = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            userID = aUserManager.GetUserIdByName((string)Session["UserName"]);
-            if (!this.IsPostBack)
+            if (!User.Identity.IsAuthenticated)
             {
-                this.BindInterventionListGrid();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
             }
-            //if (User.Identity.IsAuthenticated)
+            else
+            {
+                if (!User.IsInRole("SiteEng"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    userID = aUserManager.GetUserIdByName(User.Identity.GetUserName());
+                    if (!this.IsPostBack)
+                    {
+                        this.BindInterventionListGrid();
+                    }
+                }
+            }
+
+            //userID = aUserManager.GetUserIdByName(User.Identity.GetUserName());
+            //if (!this.IsPostBack)
             //{
-            //    userID = aUserManager.GetUserIdByName(User.Identity.GetUserName());
-            //}
+            //    this.BindInterventionListGrid();
+            //}            
 
             
             

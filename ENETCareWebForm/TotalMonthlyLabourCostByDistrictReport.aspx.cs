@@ -15,10 +15,32 @@ namespace ENETCareWebForm
         DistrictManager aDistrictManager = new DistrictManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!User.Identity.IsAuthenticated)
             {
-                PopulateDistrictDropDownownList();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
             }
+            else
+            {
+                if (!User.IsInRole("Accountant"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    if (!IsPostBack)
+                    {
+                        PopulateDistrictDropDownownList();
+                    }
+                }
+            }
+
+            //if (!IsPostBack)
+            //{
+            //    PopulateDistrictDropDownownList();
+            //}
         }
 
         public void GenerateReport(string district)
