@@ -189,5 +189,10 @@ namespace ENETCareBusinessLogic
         {
             return anInterventionGateway.GetCostLabourListByDistrict();
         }
+
+        public List<MonthlyCostsByDistrict> GetMonthlyCostLabourListByDistrict(string district)
+        {
+            return anInterventionGateway.GetMonthlyCostLabourListByDistrict(district);
+        }
     }
 }

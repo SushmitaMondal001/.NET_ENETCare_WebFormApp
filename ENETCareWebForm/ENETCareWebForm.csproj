@@ -160,6 +160,7 @@
     <Content Include="SiteEngineerTotalCostReport.aspx" />
     <Content Include="StyleSheet.css" />
     <Content Include="TotalLabourCostByDistrictReport.aspx" />
+    <Content Include="TotalMonthlyLabourCostByDistrictReport.aspx" />
     <Content Include="UserListPage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -286,6 +287,13 @@
     </Compile>
     <Compile Include="TotalLabourCostByDistrictReport.aspx.designer.cs">
       <DependentUpon>TotalLabourCostByDistrictReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TotalMonthlyLabourCostByDistrictReport.aspx.cs">
+      <DependentUpon>TotalMonthlyLabourCostByDistrictReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TotalMonthlyLabourCostByDistrictReport.aspx.designer.cs">
+      <DependentUpon>TotalMonthlyLabourCostByDistrictReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserListPage.aspx.cs">
       <DependentUpon>UserListPage.aspx</DependentUpon>

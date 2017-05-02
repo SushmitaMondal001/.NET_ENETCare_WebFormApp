@@ -62,6 +62,7 @@
     <Compile Include="CostByDistrict.cs" />
     <Compile Include="District.cs" />
     <Compile Include="InterventionViewByUser.cs" />
+    <Compile Include="MonthlyCostsByDistrict.cs" />
     <Compile Include="MyDbContext.cs" />
     <Compile Include="Intervention.cs" />
     <Compile Include="InterventionType.cs" />

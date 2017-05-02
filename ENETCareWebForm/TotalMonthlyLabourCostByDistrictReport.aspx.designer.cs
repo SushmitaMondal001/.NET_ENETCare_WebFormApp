@@ -10,7 +10,7 @@
 namespace ENETCareWebForm {
     
     
-    public partial class TotalLabourCostByDistrictReport {
+    public partial class TotalMonthlyLabourCostByDistrictReport {
         
         /// <summary>
         /// PageNameLabel control.
@@ -31,48 +31,30 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.Label errorMessageLabel;
         
         /// <summary>
-        /// labourCostListByDistrictGridView control.
+        /// districtDropDownBoxList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView labourCostListByDistrictGridView;
+        protected global::System.Web.UI.WebControls.DropDownList districtDropDownBoxList;
         
         /// <summary>
-        /// totalLabourByDistrictLabel control.
+        /// MonthlylabourCostListByDistrictGridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totalLabourByDistrictLabel;
+        protected global::System.Web.UI.WebControls.GridView MonthlylabourCostListByDistrictGridView;
         
         /// <summary>
-        /// totalLabourByDistrictTextBox control.
+        /// accountantHomePageButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totalLabourByDistrictTextBox;
-        
-        /// <summary>
-        /// totalCostByDistrictLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totalCostByDistrictLabel;
-        
-        /// <summary>
-        /// totalCostByDistrictTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label totalCostByDistrictTextBox;
+        protected global::System.Web.UI.WebControls.Button accountantHomePageButton;
     }
 }

@@ -15,7 +15,7 @@
         <br />
         <br />
     
-        <asp:GridView ID="labourCostListByDistrictGridView" runat="server" AllowPaging="True" AutoGenerateColumns="false" EnableSortingAndPagingCallbacks="false" OnPageIndexChanging="labourCostListByDistrictGridView_PageIndexChanging" PageSize="10">
+        <asp:GridView ID="labourCostListByDistrictGridView" runat="server" AllowPaging="True" AutoGenerateColumns="false" EnableSortingAndPagingCallbacks="false" OnPageIndexChanging="labourCostListByDistrictGridView_PageIndexChanging" PageSize="10" OnRowCommand="labourCostListByDistrictGridView_RowCommand" OnRowDataBound="labourCostListByDistrictGridView_RowDataBound">
             <%----%> 
                     <Columns>
                         <asp:TemplateField HeaderText="Row Number" ItemStyle-Width="100">
@@ -28,6 +28,14 @@
                         <asp:BoundField DataField="Cost" HeaderText="Cost" />
                     </Columns>
         </asp:GridView>
+        
+        <br />
+            <asp:Label ID="totalLabourByDistrictLabel" runat="server"> Total Labour:</asp:Label>
+            <asp:Label ID="totalLabourByDistrictTextBox" runat="server"></asp:Label>
+        
+        <br />
+            <asp:Label ID="totalCostByDistrictLabel" runat="server"> Total Cost:</asp:Label>
+            <asp:Label ID="totalCostByDistrictTextBox" runat="server"></asp:Label>
         <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:Button ID="accountantHomePageButton" runat="server" OnClick="accountantHomePageButton_Click" Text="Accountant Home Page " />
