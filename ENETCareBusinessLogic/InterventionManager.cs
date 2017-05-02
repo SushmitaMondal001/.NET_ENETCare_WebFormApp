@@ -134,7 +134,7 @@ namespace ENETCareBusinessLogic
         public string UpdateIntervention(int interventionID, string lastEditDate, string notes, string remainingLife)
         {
             string message = "Quality management information update is unsuccessful.";
-            string isValidInput = IsValidRemainingLife(remainingLife);
+            string isValidInput = IsValidInput(remainingLife, notes);
             if (isValidInput.Equals("Valid"))
             {
                 int remainingLifeInt = Int32.Parse(remainingLife);
@@ -161,15 +161,19 @@ namespace ENETCareBusinessLogic
             return message;
         }
 
-        public string IsValidRemainingLife(string remainingLife)
+        public string IsValidInput(string remainingLife, string notes)
         {
             string result = "Valid";
             int remainingLifeInt;
             bool isInt = Int32.TryParse(remainingLife, out remainingLifeInt);
+            // Check remaining life
             if (isInt == false)
                 return "Remaining life must be integer.";
             else if (remainingLifeInt < 0 || remainingLifeInt > 100)
                 return "Remaining life must be between 0 to 100.";
+            // Check notes length
+            else if (notes.Length > 300000)
+                return "Notes section is too lengthy. Please make it short.";
             return result;
         }
 

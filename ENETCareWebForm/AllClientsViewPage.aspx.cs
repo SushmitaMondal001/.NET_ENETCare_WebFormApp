@@ -25,6 +25,7 @@ namespace ENETCareWebForm
         protected void Page_Load(object sender, EventArgs e)
         {
             DisableMasterPageButtons();
+            districtID = aUserManager.GetUserDistrictID(User.Identity.GetUserName());
             if (!User.Identity.IsAuthenticated)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
