@@ -150,6 +150,18 @@ namespace ENETCareBusinessLogic
             return message;
         }
 
+        public string UpdateApprovedInterventionStatusByID(int interventionID, string status)
+        {
+            string message = "Intervention Status Unchanged";
+
+            int result = anInterventionGateway.UpdateApprovedInterventionStatusByID(interventionID, status);
+            if (result > 0)
+            {
+                message = "Intervention Status Changed";
+            }
+            return message;
+        }
+
         public string IsValidInput(string remainingLife, string notes)
         {
             string result = "Valid";

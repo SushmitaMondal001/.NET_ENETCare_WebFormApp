@@ -110,26 +110,27 @@ namespace ENETCareWebForm
                 string interventionID = interventionIDHiddenField.Value;
                 if ((e.CommandName == "Complete") && ((interventionStatus.Equals("Approved")) || (interventionStatus.Equals("Proposed"))))
                 {
-                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Completed", null);
+                    string result = anInterventionManager.UpdateApprovedInterventionStatusByID(Int32.Parse(interventionID), "Completed");                    
                     BindInterventionListGrid();
                     ErrorMessageLabel.Text = result;
                 }
-                else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Proposed")))
-                {
-                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Approved", userID);
-                    BindInterventionListGrid();
-                    ErrorMessageLabel.Text = result;
-                }
+                //else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Proposed")))
+                //{
+                //    string result = anInterventionManager.UpdateApprovedInterventionStatusByID(Int32.Parse(interventionID), "Approved");
+                //    //, userID
+                //    BindInterventionListGrid();
+                //    ErrorMessageLabel.Text = result;
+                //}
                 else if ((e.CommandName == "Remove") && ((interventionStatus.Equals("Approved")) || (interventionStatus.Equals("Proposed"))))
                 {
-                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Cancelled", null);
+                    string result = anInterventionManager.UpdateApprovedInterventionStatusByID(Int32.Parse(interventionID), "Cancelled");                    
                     BindInterventionListGrid();
                     ErrorMessageLabel.Text = "Intervention Cancelled";
                 }
-                else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Approved")))
-                {
-                    ErrorMessageLabel.Text = "The Intervention is already Approved";
-                }
+                //else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Approved")))
+                //{
+                //    ErrorMessageLabel.Text = "The Intervention is already Approved";
+                //}
                 else if (interventionStatus.Equals("Completed"))
                 {
                     ErrorMessageLabel.Text = "The Intervention is already Completed";

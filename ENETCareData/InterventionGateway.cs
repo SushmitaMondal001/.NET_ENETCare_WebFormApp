@@ -93,7 +93,7 @@ namespace ENETCareData
             {
                 connection.ConnectionString = connectionString;
 
-                string query = "SELECT * FROM [Intervention] WHERE UserID=@id AND InterventionState != 'Cancelled'";
+                string query = "SELECT * FROM [Intervention] WHERE UserID=@id AND (InterventionState = 'Approved' OR InterventionState = 'Completed')";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Add(new SqlParameter("id", userID));
@@ -193,7 +193,34 @@ namespace ENETCareData
             }
             return result;
         }
-        
+
+        public int UpdateApprovedInterventionStatusByID(int interventionID, string status)
+        {
+            int result = 0;
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+                string query = "UPDATE [Intervention] SET InterventionState = @status WHERE InterventionID = @interventionID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("status", status));
+                command.Parameters.Add(new SqlParameter("interventionID", interventionID));
+                
+
+                try
+                {
+                    connection.Open();
+                    result = command.ExecuteNonQuery();
+                }
+                catch
+                {
+
+                }
+            }
+            return result;
+        }
+
 
         public int UpdateIntervention(int interventionID, string lastEditDate, string notes, int remainingLife)
         {
