@@ -57,12 +57,12 @@ namespace ENETCareBusinessLogic
 
         public bool ValidateLabourInput(string input)
         {
-
+            float i = 0;
             if (input.Equals(""))
             {
                 return false;
             }
-            else if (!(float.TryParse(input, out float i)))
+            else if (!(float.TryParse(input, out i)))
             {
                 return false;
             }
@@ -77,12 +77,12 @@ namespace ENETCareBusinessLogic
 
         public bool ValidateCostInput(string input)
         {
-
+            float i = 0;
             if (input.Equals(""))
             {
                 return false;
             }
-            else if(!(float.TryParse(input,out float i)))
+            else if(!(float.TryParse(input,out i)))
             {
                 return false;
             }
