@@ -20,7 +20,6 @@ namespace ENETCareWebFormApp.Tests
         public void SiteEnineer_Can_Only_Propose_Intervention_When_Cost_Is_OutOfHis_Limit()
         {
             bool result = siteEngineer.Create_Proposed_Intervention("Proposed", 7200);
-
             Assert.IsTrue(result);
         }
     }

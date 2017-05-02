@@ -48,6 +48,7 @@ namespace ENETCareData
 
         public List<Intervention> GetInterventionListByClient(int clientID)
         {
+            DateTime dateValue;
             List<Intervention> anInterventionList = new List<Intervention>();
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
@@ -68,6 +69,12 @@ namespace ENETCareData
                         anIntervention.InterventionID = Int32.Parse(reader["InterventionID"].ToString());
                         anIntervention.InterventionTypeID = Int32.Parse(reader["InterventionTypeID"].ToString());
                         anIntervention.InterventionState = reader["InterventionState"].ToString();
+                        anIntervention.CostRequired = float.Parse(reader["CostRequired"].ToString());
+                        anIntervention.LabourRequired = float.Parse(reader["LabourRequired"].ToString());
+                        anIntervention.InterventionDate = reader["InterventionDate"].ToString();
+                        //bool date = DateTime.TryParse(reader["InterventionDate"].ToString(), System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
+                        //string interventionDate = dateValue.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        //anIntervention.InterventionDate = interventionDate;
                         anInterventionList.Add(anIntervention);
                     }
                 }
@@ -160,18 +167,19 @@ namespace ENETCareData
         }
 
 
-        public int UpdateInterventionStatusByID(int interventionID, string status)
+        public int UpdateInterventionStatusByID(int interventionID, string status, int? approvalUserID)
         {
             int result = 0;
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
-                string query = "UPDATE [Intervention] SET InterventionState = @status WHERE InterventionID = @interventionID";
+                string query = "UPDATE [Intervention] SET InterventionState = @status, ApprovalUserID = @approvalUserID  WHERE InterventionID = @interventionID";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.Add(new SqlParameter("status", status));
                 command.Parameters.Add(new SqlParameter("interventionID", interventionID));
+                command.Parameters.Add(new SqlParameter("approvalUserID", approvalUserID));
 
                 try
                 {
@@ -341,6 +349,42 @@ namespace ENETCareData
             }
 
             return aMonthlyCostByDistrictList;
+        }
+
+        public List<Intervention> GetInterventionListByApprovalUserID(int userID)
+        {
+            DateTime dateValue;
+            List<Intervention> anInterventionList = new List<Intervention>();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+
+                string query = "SELECT * FROM [Intervention] WHERE ApprovalUserID=@id AND InterventionState = 'Approved'";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.Add(new SqlParameter("id", userID));
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Intervention anIntervention = new Intervention();
+                        anIntervention.InterventionID = Int32.Parse(reader["InterventionID"].ToString());
+                        anIntervention.InterventionTypeID = Int32.Parse(reader["InterventionTypeID"].ToString());
+                        bool date = DateTime.TryParse(reader["InterventionDate"].ToString(), System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
+                        string interventionDate = dateValue.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        anIntervention.InterventionDate = interventionDate;
+                        anIntervention.ClientID = Int32.Parse(reader["ClientID"].ToString());
+                        anIntervention.InterventionState = reader["InterventionState"].ToString();
+                        anInterventionList.Add(anIntervention);
+                    }
+                }
+                catch { }
+            }
+            return anInterventionList;
         }
 
     }

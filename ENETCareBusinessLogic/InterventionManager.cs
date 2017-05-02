@@ -114,7 +114,6 @@ namespace ENETCareBusinessLogic
             return anInterventionList;
         }
 
-
         public Intervention GetInterventionListByInterventionID(int interventionID)
         {
             Intervention anIntervention = anInterventionGateway.GetInterventionListByInterventionID(interventionID);
@@ -139,11 +138,11 @@ namespace ENETCareBusinessLogic
             return message;
         }
 
-        public string UpdateInterventionStatusByID(int interventionID, string status)
+        public string UpdateInterventionStatusByID(int interventionID, string status, int? approvalUserID )
         {
             string message = "Intervention Status Unchanged";
 
-            int result = anInterventionGateway.UpdateInterventionStatusByID(interventionID, status);
+            int result = anInterventionGateway.UpdateInterventionStatusByID(interventionID, status, approvalUserID);
             if (result > 0)
             {
                 message = "Intervention Status Changed";
@@ -187,6 +186,24 @@ namespace ENETCareBusinessLogic
         public List<MonthlyCostsByDistrict> GetMonthlyCostLabourListByDistrict(string district)
         {
             return anInterventionGateway.GetMonthlyCostLabourListByDistrict(district);
+        }
+
+        public List<Intervention> GetInterventionListByApprovalUserID(int userID)
+        {
+            return anInterventionGateway.GetInterventionListByApprovalUserID(userID);
+        }
+
+
+
+        public bool IsEligibleForProposedList(string interventionStatus, float interventionCostRequired, float interventionLabourRequired, float userCostLimit, float userLabourLimit)
+        {
+            if (!(interventionStatus.Equals("Proposed")))
+                return false;
+            else if (interventionCostRequired > userCostLimit)
+                return false;
+            else if (interventionLabourRequired > userLabourLimit)
+                return false;
+            return true;
         }
     }
 }

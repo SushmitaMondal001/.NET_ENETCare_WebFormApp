@@ -64,5 +64,10 @@ namespace ENETCareWebForm
             HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
             navDiv.Visible = false;
         }
+
+        protected void approvedInterventionViewButton0_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("ApprovedInterventionListViewPage.aspx");
+        }
     }
 }

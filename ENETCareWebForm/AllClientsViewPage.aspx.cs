@@ -87,6 +87,7 @@ namespace ENETCareWebForm
                     aClientWithIntervention.InterventionTypeID = anIntervention.InterventionTypeID;
                     aClientWithIntervention.Intervention = anInterventionTypeManager.GetInterventionNameByTypeId(anIntervention.InterventionTypeID);
                     aClientWithIntervention.InterventionStatus = anIntervention.InterventionState;
+                    if(!(aClientWithIntervention.InterventionStatus).Equals("Cancelled"))
                     aClientWithInterventionList.Add(aClientWithIntervention);
                 }
             }

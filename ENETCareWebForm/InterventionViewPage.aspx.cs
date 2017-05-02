@@ -110,19 +110,19 @@ namespace ENETCareWebForm
                 string interventionID = interventionIDHiddenField.Value;
                 if ((e.CommandName == "Complete") && ((interventionStatus.Equals("Approved")) || (interventionStatus.Equals("Proposed"))))
                 {
-                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Completed");
+                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Completed", null);
                     BindInterventionListGrid();
                     ErrorMessageLabel.Text = result;
                 }
                 else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Proposed")))
                 {
-                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Approved");
+                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Approved", userID);
                     BindInterventionListGrid();
                     ErrorMessageLabel.Text = result;
                 }
                 else if ((e.CommandName == "Remove") && ((interventionStatus.Equals("Approved")) || (interventionStatus.Equals("Proposed"))))
                 {
-                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Cancelled");
+                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Cancelled", null);
                     BindInterventionListGrid();
                     ErrorMessageLabel.Text = "Intervention Cancelled";
                 }
