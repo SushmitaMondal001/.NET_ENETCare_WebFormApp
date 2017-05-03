@@ -153,8 +153,8 @@ namespace ENETCareData
                         bool date = DateTime.TryParse(reader["InterventionDate"].ToString(), System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
                         string interventionDate = dateValue.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
                         anIntervention.InterventionDate = interventionDate;
-
                         anIntervention.Notes = reader["Notes"] as string ;
+
                         if (reader["RemainingLife"] != DBNull.Value)
                             anIntervention.RemainingLife = Int32.Parse(reader["RemainingLife"].ToString());
                         else

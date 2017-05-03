@@ -46,7 +46,7 @@ namespace ENETCareWebForm
         protected void userListGridView_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             userListGridView.PageIndex = e.NewPageIndex;
-            userListGridView.DataBind();
+            PopulateUserGridView();
         }
         public void DisableMasterPageButtons()
         {
