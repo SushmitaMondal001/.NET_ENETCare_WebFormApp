@@ -49,6 +49,9 @@
             <br />
             <asp:Button ID="checkOldInterventionButton" runat="server" Height="29px" style="margin-top: 6px" Text="Check Old Interventions" Width="233px" OnClick="checkOldInterventionButton_Click" />
             <br />
+             <br />
+            <asp:Button ID="AllIntervention" runat="server" Height="29px" style="margin-top: 6px" Text="All Interventions" Width="233px" OnClick="AllIntervention_Click" />
+            <br />
 &nbsp;<br />
             <br />
             &nbsp;&nbsp;

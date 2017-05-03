@@ -131,6 +131,7 @@
     <Content Include="AccountantHomePage.aspx" />
     <Content Include="AllClientsWithInterventionViewPage.aspx" />
     <Content Include="AllClientViewPage.aspx" />
+    <Content Include="AllInterventionViewPage.aspx" />
     <Content Include="ApprovedInterventionListViewPage.aspx" />
     <Content Include="App_Data\Identity2.mdf" />
     <Content Include="App_Data\Identity2_log.ldf">
@@ -189,6 +190,13 @@
     </Compile>
     <Compile Include="AllClientViewPage.aspx.designer.cs">
       <DependentUpon>AllClientViewPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllInterventionViewPage.aspx.cs">
+      <DependentUpon>AllInterventionViewPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllInterventionViewPage.aspx.designer.cs">
+      <DependentUpon>AllInterventionViewPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ApprovedInterventionListViewPage.aspx.cs">
       <DependentUpon>ApprovedInterventionListViewPage.aspx</DependentUpon>

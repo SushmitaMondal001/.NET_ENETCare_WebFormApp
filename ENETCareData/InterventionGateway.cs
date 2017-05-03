@@ -143,6 +143,42 @@ namespace ENETCareData
             return anInterventionList;
         }
 
+        public List<Intervention> GetInterventionList()
+        {
+            DateTime dateValue;
+            List<Intervention> anInterventionList = new List<Intervention>();
+            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+            using (SqlConnection connection = new SqlConnection())
+            {
+                connection.ConnectionString = connectionString;
+
+                string query = "SELECT * FROM [Intervention] WHERE InterventionState = 'Approved' OR InterventionState = 'Completed'";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Intervention anIntervention = new Intervention();
+                        anIntervention.InterventionID = Int32.Parse(reader["InterventionID"].ToString());
+                        anIntervention.InterventionTypeID = Int32.Parse(reader["InterventionTypeID"].ToString());
+                        bool date = DateTime.TryParse(reader["InterventionDate"].ToString(), System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
+                        string interventionDate = dateValue.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                        anIntervention.InterventionDate = interventionDate;
+                        anIntervention.ClientID = Int32.Parse(reader["ClientID"].ToString());
+                        anIntervention.InterventionState = reader["InterventionState"].ToString();
+                        anInterventionList.Add(anIntervention);
+                    }
+                }
+                catch { }
+            }
+            return anInterventionList;
+        }
+
 
         /// <summary>
         /// Fetch details of an intervention by the intervention ID

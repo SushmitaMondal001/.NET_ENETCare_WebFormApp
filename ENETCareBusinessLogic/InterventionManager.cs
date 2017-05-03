@@ -11,12 +11,15 @@ namespace ENETCareBusinessLogic
     public class InterventionManager
     {
         InterventionGateway anInterventionGateway = new InterventionGateway();
+        InterventionTypeManager anInterventionType = new InterventionTypeManager();
         UserManager aUserManager = new UserManager();
 
         public string AddNewIntervention(string intTypeID, string clientId, string labour, string cost, int userID, string interventionDate, string interventionState)
         {
-            float maxHour = aUserManager.GetMaxHourByUserID(userID);
-            float maxCost = aUserManager.GetMaxCostByUserID(userID);
+            float maxSiteEngineerLabourHour = aUserManager.GetMaxHourByUserID(userID);
+            float maxSiteEngineerCost = aUserManager.GetMaxCostByUserID(userID);
+            float estimatedInterventionLabour = float.Parse(anInterventionType.GetEstLabourByIntTypeID(Int32.Parse(intTypeID)));
+            float estimatedInterventionCost = float.Parse(anInterventionType.GetEstCostByIntTypeID(Int32.Parse(intTypeID)));
 
             string message = "Intervention creation is unsuccessful.";
 
@@ -28,9 +31,17 @@ namespace ENETCareBusinessLogic
             {
                 return "Labour&cost must be positve number and less than 360 hour & A$100000 respectively";
             }
-            else if ((((float.Parse(labour)) > maxHour) || ((float.Parse(cost)) > maxCost)) && !(interventionState.Equals("Proposed")))
+            else if((maxSiteEngineerLabourHour <= estimatedInterventionLabour) && (float.Parse(labour) != estimatedInterventionLabour))
             {
-                return "Sorry!You can only approve upto " + maxHour + " Hour and A$" + maxCost;
+                return "DefaultLabourHour" + estimatedInterventionLabour + " is equal to or larger than your limit. It can't be changed";
+            }
+            else if ((maxSiteEngineerCost <= estimatedInterventionCost) && (float.Parse(cost) != estimatedInterventionCost))
+            {
+                return "DefaultCost A$"+ estimatedInterventionCost + " is equal to or larger than your limit. It can't be changed";
+            }
+            else if ((((float.Parse(labour)) > maxSiteEngineerLabourHour) || ((float.Parse(cost)) > maxSiteEngineerCost)) && !(interventionState.Equals("Proposed")))
+            {
+                return "Sorry!You can only approve upto " + maxSiteEngineerLabourHour + " Hour and A$" + maxSiteEngineerCost;
             }
             else if (!(ValidateDateFormat(interventionDate)))
             {
@@ -111,6 +122,12 @@ namespace ENETCareBusinessLogic
         public List<Intervention> GetInterventionListByUserID(int userID)
         {
             List<Intervention> anInterventionList = anInterventionGateway.GetInterventionListByUserID(userID);
+            return anInterventionList;
+        }
+
+        public List<Intervention> GetInterventionList()
+        {
+            List<Intervention> anInterventionList = anInterventionGateway.GetInterventionList();
             return anInterventionList;
         }
 

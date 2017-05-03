@@ -67,6 +67,15 @@ namespace ENETCareWebForm {
         protected global::System.Web.UI.WebControls.Button checkOldInterventionButton;
         
         /// <summary>
+        /// AllIntervention control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AllIntervention;
+        
+        /// <summary>
         /// changePasswordButton control.
         /// </summary>
         /// <remarks>

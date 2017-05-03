@@ -91,5 +91,10 @@ namespace ENETCareWebForm
         {
             Response.Redirect("AllClientViewPage.aspx");
         }
+
+        protected void AllIntervention_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AllInterventionViewPage.aspx");
+        }
     }
 }

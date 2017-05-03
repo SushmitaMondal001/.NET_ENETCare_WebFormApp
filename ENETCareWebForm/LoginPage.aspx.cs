@@ -16,7 +16,7 @@ namespace ENET
 {
     public partial class Login : System.Web.UI.Page
     {
-        LoginValidation checkLogin = new LoginValidation();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             Session["UserName"] = "";
