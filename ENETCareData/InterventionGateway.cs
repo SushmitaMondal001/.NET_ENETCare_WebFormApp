@@ -160,10 +160,14 @@ namespace ENETCareData
                         else
                             anIntervention.RemainingLife = null;
                         if (reader["LatestVisitDate"] != DBNull.Value)
-                            anIntervention.LastEditDate = reader["LatestVisitDate"].ToString();
+                        {
+                            date = DateTime.TryParse(reader["LatestVisitDate"].ToString(), System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
+                            interventionDate = dateValue.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture);
+                            anIntervention.LastEditDate = interventionDate;
+                            //anIntervention.LastEditDate = reader["LatestVisitDate"].ToString();
+                        }
                         else
-                            anIntervention.LastEditDate = reader["InterventionDate"].ToString();
-
+                            anIntervention.LastEditDate = anIntervention.InterventionDate;
                     }
                 }
                 catch { }
@@ -227,17 +231,22 @@ namespace ENETCareData
         }
 
 
-        public int UpdateIntervention(int interventionID, string lastEditDate, string notes, int remainingLife)
+        public int UpdateIntervention(int interventionID, string lastEditDate, string notes, int? remainingLife)
         {
             int result = 0;
+            string query = "";
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
             using (SqlConnection connection = new SqlConnection())
             {
                 connection.ConnectionString = connectionString;
-                string query = "UPDATE Intervention SET RemainingLife = @remainingLife, LatestVisitDate = @latestVisitDate, Notes = @notes WHERE InterventionID = @interventionID";
+                if(!(remainingLife == null))
+                    query = "UPDATE Intervention SET RemainingLife = @remainingLife, LatestVisitDate = @latestVisitDate, Notes = @notes WHERE InterventionID = @interventionID";
+                else
+                    query = "UPDATE Intervention SET LatestVisitDate = @latestVisitDate, Notes = @notes WHERE InterventionID = @interventionID";
 
                 SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("remainingLife", remainingLife));
+                if(!(remainingLife == null))
+                    command.Parameters.Add(new SqlParameter("remainingLife", remainingLife));
                 command.Parameters.Add(new SqlParameter("latestVisitDate", lastEditDate));
                 command.Parameters.Add(new SqlParameter("notes", notes));
                 command.Parameters.Add(new SqlParameter("interventionID", interventionID));

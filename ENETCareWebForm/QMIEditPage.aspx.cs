@@ -84,7 +84,15 @@ namespace ENETCareWebForm
                 notesTextBox.Text = anIntervention.Notes;
             userNameValueLabel.Text = aUserManager.GetUserNameByUserID(anIntervention.UserID);
             if (!(anIntervention.RemainingLife.Equals(null))) 
-                remainingLifeTextBox.Text = anIntervention.RemainingLife.ToString(); 
+                remainingLifeTextBox.Text = anIntervention.RemainingLife.ToString();
+
+            // Disable remaining life button if [anIntervention.InterventionState="Proposed"]
+            if (anIntervention.InterventionState.Equals("Proposed"))
+            {
+                remainingLifeTextBox.Enabled = false;
+                remainingLifeTextBox.Text = "";
+                errorMessageLabel.Text = "Remaining life can't be changed for Proposed Intervention. Notes can be added.";
+            }
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)

@@ -122,12 +122,18 @@ namespace ENETCareBusinessLogic
 
         public string UpdateIntervention(int interventionID, string lastEditDate, string notes, string remainingLife)
         {
+            int result = 0;
             string message = "Quality management information update is unsuccessful.";
             string isValidInput = IsValidInput(remainingLife, notes);
             if (isValidInput.Equals("Valid"))
             {
-                int remainingLifeInt = Int32.Parse(remainingLife);
-                int result = anInterventionGateway.UpdateIntervention(interventionID, lastEditDate, notes, remainingLifeInt);
+                if (!remainingLife.Equals(""))
+                {
+                    int remainingLifeInt = Int32.Parse(remainingLife);
+                    result = anInterventionGateway.UpdateIntervention(interventionID, lastEditDate, notes, remainingLifeInt);
+                }
+                else
+                    result = anInterventionGateway.UpdateIntervention(interventionID, lastEditDate, notes, null);
                 if (result > 0)
                     message = "Quality management information update is successful.";
             }
@@ -166,14 +172,17 @@ namespace ENETCareBusinessLogic
         {
             string result = "Valid";
             int remainingLifeInt;
-            bool isInt = Int32.TryParse(remainingLife, out remainingLifeInt);
-            // Check remaining life
-            if (isInt == false)
-                return "Remaining life must be integer.";
-            else if (remainingLifeInt < 0 || remainingLifeInt > 100)
-                return "Remaining life must be between 0 to 100.";
+            if (!remainingLife.Equals(""))
+            {
+                bool isInt = Int32.TryParse(remainingLife, out remainingLifeInt);
+                // Check remaining life
+                if (isInt == false)
+                    return "Remaining life must be integer.";
+                else if (remainingLifeInt < 0 || remainingLifeInt > 100)
+                    return "Remaining life must be between 0 to 100.";
+            }
             // Check notes length
-            else if (notes.Length > 300000)
+            if (notes.Length > 300000)
                 return "Notes section is too lengthy. Please make it short.";
             return result;
         }
