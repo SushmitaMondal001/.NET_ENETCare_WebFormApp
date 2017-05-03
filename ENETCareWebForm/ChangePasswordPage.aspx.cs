@@ -33,10 +33,15 @@ namespace ENET
             string connectionString = aDatabaseConfig.Setup("Identity");
             //To get user information we need UserManager who access data via UserStore according to IdenetityUser(I am)
             var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(new MyDbContext(connectionString)));
-            var result = userManager.ChangePasswordAsync(User.Identity.Name, "123456789","");
-            Response.Redirect(Request.RawUrl);
-
+            var result = userManager.ChangePasswordAsync(User.Identity.Name, "123456789","test123");
+            //Response.Redirect(Request.RawUrl);
             //  return RedirectToAction("Index", "ConfigUser");
+            //String userId = User.Identity.GetUserId();//"<YourLogicAssignsRequestedUserId>";
+            //String newPassword = "test@123"; //"<PasswordAsTypedByUser>";
+            //String hashedNewPassword = UserManager.PasswordHasher.HashPassword(newPassword);
+            //ApplicationUser cUser = await store.FindByIdAsync(userId);
+            //**await store.SetPasswordHashAsync(cUser, hashedNewPassword);
+            //await store.UpdateAsync(cUser)
 
         }
     }
@@ -44,4 +49,5 @@ namespace ENET
 
 //Update user information(UserName,OldPassword)
 //Get authentication info. from UserManger
+
 
