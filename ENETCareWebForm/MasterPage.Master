@@ -17,10 +17,10 @@
             ENETCare
         </div>
 
-        <div id="nav">
+        <div id="nav" runat="server">
             <ul>
-                <li><a href="HomePage.aspx">Home</a>
-                                       <a href="ContactUs.aspx">Contact Us</a>
+                <li><a id="homeLink" href="HomePage.aspx">Home</a>
+                    <a id="contactLink" href="ContactUs.aspx">Contact Us</a>
                 </li>
             </ul>
         </div>

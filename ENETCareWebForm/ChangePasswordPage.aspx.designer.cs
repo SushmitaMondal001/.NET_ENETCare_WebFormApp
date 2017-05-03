@@ -13,22 +13,22 @@ namespace ENET {
     public partial class Change_Password {
         
         /// <summary>
-        /// form1 control.
+        /// errorMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Label errorMessage;
         
         /// <summary>
-        /// userNameTextBox control.
+        /// userNameLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox userNameTextBox;
+        protected global::System.Web.UI.WebControls.Label userNameLabel;
         
         /// <summary>
         /// passwordTextBox control.
@@ -49,15 +49,6 @@ namespace ENET {
         protected global::System.Web.UI.WebControls.TextBox newPasswordTextBox;
         
         /// <summary>
-        /// repeatPasswordTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox repeatPasswordTextBox;
-        
-        /// <summary>
         /// confirmButton control.
         /// </summary>
         /// <remarks>
@@ -65,5 +56,14 @@ namespace ENET {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button confirmButton;
+        
+        /// <summary>
+        /// BackButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BackButton;
     }
 }

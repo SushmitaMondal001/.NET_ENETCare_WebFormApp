@@ -64,7 +64,7 @@ namespace ENET
             var userStore = new UserStore<IdentityUser>();
             var manager = new UserManager<IdentityUser>(userStore);
 
-            var user = new IdentityUser() { UserName = "Diana" };
+            var user = new IdentityUser() { UserName = "Lucy" };
             IdentityResult result = manager.Create(user, "12345678");
 
             if (result.Succeeded)
@@ -88,7 +88,6 @@ namespace ENET
                 Response.Redirect("~/SiteEngineerHomePage.aspx");
             else if (role.Equals("manager"))
                 Response.Redirect("~/ManagerHomePage.aspx");
-
         }
     }
 }

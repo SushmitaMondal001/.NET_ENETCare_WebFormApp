@@ -129,7 +129,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AccountantHomePage.aspx" />
-    <Content Include="AllClientsViewPage.aspx" />
+    <Content Include="AllClientsWithInterventionViewPage.aspx" />
+    <Content Include="AllClientViewPage.aspx" />
+    <Content Include="ApprovedInterventionListViewPage.aspx" />
     <Content Include="App_Data\Identity2.mdf" />
     <Content Include="App_Data\Identity2_log.ldf">
       <DependentUpon>Identity2.mdf</DependentUpon>
@@ -155,9 +157,12 @@
   <ItemGroup>
     <Content Include="ProposedInterventionListViewPage.aspx" />
     <Content Include="QMIEditPage.aspx" />
+    <Content Include="SiteEngineerAverageCostReportPage.aspx" />
     <Content Include="SiteEngineerHomePage.aspx" />
     <Content Include="SiteEngineerTotalCostReport.aspx" />
     <Content Include="StyleSheet.css" />
+    <Content Include="TotalLabourCostByDistrictReport.aspx" />
+    <Content Include="TotalMonthlyLabourCostByDistrictReport.aspx" />
     <Content Include="UserListPage.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -171,12 +176,26 @@
     <Compile Include="AccountantHomePage.aspx.designer.cs">
       <DependentUpon>AccountantHomePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AllClientsViewPage.aspx.cs">
-      <DependentUpon>AllClientsViewPage.aspx</DependentUpon>
+    <Compile Include="AllClientsWithInterventionViewPage.aspx.cs">
+      <DependentUpon>AllClientsWithInterventionViewPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AllClientsViewPage.aspx.designer.cs">
-      <DependentUpon>AllClientsViewPage.aspx</DependentUpon>
+    <Compile Include="AllClientsWithInterventionViewPage.aspx.designer.cs">
+      <DependentUpon>AllClientsWithInterventionViewPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AllClientViewPage.aspx.cs">
+      <DependentUpon>AllClientViewPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AllClientViewPage.aspx.designer.cs">
+      <DependentUpon>AllClientViewPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ApprovedInterventionListViewPage.aspx.cs">
+      <DependentUpon>ApprovedInterventionListViewPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ApprovedInterventionListViewPage.aspx.designer.cs">
+      <DependentUpon>ApprovedInterventionListViewPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="ChangeDistrict.aspx.cs">
       <DependentUpon>ChangeDistrict.aspx</DependentUpon>
@@ -256,6 +275,13 @@
     <Compile Include="QMIEditPage.aspx.designer.cs">
       <DependentUpon>QMIEditPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SiteEngineerAverageCostReportPage.aspx.cs">
+      <DependentUpon>SiteEngineerAverageCostReportPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SiteEngineerAverageCostReportPage.aspx.designer.cs">
+      <DependentUpon>SiteEngineerAverageCostReportPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SiteEngineerHomePage.aspx.cs">
       <DependentUpon>SiteEngineerHomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -271,6 +297,20 @@
       <DependentUpon>SiteEngineerTotalCostReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="TotalLabourCostByDistrictReport.aspx.cs">
+      <DependentUpon>TotalLabourCostByDistrictReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TotalLabourCostByDistrictReport.aspx.designer.cs">
+      <DependentUpon>TotalLabourCostByDistrictReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TotalMonthlyLabourCostByDistrictReport.aspx.cs">
+      <DependentUpon>TotalMonthlyLabourCostByDistrictReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TotalMonthlyLabourCostByDistrictReport.aspx.designer.cs">
+      <DependentUpon>TotalMonthlyLabourCostByDistrictReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserListPage.aspx.cs">
       <DependentUpon>UserListPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

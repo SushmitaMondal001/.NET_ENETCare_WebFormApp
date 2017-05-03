@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using ENETCareData;
 using System.Data.Entity;
 using ENETCareModels;
+using System.Web.UI.HtmlControls;
 
 namespace ENET
 {
@@ -18,36 +19,40 @@ namespace ENET
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            userNameTextBox.Text = string.Format(User.Identity.GetUserName());
-            // userNameTextBox.Text =User.Identity.Name;
-            //userNameTextBox.Text=Session["UserName"].ToString();
-
-            // passwordTextBox.Text = string.Format(User.Identity.GetHashCode().ToString());
-           
-          //  PasswordHash
+            DisableMasterPageButtons();
+            userNameLabel.Text = string.Format(User.Identity.GetUserName());
+            if (!IsPostBack)
+            {
+                Session["PageURL"] = Request.UrlReferrer.ToString();
+            }
         }
         protected void confirmEventMethod(object sender, EventArgs e)
         {
             //Connecting Identity Database  
-            DatabaseConfig aDatabaseConfig = new DatabaseConfig();
-            string connectionString = aDatabaseConfig.Setup("Identity");
-            //To get user information we need UserManager who access data via UserStore according to IdenetityUser(I am)
-            var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(new MyDbContext(connectionString)));
-            var result = userManager.ChangePasswordAsync(User.Identity.Name, "123456789","test123");
-            //Response.Redirect(Request.RawUrl);
-            //  return RedirectToAction("Index", "ConfigUser");
-            //String userId = User.Identity.GetUserId();//"<YourLogicAssignsRequestedUserId>";
-            //String newPassword = "test@123"; //"<PasswordAsTypedByUser>";
-            //String hashedNewPassword = UserManager.PasswordHasher.HashPassword(newPassword);
-            //ApplicationUser cUser = await store.FindByIdAsync(userId);
-            //**await store.SetPasswordHashAsync(cUser, hashedNewPassword);
-            //await store.UpdateAsync(cUser)
+                DatabaseConfig aDatabaseConfig = new DatabaseConfig();
+                string connectionString = aDatabaseConfig.Setup("Identity");
+                //To get user information we need UserManager who access data via UserStore according to IdenetityUser(I am)
+                var userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>(new MyDbContext(connectionString)));
+                IdentityResult result = userManager.ChangePasswordAsync(User.Identity.GetUserId(), passwordTextBox.Text, newPasswordTextBox.Text).Result;
+                if (result.Succeeded)
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Password has been changed successfully.');window.location ='" + Session["PageURL"].ToString() + "';", true);
+                }
+                else
+                    errorMessage.Text = "Password change is unsuccessful!! " + result.Errors.FirstOrDefault();
+        }
 
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
+        }
+
+        protected void BackButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect(Session["PageURL"].ToString());
         }
     }
 }
-
-//Update user information(UserName,OldPassword)
-//Get authentication info. from UserManger
 
 

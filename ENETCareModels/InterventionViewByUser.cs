@@ -15,9 +15,11 @@ namespace ENETCareModels
         private int clientID;
         private string clientName;        
         private string interventionStatus;
+        private float labourRequired;
+        private float costRequired;
 
 
-       
+
 
         public int InterventionTypeID
         {
@@ -111,6 +113,30 @@ namespace ENETCareModels
             }
         }
 
-        
+        public float LabourRequired
+        {
+            get
+            {
+                return labourRequired;
+            }
+
+            set
+            {
+                labourRequired = value;
+            }
+        }
+
+        public float CostRequired
+        {
+            get
+            {
+                return costRequired;
+            }
+
+            set
+            {
+                costRequired = value;
+            }
+        }
     }
 }

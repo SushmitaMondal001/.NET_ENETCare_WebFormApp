@@ -9,6 +9,7 @@ using ENETCareModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -22,27 +23,38 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            if (!IsPostBack)
+            DisableMasterPageButtons();
+            if (!User.Identity.IsAuthenticated)                   
             {
-                PopulateClientDropdownList();
-                PopulateInterventionTypeDropdownList();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
 
-            }
-            if (User.Identity.IsAuthenticated)
-            {
-                userNameTextLabel.Text = User.Identity.GetUserName();
             }
             else
             {
+                if (!User.IsInRole("SiteEng"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    userNameTextLabel.Text = User.Identity.GetUserName();
+                    if (!IsPostBack)
+                    {
+                        PopulateClientDropdownList();
+                        PopulateInterventionTypeDropdownList();
 
+                    }
+                    
+                }
             }
-            //userNameTextLabel.Text = (string)Session["UserName"];
+            
         }
 
         public void PopulateClientDropdownList()
         {
-            int districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
+            int districtID = aUserManager.GetUserDistrictID(User.Identity.GetUserName());
             List<Client> aClientListByDistrict = aClientManager.GetClientListByDistrict(districtID);
             clientNameDropDownList.DataSource = aClientListByDistrict;
             clientNameDropDownList.DataTextField = "ClientName";
@@ -91,18 +103,17 @@ namespace ENETCareWebForm
 
         protected void interventionTypeDropDownList_SelectedIndexChanged(object sender, EventArgs e)
         {
-            List<InterventionType> aInterventionTypeList = anInterventionTypeManager.GetInterventionTypeList();
+            //List<InterventionType> aInterventionTypeList = anInterventionTypeManager.GetInterventionTypeList();
             int interventionTypeID = Int32.Parse(interventionTypeDropDownList.SelectedItem.Value);
             labourHourRequiredTextBox.Text = anInterventionTypeManager.GetEstLabourByIntTypeID(interventionTypeID);
             costRequiredTextBox.Text = anInterventionTypeManager.GetEstCostByIntTypeID(interventionTypeID);
         }
+       
 
-        protected void costRequiredTextBox_Click(object sender, EventArgs e)
+        public void DisableMasterPageButtons()
         {
-            //if (anInterventionManager.ValidateLabourInput(labourHourRequiredTextBox.Text))
-            //{
-            //    labourErrorMessageLabel.Text = "Sorry this field can not be emptyand can  only contain numeric input";
-            //}
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

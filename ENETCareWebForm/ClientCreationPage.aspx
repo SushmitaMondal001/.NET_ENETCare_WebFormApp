@@ -17,7 +17,7 @@
         <br />
     
         <br />
-            <asp:Label ID="errorMessageLabel" runat="server"></asp:Label>
+            <asp:Label ID="errorMessageLabel" runat="server" Style="color:darkred"></asp:Label>
         <br />
         <br />
     

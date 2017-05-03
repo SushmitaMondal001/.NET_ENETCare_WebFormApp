@@ -1,56 +1,57 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProposedInterventionListViewPage.aspx.cs" Inherits="ENETCareWebForm.ProposedInterventionListViewPage" EnableEventValidation = "false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProposedInterventionListViewPage.aspx.cs" Inherits="ENETCareWebForm.ProposedInterventionListViewPage" MasterPageFile="MasterPage.Master" EnableEventValidation = "false"%>
 
-<!DOCTYPE html>
+<%--<!DOCTYPE html>--%>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<%--<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
+</head>--%>
 
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="InterventionID" DataSourceID="SqlDataSource2" OnSelectedIndexChanged="GridView1_SelectedIndexChanged" OnRowDataBound="GridView1_RowDataBound" HeaderStyle-BackColor="#3AC0F2" HeaderStyle-ForeColor="White">
-            <Columns>
-                <asp:BoundField DataField="InterventionID" HeaderText="InterventionID" InsertVisible="False" ReadOnly="True" SortExpression="InterventionID" />
-                <asp:BoundField DataField="InterventionTypeID" HeaderText="InterventionTypeID" SortExpression="InterventionTypeID" />
-                <asp:BoundField DataField="ClientID" HeaderText="ClientID" SortExpression="ClientID" />
-                <asp:BoundField DataField="LabourRequired" HeaderText="LabourRequired" SortExpression="LabourRequired" />
-                <asp:BoundField DataField="CostRequired" HeaderText="CostRequired" SortExpression="CostRequired" />
-                <asp:BoundField DataField="UserID" HeaderText="UserID" SortExpression="UserID" />
-                <asp:BoundField DataField="InterventionDate" HeaderText="InterventionDate" SortExpression="InterventionDate" />
-                <asp:BoundField DataField="InterventionState" HeaderText="InterventionState" SortExpression="InterventionState" />
-                <asp:BoundField DataField="ApprovalUserID" HeaderText="ApprovalUserID" SortExpression="ApprovalUserID" />
-                <asp:BoundField DataField="Notes" HeaderText="Notes" SortExpression="Notes" />
-                <asp:BoundField DataField="RemainingLife" HeaderText="RemainingLife" SortExpression="RemainingLife" />
-                <asp:BoundField DataField="LatestVisitDate" HeaderText="LatestVisitDate" SortExpression="LatestVisitDate" />
-            </Columns>
+<asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <body>
+        <form id="form1">
+            <asp:Label ID="viewProposedInterventionTitleLabel" runat="server" Text="View Proposed Intervention" Font-Bold="True" Font-Size="Large"></asp:Label>
+            
+                
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <br />
+            <br />
+            <asp:Label ID="ErrorMessageLabel" runat="server" Style="color:darkred"></asp:Label>
+&nbsp;<p style="margin-left: 80px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    
+                <asp:GridView ID="interventionListGridView" AutoGenerateColumns="False" runat="server" AllowPaging="True" PageSize="5" EnableSortingAndPagingCallbacks="false" OnPageIndexChanging="interventionListGridView_PageIndexChanging" OnRowCommand="interventionListGridView_RowCommand">
+                    <Columns>
+                        <asp:TemplateField HeaderText = "Row Number" ItemStyle-Width="100">
+                             <ItemTemplate>
+                                <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
+                            </ItemTemplate>
 
-<HeaderStyle BackColor="#3AC0F2" ForeColor="White"></HeaderStyle>
-        </asp:GridView>
-
-
-
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ENETCareDatabaseConnectionString2 %>" SelectCommand="SELECT * FROM [Intervention]"></asp:SqlDataSource>
-
-
-
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ENETCareDatabaseConnectionString %>" SelectCommand="SELECT [InterventionID], [InterventionTypeID], [ClientID], [LabourRequired], [CostRequired], [UserID], [InterventionDate], [InterventionState], [ApprovalUserID], [Notes], [RemainingLife], [LatestVisitDate] FROM [Intervention]"></asp:SqlDataSource>
-    
-        <br />
-    
-        &nbsp;
-        <asp:RadioButtonList ID="RadioButtonList1" runat="server">
-            <asp:ListItem>Approved</asp:ListItem>
-            <asp:ListItem>Cancelled</asp:ListItem>
-        </asp:RadioButtonList>
-        <br />
-        <br />
-        &nbsp;
-        <asp:Button ID="ButtonSubmit" runat="server" Text="Submit" Width="93px" OnClick="ButtonSubmit_Click" />
-
-
-    </div>  
-    </form>
-</body>
-</html>
+<ItemStyle Width="100px"></ItemStyle>
+                        </asp:TemplateField> 
+                         <asp:TemplateField HeaderText="Interventions">
+                        <ItemTemplate>
+                                <asp:HiddenField runat="server" ID="interventionIDHiddenField" Value='<%# Bind("InterventionID")%>'/>
+                                <asp:Label runat="server" Text='<%#Eval("InterventionType")%>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>                        
+                       
+                        <asp:BoundField DataField="ClientName" HeaderText="Client Name" />
+                        <asp:BoundField DataField="InterventionDate" HeaderText="Intervention Date" />
+                        <asp:BoundField DataField="InterventionStatus" HeaderText="Intervention Status" />
+                        
+                        <asp:ButtonField CommandName="Approve" Text="Approve" HeaderText="Approve"  />
+                        <%--<asp:ButtonField CommandName="Complete" Text="Complete" HeaderText="Complete"  />
+                        <asp:ButtonField CommandName="Remove" Text="Cancel" HeaderText="Cancel"  />
+                        --%>
+                        
+                    </Columns>
+                </asp:GridView>
+                </p>
+            <p style="margin-left: 80px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="managerHomePageButton" runat="server" Text="Manager Home Page" OnClick="managerHomePageButton_Click" />
+                </p>
+        </form>
+    </body>
+</asp:content>

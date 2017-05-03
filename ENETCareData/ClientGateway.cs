@@ -13,6 +13,14 @@ namespace ENETCareData
         string connectionString = "";
         DatabaseConfig aDatabaseConfig = new DatabaseConfig();
 
+
+        /// <summary>
+        /// Add a new client in the Client table
+        /// </summary>
+        /// <param name="clientName"></param>
+        /// <param name="address"></param>
+        /// <param name="districtID"></param>
+        /// <returns>Returns integer value by reprenting the query success </returns>
         public int AddNewClient(string clientName, string address, int districtID)
         {
             int result = 0;
@@ -41,6 +49,12 @@ namespace ENETCareData
             }
         }
 
+
+        /// <summary>
+        /// Collect all the clients of a given param district
+        /// </summary>
+        /// <param name="districtID"></param>
+        /// <returns> ClientList</returns>
         public List<Client> GetClientListByDistrict(int districtID)
         {
             List<Client> aClientList = new List<Client>();
@@ -71,6 +85,11 @@ namespace ENETCareData
             return aClientList;
         }
 
+
+        /// <summary>
+        /// Returns all the clients of Client table
+        /// </summary>
+        /// <returns>Client List</returns>
         public List<Client> GetClientList()
         {
             List<Client> aClientList = new List<Client>();
@@ -101,6 +120,12 @@ namespace ENETCareData
             return aClientList;
         }
 
+
+        /// <summary>
+        /// Get the client name from client table for the given ClientID
+        /// </summary>
+        /// <param name="clientID"></param>
+        /// <returns>Client name</returns>
         public string GetClientNameByClientID(int clientID)
         {
             Client aClient = new Client();
@@ -128,7 +153,11 @@ namespace ENETCareData
         }
 
 
-        // Check whether the username is unique
+        /// <summary>
+        /// Check whether the Clientname is unique. For the Clients name has to be unique.
+        /// </summary>
+        /// <param name="clientName"></param>
+        /// <returns></returns>
         public bool IsUserNameExist(string clientName)
         {
             bool isExist = false;
@@ -155,33 +184,39 @@ namespace ENETCareData
             return isExist;
         }
 
-        public string GetClientNameByID(int clientID)
-        {
-            string clientName = "";
-            connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
-            using (SqlConnection connection = new SqlConnection())
-            {
-                connection.ConnectionString = connectionString;
-                string query = "SELECT * FROM [Client] WHERE ClientID=@clientID";
 
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.Add(new SqlParameter("clientID", clientID));
-                try
-                {
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        clientName = reader["ClientName"].ToString();
-                    }
-                }
-                catch
-                {
+        /// <summary>
+        /// Get the Client name
+        /// </summary>
+        /// <param name="clientID"></param>
+        /// <returns></returns>
+        //public string GetClientNameByID(int clientID)
+        //{
+        //    string clientName = "";
+        //    connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
+        //    using (SqlConnection connection = new SqlConnection())
+        //    {
+        //        connection.ConnectionString = connectionString;
+        //        string query = "SELECT * FROM [Client] WHERE ClientID=@clientID";
 
-                }
-            }
-            return clientName;
-        }
+        //        SqlCommand command = new SqlCommand(query, connection);
+        //        command.Parameters.Add(new SqlParameter("clientID", clientID));
+        //        try
+        //        {
+        //            connection.Open();
+        //            SqlDataReader reader = command.ExecuteReader();
+        //            while (reader.Read())
+        //            {
+        //                clientName = reader["ClientName"].ToString();
+        //            }
+        //        }
+        //        catch
+        //        {
+
+        //        }
+        //    }
+        //    return clientName;
+        //}
 
     }
 }

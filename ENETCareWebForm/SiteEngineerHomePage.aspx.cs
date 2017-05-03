@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Owin;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -16,18 +17,32 @@ namespace ENETCareWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            
+
+            DisableMasterPageButtons();
+            if (!User.Identity.IsAuthenticated)
             {
-                if (User.Identity.IsAuthenticated)
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
+            }
+            else
+            {
+                if (!IsPostBack)
                 {
-                    Session["UserName"] = User.Identity.GetUserName();
-                    StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-                    //LoginStatus.Visible = true;
-                    //LogoutButton.Visible = true;
-                }
-                else
-                {
-                    //LoginForm.Visible = true;
+                    if (!User.IsInRole("SiteEng"))
+                    {
+
+                        var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                        authenticationManager.SignOut();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+
+
+                    }
+                    else
+                    {
+                        StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
+                    }
+
                 }
             }
         }
@@ -52,9 +67,9 @@ namespace ENETCareWebForm
             Response.Redirect("ClientCreationPage.aspx");
         }
 
-        protected void viewListOfClientsButton_Click(object sender, EventArgs e)
+        protected void viewListOfClientsWithInterventionButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AllClientsViewPage.aspx");
+            Response.Redirect("AllClientsWithInterventionViewPage.aspx");
         }
 
         protected void createNewInterventionButton_Click(object sender, EventArgs e)
@@ -65,6 +80,16 @@ namespace ENETCareWebForm
         protected void checkOldInterventionButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("InterventionViewPage.aspx");
+        }
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
+        }
+
+        protected void viewListOfAllClientsButton_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AllClientViewPage.aspx");
         }
     }
 }

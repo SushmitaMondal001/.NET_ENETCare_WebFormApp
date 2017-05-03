@@ -43,7 +43,7 @@
             <p>
             <asp:Label ID="costRequiredLabel" runat="server" Font-Bold="True" Text="Cost Required"></asp:Label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="costRequiredTextBox" runat="server" OnTextChanged="costRequiredTextBox_Click"></asp:TextBox>
+            <asp:TextBox ID="costRequiredTextBox" runat="server"></asp:TextBox>
             </p>
             <p></p>
             <p>

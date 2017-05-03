@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -14,24 +15,31 @@ namespace ENETCareWebForm
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+
+            DisableMasterPageButtons();
+            Session["UserName"] = User.Identity.GetUserName();
+
+            if (!User.Identity.IsAuthenticated)                   
             {
-                if (User.Identity.IsAuthenticated)
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+                
+            }
+            else
+            {
+                if (!User.IsInRole("Accountant"))
                 {
-                    StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
-                    //LoginStatus.Visible = true;
-                    //LogoutButton.Visible = true;
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);                                 
                 }
                 else
                 {
-                    //LoginForm.Visible = true;
+                    StatusText.Text = string.Format("Hello {0}!!", User.Identity.GetUserName());
                 }
+                
             }
         }
-
-        protected void dropDownReportBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        } 
+        
         protected void changePasswordButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("ChangePasswordPage.aspx");
@@ -50,19 +58,19 @@ namespace ENETCareWebForm
             Response.Redirect("~/LoginPage.aspx");
         }
 
-        protected void changeDistrict_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/ChangeDistrict.aspx");
-        }
-
         protected void generateReportButton_Click(object sender, EventArgs e)
         {
             string selectedValue = dropDownReportBox.SelectedItem.Value;
-                //Request.Form[dropDownReportBox.UniqueID];
             if (selectedValue.Equals("Nothing"))
                 errorMessageLabel.Text = "Please select a report type to generate report.";
             else
                 Response.Redirect(selectedValue);
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

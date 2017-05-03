@@ -61,10 +61,10 @@ namespace ENETCareBusinessLogic
             return aClientList;
         }
 
-        public string GetClientNameByID(int clientID)
-        {
-            return aClientGateway.GetClientNameByID(clientID);
-        }
+        //public string GetClientNameByID(int clientID)
+        //{
+        //    return aClientGateway.GetClientNameByClientID(clientID);
+        //}
 
         public bool IsUserNameExist(string clientName)
         {

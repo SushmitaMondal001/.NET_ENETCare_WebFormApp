@@ -9,6 +9,7 @@ using ENETCareModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
+using System.Web.UI.HtmlControls;
 
 namespace ENETCareWebForm
 {
@@ -19,20 +20,33 @@ namespace ENETCareWebForm
         InterventionManager anInterventionManager = new InterventionManager();
         InterventionTypeManager anInterventionTypeManager = new InterventionTypeManager();
         int userID = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            userID = aUserManager.GetUserIdByName((string)Session["UserName"]);
-            if (!this.IsPostBack)
+            DisableMasterPageButtons();
+            if (!User.Identity.IsAuthenticated)          
             {
-                this.BindInterventionListGrid();
-            }
-            //if (User.Identity.IsAuthenticated)
-            //{
-            //    userID = aUserManager.GetUserIdByName(User.Identity.GetUserName());
-            //}
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
 
-            
-            
+            }
+            else
+            {
+                if (!User.IsInRole("SiteEng"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    userID = aUserManager.GetUserIdByName(User.Identity.GetUserName());
+                    if (!this.IsPostBack)
+                    {
+                        this.BindInterventionListGrid();
+                    }
+                }
+            }                     
+    
         }
 
         public void BindInterventionListGrid()
@@ -61,7 +75,7 @@ namespace ENETCareWebForm
                 anInterventionViewByUser.InterventionType = anInterventionTypeManager.GetInterventionNameByTypeId(anIntervention.InterventionTypeID);
                 anInterventionViewByUser.InterventionDate = anIntervention.InterventionDate;
                 anInterventionViewByUser.ClientID = anIntervention.ClientID;
-                anInterventionViewByUser.ClientName = aClientManager.GetClientNameByID(anIntervention.ClientID);                                    
+                anInterventionViewByUser.ClientName = aClientManager.GetClientNameByClientID(anIntervention.ClientID);                                    
                 anInterventionViewByUser.InterventionStatus = anIntervention.InterventionState;
                 anInterventionViewByUserList.Add(anInterventionViewByUser);
                 
@@ -96,26 +110,27 @@ namespace ENETCareWebForm
                 string interventionID = interventionIDHiddenField.Value;
                 if ((e.CommandName == "Complete") && ((interventionStatus.Equals("Approved")) || (interventionStatus.Equals("Proposed"))))
                 {
-                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Completed");
+                    string result = anInterventionManager.UpdateApprovedInterventionStatusByID(Int32.Parse(interventionID), "Completed");                    
                     BindInterventionListGrid();
                     ErrorMessageLabel.Text = result;
                 }
-                else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Proposed")))
-                {
-                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Approved");
-                    BindInterventionListGrid();
-                    ErrorMessageLabel.Text = result;
-                }
+                //else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Proposed")))
+                //{
+                //    string result = anInterventionManager.UpdateApprovedInterventionStatusByID(Int32.Parse(interventionID), "Approved");
+                //    //, userID
+                //    BindInterventionListGrid();
+                //    ErrorMessageLabel.Text = result;
+                //}
                 else if ((e.CommandName == "Remove") && ((interventionStatus.Equals("Approved")) || (interventionStatus.Equals("Proposed"))))
                 {
-                    string result = anInterventionManager.UpdateInterventionStatusByID(Int32.Parse(interventionID), "Cancelled");
+                    string result = anInterventionManager.UpdateApprovedInterventionStatusByID(Int32.Parse(interventionID), "Cancelled");                    
                     BindInterventionListGrid();
                     ErrorMessageLabel.Text = "Intervention Cancelled";
                 }
-                else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Approved")))
-                {
-                    ErrorMessageLabel.Text = "The Intervention is already Approved";
-                }
+                //else if ((e.CommandName == "Approve") && (interventionStatus.Equals("Approved")))
+                //{
+                //    ErrorMessageLabel.Text = "The Intervention is already Approved";
+                //}
                 else if (interventionStatus.Equals("Completed"))
                 {
                     ErrorMessageLabel.Text = "The Intervention is already Completed";
@@ -123,6 +138,11 @@ namespace ENETCareWebForm
                 
             }
 
+        }
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

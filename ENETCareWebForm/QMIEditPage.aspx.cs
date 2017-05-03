@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ENETCareWebForm
@@ -21,10 +22,28 @@ namespace ENETCareWebForm
         protected void Page_Load(object sender, EventArgs e)
         {
             //Response.Write(Session["InterventionID"].ToString());
-            interventionID = Int32.Parse(Session["InterventionID"].ToString());
-            if (!IsPostBack)
+            DisableMasterPageButtons();
+            if (!User.Identity.IsAuthenticated)
             {
-                PopulateFields();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
+            }
+            else
+            {
+                if (!User.IsInRole("SiteEng"))
+                {
+                    var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                    authenticationManager.SignOut();
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                }
+                else
+                {
+                    interventionID = Int32.Parse(Session["InterventionID"].ToString());
+                    if (!IsPostBack)
+                    {
+                        PopulateFields();
+                    }
+                }
             }
         }
 
@@ -38,7 +57,7 @@ namespace ENETCareWebForm
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Quality management information update is successful.');window.location ='AllClientsViewPage.aspx';", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Quality management information update is successful.');window.location ='AllClientsWithInterventionViewPage.aspx';", true);
                 //Response.Redirect("SiteEngineerHomePage.aspx");
             }
         }
@@ -65,12 +84,26 @@ namespace ENETCareWebForm
                 notesTextBox.Text = anIntervention.Notes;
             userNameValueLabel.Text = aUserManager.GetUserNameByUserID(anIntervention.UserID);
             if (!(anIntervention.RemainingLife.Equals(null))) 
-                remainingLifeTextBox.Text = anIntervention.RemainingLife.ToString(); 
+                remainingLifeTextBox.Text = anIntervention.RemainingLife.ToString();
+
+            // Disable remaining life button if [anIntervention.InterventionState="Proposed"]
+            if (anIntervention.InterventionState.Equals("Proposed"))
+            {
+                remainingLifeTextBox.Enabled = false;
+                remainingLifeTextBox.Text = "";
+                errorMessageLabel.Text = "Remaining life can't be changed for Proposed Intervention. Notes can be added.";
+            }
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AllClientsViewPage.aspx");
+            Response.Redirect("AllClientsWithInterventionViewPage.aspx");
+        }
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

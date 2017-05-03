@@ -26,9 +26,9 @@ namespace ENETCareBusinessLogic
             }
             else if (!(ValidateLabourInput(labour)) || (!ValidateCostInput(cost)))
             {
-                return "Labour and cost field must be less than 360 hour & A$100000 respectively";
+                return "Labour&cost must be positve number and less than 360 hour & A$100000 respectively";
             }
-            else if((((float.Parse(labour)) >= maxHour) || ((float.Parse(cost)) >= maxCost)) && !(interventionState.Equals("Proposed")))
+            else if ((((float.Parse(labour)) > maxHour) || ((float.Parse(cost)) > maxCost)) && !(interventionState.Equals("Proposed")))
             {
                 return "Sorry!You can only approve upto " + maxHour + " Hour and A$" + maxCost;
             }
@@ -50,15 +50,19 @@ namespace ENETCareBusinessLogic
 
                 return message;
             }
-                    
-            
+
+
 
         }
 
         public bool ValidateLabourInput(string input)
         {
-            
+            float i = 0;
             if (input.Equals(""))
+            {
+                return false;
+            }
+            else if (!(float.TryParse(input, out i)))
             {
                 return false;
             }
@@ -66,30 +70,28 @@ namespace ENETCareBusinessLogic
             {
                 return false;
             }
-            else
-            {
-                return IsDigitsOnly(input);           }
 
-            
+            return true;
+
         }
 
         public bool ValidateCostInput(string input)
         {
-
+            float i = 0;
             if (input.Equals(""))
+            {
+                return false;
+            }
+            else if(!(float.TryParse(input,out i)))
             {
                 return false;
             }
             else if ((float.Parse(input) < 0) || (float.Parse(input) > 100000))
             {
                 return false;
-            }
-            else
-            {
-                return IsDigitsOnly(input);
-            }
+            }            
 
-
+            return true;
         }
 
         public bool ValidateDateFormat(string input)
@@ -98,18 +100,7 @@ namespace ENETCareBusinessLogic
             bool date = DateTime.TryParseExact(input, "yyyy/MM/dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out dateValue);
             return date;
         }
-
-        public bool IsDigitsOnly(string str)
-        {
-            foreach (char c in str)
-            {
-                if (c < '0' || c > '9')
-                    return false;
-            }
-
-            return true;
-        }
-
+       
         public List<Intervention> GetInterventionListByClient(int clientID)
         {
             List<Intervention> anInterventionList = anInterventionGateway.GetInterventionListByClient(clientID);
@@ -123,7 +114,6 @@ namespace ENETCareBusinessLogic
             return anInterventionList;
         }
 
-
         public Intervention GetInterventionListByInterventionID(int interventionID)
         {
             Intervention anIntervention = anInterventionGateway.GetInterventionListByInterventionID(interventionID);
@@ -132,13 +122,19 @@ namespace ENETCareBusinessLogic
 
         public string UpdateIntervention(int interventionID, string lastEditDate, string notes, string remainingLife)
         {
+            int result = 0;
             string message = "Quality management information update is unsuccessful.";
-            string isValidInput = IsValidRemainingLife(remainingLife);
+            string isValidInput = IsValidInput(remainingLife, notes);
             if (isValidInput.Equals("Valid"))
             {
-                int remainingLifeInt = Int32.Parse(remainingLife);
-                int result = anInterventionGateway.UpdateIntervention(interventionID, lastEditDate, notes, remainingLifeInt);
-                if(result > 0)
+                if (!remainingLife.Equals(""))
+                {
+                    int remainingLifeInt = Int32.Parse(remainingLife);
+                    result = anInterventionGateway.UpdateIntervention(interventionID, lastEditDate, notes, remainingLifeInt);
+                }
+                else
+                    result = anInterventionGateway.UpdateIntervention(interventionID, lastEditDate, notes, null);
+                if (result > 0)
                     message = "Quality management information update is successful.";
             }
             else
@@ -148,11 +144,11 @@ namespace ENETCareBusinessLogic
             return message;
         }
 
-        public string UpdateInterventionStatusByID(int interventionID, string status)
+        public string UpdateInterventionStatusByID(int interventionID, string status, int? approvalUserID )
         {
             string message = "Intervention Status Unchanged";
 
-            int result = anInterventionGateway.UpdateInterventionStatusByID(interventionID, status);
+            int result = anInterventionGateway.UpdateInterventionStatusByID(interventionID, status, approvalUserID);
             if (result > 0)
             {
                 message = "Intervention Status Changed";
@@ -160,15 +156,34 @@ namespace ENETCareBusinessLogic
             return message;
         }
 
-        public string IsValidRemainingLife(string remainingLife)
+        public string UpdateApprovedInterventionStatusByID(int interventionID, string status)
+        {
+            string message = "Intervention Status Unchanged";
+
+            int result = anInterventionGateway.UpdateApprovedInterventionStatusByID(interventionID, status);
+            if (result > 0)
+            {
+                message = "Intervention Status Changed";
+            }
+            return message;
+        }
+
+        public string IsValidInput(string remainingLife, string notes)
         {
             string result = "Valid";
             int remainingLifeInt;
-            bool isInt = Int32.TryParse(remainingLife, out remainingLifeInt);
-            if (isInt == false)
-                return "Remaining life must be integer.";
-            else if (remainingLifeInt < 0 || remainingLifeInt > 100)
-                return "Remaining life must be between 0 to 100.";
+            if (!remainingLife.Equals(""))
+            {
+                bool isInt = Int32.TryParse(remainingLife, out remainingLifeInt);
+                // Check remaining life
+                if (isInt == false)
+                    return "Remaining life must be integer.";
+                else if (remainingLifeInt < 0 || remainingLifeInt > 100)
+                    return "Remaining life must be between 0 to 100.";
+            }
+            // Check notes length
+            if (notes.Length > 300000)
+                return "Notes section is too lengthy. Please make it short.";
             return result;
         }
 
@@ -178,10 +193,38 @@ namespace ENETCareBusinessLogic
         }
 
 
-        public List<SiteEngineerTotalCost> GetTotalCostList()
+        public List<SiteEngineerTotalCost> GetTotalCostList(string reportType)
         {
-            return anInterventionGateway.GetTotalCostList();
+            return anInterventionGateway.GetTotalCostList(reportType);
         }
 
+
+        public List<CostByDistrict> GetCostLabourListByDistrict()
+        {
+            return anInterventionGateway.GetCostLabourListByDistrict();
+        }
+
+        public List<MonthlyCostsByDistrict> GetMonthlyCostLabourListByDistrict(string district)
+        {
+            return anInterventionGateway.GetMonthlyCostLabourListByDistrict(district);
+        }
+
+        public List<Intervention> GetInterventionListByApprovalUserID(int userID)
+        {
+            return anInterventionGateway.GetInterventionListByApprovalUserID(userID);
+        }
+
+
+
+        public bool IsEligibleForProposedList(string interventionStatus, float interventionCostRequired, float interventionLabourRequired, float userCostLimit, float userLabourLimit)
+        {
+            if (!(interventionStatus.Equals("Proposed")))
+                return false;
+            else if (interventionCostRequired > userCostLimit)
+                return false;
+            else if (interventionLabourRequired > userLabourLimit)
+                return false;
+            return true;
+        }
     }
 }

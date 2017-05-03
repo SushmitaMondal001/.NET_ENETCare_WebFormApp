@@ -5,7 +5,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin.Security;
 
 namespace ENETCareWebForm
 {
@@ -20,12 +24,36 @@ namespace ENETCareWebForm
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Response.Write((string)Session["UserName"]);
-            districtID = aUserManager.GetUserDistrictID((string)Session["UserName"]);
-            if (!this.IsPostBack)
+            DisableMasterPageButtons();
+            districtID = aUserManager.GetUserDistrictID(User.Identity.GetUserName());
+            if (!User.Identity.IsAuthenticated)
             {
-                this.BindClientListGrid();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('You need to Login first');window.location ='/LoginPage.aspx';", true);
+
             }
+            else
+            {
+                if (!this.IsPostBack)
+
+                {
+                    if (!User.IsInRole("SiteEng"))
+                    {
+                        var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
+                        authenticationManager.SignOut();
+                        ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Unauthorised Access');window.location ='/LoginPage.aspx';", true);
+                    }
+                    else
+                    {
+                        districtID = aUserManager.GetUserDistrictID(User.Identity.GetUserName());
+                        if (!this.IsPostBack)
+                        {
+                            this.BindClientListGrid();
+                        }
+                    }
+
+                }
+            }
+            
         }
 
         public void BindClientListGrid()
@@ -59,6 +87,7 @@ namespace ENETCareWebForm
                     aClientWithIntervention.InterventionTypeID = anIntervention.InterventionTypeID;
                     aClientWithIntervention.Intervention = anInterventionTypeManager.GetInterventionNameByTypeId(anIntervention.InterventionTypeID);
                     aClientWithIntervention.InterventionStatus = anIntervention.InterventionState;
+                    if(!(aClientWithIntervention.InterventionStatus).Equals("Cancelled"))
                     aClientWithInterventionList.Add(aClientWithIntervention);
                 }
             }
@@ -82,6 +111,13 @@ namespace ENETCareWebForm
         protected void siteEngineerHomePageButton_Click(object sender, EventArgs e)
         {
             Response.Redirect("SiteEngineerHomePage.aspx");
+        }
+
+
+        public void DisableMasterPageButtons()
+        {
+            HtmlContainerControl navDiv = (HtmlContainerControl)this.Master.FindControl("nav");
+            navDiv.Visible = false;
         }
     }
 }

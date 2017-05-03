@@ -1,29 +1,60 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserListPage.aspx.cs" Inherits="ENETCareWebForm.UserListPage" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserListPage.aspx.cs" Inherits="ENETCareWebForm.UserListPage" EnableEventValidation = "false" MasterPageFile="MasterPage.Master" %>
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
-                <Columns>
-                    <asp:BoundField DataField="UserName" HeaderText="UserName" SortExpression="UserName" />
-                    <asp:BoundField DataField="UserType" HeaderText="UserType" SortExpression="UserType" />
-                    <asp:BoundField DataField="DistrictID" HeaderText="DistrictID" SortExpression="DistrictID" />
-                    <asp:BoundField DataField="MaxHour" HeaderText="MaxHour" SortExpression="MaxHour" />
-                    <asp:BoundField DataField="MaxCost" HeaderText="MaxCost" SortExpression="MaxCost" />
-                </Columns>
-            </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ENETCareDatabaseConnectionString %>" SelectCommand="SELECT [UserName], [UserType], [DistrictID], [MaxHour], [MaxCost] FROM [User] WHERE ([UserType] NOT LIKE '%' + @UserType + '%')">
-                <SelectParameters>
-                    <asp:Parameter DefaultValue="Accountant" Name="UserType" Type="String" />
-                </SelectParameters>
-            </asp:SqlDataSource>
-        </div>
-    </form>
-</body>
-</html>
+<asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <body>
+        <form id="form1" >
+            <asp:Label ID="userListTitleLabel" runat="server" Font-Size="X-Large" Text="Site Engineer and Manager List"></asp:Label>
+            <p>
+                &nbsp;</p>
+            <p style="margin-left: 80px">
+    &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="ErrorMessageLabel" runat="server" Style="color:darkred"></asp:Label>
+            </p>
+            <p style="margin-left: 80px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:GridView ID="userListGridView"  AutoGenerateColumns="false" runat="server" AllowPaging="True" OnSelectedIndexChanged="userListGridView_SelectedIndexChanged" PageSize="5" OnPageIndexChanging="userListGridView_PageIndexChanging" EnableSortingAndPagingCallbacks="false" > <%----%> 
+                    <Columns>
+                        <asp:TemplateField HeaderText = "Row Number" ItemStyle-Width="100">
+                             <ItemTemplate>
+                                <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:TemplateField HeaderText="User Name">
+                        <ItemTemplate>
+                                <asp:HiddenField runat="server" ID="userIDHiddenField" Value='<%#Eval("UserID")%>'/>
+                                <asp:Label ID="userNameLabel" runat="server" Text='<%#Eval("UserName")%>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>  
+                        
+                        <asp:TemplateField HeaderText="User Role">
+                        <ItemTemplate>
+                                <%--<asp:HiddenField runat="server" ID="userTypeHiddenField" Value='<%#Eval("UserType")%>'/>--%>
+                                <asp:Label ID="userTypeLabel" runat="server" Text='<%#Eval("UserType")%>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>              
+            
+                        <%--<asp:BoundField ID="userType" DataField="UserType" HeaderText="User Role" />--%>
+
+                        <asp:TemplateField HeaderText="District">
+                        <ItemTemplate>
+                                <asp:HiddenField runat="server" ID="districtIDHiddenField" Value='<%#Eval("DistrictID")%>'/>
+                                <asp:Label runat="server" Text='<%#Eval("DistrictName")%>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:ButtonField Text="Change District" CommandName="Select" ItemStyle-Width="150" />
+                       </Columns>
+                </asp:GridView>
+            </p>
+            <p style="margin-left: 80px">
+                &nbsp;</p>
+            <p style="margin-left: 80px">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:Button ID="accountantHomePageButton" runat="server" Text="Accountant Home Page" OnClick="accountantHomePageButton_Click"/>
+            </p>
+            <p style="margin-left: 1080px">
+                &nbsp;</p>
+        </form>
+    </body>
+</asp:Content>

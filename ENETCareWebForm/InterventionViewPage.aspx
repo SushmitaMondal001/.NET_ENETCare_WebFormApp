@@ -36,7 +36,7 @@
                         <asp:BoundField DataField="InterventionDate" HeaderText="Intervention Date" />
                         <asp:BoundField DataField="InterventionStatus" HeaderText="Intervention Status" />
                         
-                        <asp:ButtonField CommandName="Approve" Text="Approve" HeaderText="Approve"  />
+                        <%--<asp:ButtonField CommandName="Approve" Text="Approve" HeaderText="Approve"  />--%>
                         <asp:ButtonField CommandName="Complete" Text="Complete" HeaderText="Complete"  />
                         <asp:ButtonField CommandName="Remove" Text="Cancel" HeaderText="Cancel"  />
                         

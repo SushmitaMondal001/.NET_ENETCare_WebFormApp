@@ -1,18 +1,18 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AllClientsViewPage.aspx.cs" Inherits="ENETCareWebForm.AllClientsViewPage" MasterPageFile="~/MasterPage.Master" EnableEventValidation = "false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AllClientsWithInterventionViewPage.aspx.cs" Inherits="ENETCareWebForm.AllClientsViewPage" MasterPageFile="~/MasterPage.Master" EnableEventValidation = "false" %>
 
 
 <asp:Content ID="contentLogin" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <body>
         <form id="form1" >
-            <asp:Label ID="ClientListTitleLabel" runat="server" Font-Size="X-Large" Text="All Client List"></asp:Label>
+            <asp:Label ID="ClientListTitleLabel" runat="server" Font-Size="X-Large" Text="All Client List With Interventions"></asp:Label>
             <p>
                 &nbsp;</p>
             <p style="margin-left: 80px">
-    &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="ErrorMessageLabel" runat="server"></asp:Label>
+    &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="ErrorMessageLabel" runat="server" Style="color:darkred"></asp:Label>
             </p>
             <p style="margin-left: 80px">
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:GridView ID="clientListGridView"  AutoGenerateColumns="false" runat="server" AllowPaging="True" OnSelectedIndexChanged="clientListGridView_SelectedIndexChanged" PageSize="4" OnPageIndexChanging="clientListGridView_PageIndexChanging" EnableSortingAndPagingCallbacks="false" > <%----%> 
+                <asp:GridView ID="clientListGridView"  AutoGenerateColumns="false" runat="server" AllowPaging="True" OnSelectedIndexChanged="clientListGridView_SelectedIndexChanged" PageSize="5" OnPageIndexChanging="clientListGridView_PageIndexChanging" EnableSortingAndPagingCallbacks="false" > <%----%> 
                     <Columns>
                         <asp:TemplateField HeaderText = "Row Number" ItemStyle-Width="100">
                              <ItemTemplate>

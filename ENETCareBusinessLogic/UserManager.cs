@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ENETCareData;
+using ENETCareModels;
 
 namespace ENETCareBusinessLogic
 {
@@ -36,6 +37,18 @@ namespace ENETCareBusinessLogic
         {
             return anUserGateway.GetMaxCostByUserID(userID);
         }
+        public List<User> GetUserListByUserType(string userType)
+        {
+            return anUserGateway.GetUserListByUserType(userType);
+        }
 
+        public string UpdateUserDistrict(int userID, int districtID)
+        {
+            string message = "District change is unsuccessful.";
+            int result = anUserGateway.UpdateUserDistrict(userID, districtID);
+            if (result > 0)
+                message = "District change is successful.";
+            return message;
+        }
     }
 }

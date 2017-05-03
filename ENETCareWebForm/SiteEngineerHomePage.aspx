@@ -16,6 +16,12 @@
             text-align: left;
         }
     </style>
+         <script type = "text/javascript" >
+       function preventBack(){window.history.forward();}
+        setTimeout("preventBack()", 0);
+        window.onunload=function(){null};
+    </script>
+     
 </head>
     <body>
     <form id="form1" >   
@@ -29,11 +35,15 @@
             <br />
             <strong><span class="auto-style2">
             <asp:Button ID="createNewClientButton" runat="server" Height="31px" Text="Create New Client" Width="232px" OnClick="createNewClientButton_Click" />
+&nbsp;<br />  
+                <br />
+            <asp:Button ID="viewListOfAllClientsButton" runat="server" Height="30px" Text="View List of All Clients" Width="232px" OnClick="viewListOfAllClientsButton_Click"  />
 &nbsp;<br />
                 <br />
-            <asp:Button ID="viewListOfClientsButton" runat="server" Height="30px" Text="View List of Clients" Width="232px" OnClick="viewListOfClientsButton_Click" />
+            <asp:Button ID="viewListOfClientsButton" runat="server" Height="30px" Text="View List of Clients With Interventions" Width="232px" OnClick="viewListOfClientsWithInterventionButton_Click"/>
 &nbsp;<br />
                 <br />
+            
             <asp:Button ID="createNewInterventionButton" runat="server" Height="27px" Text="Create New Intervention" Width="230px" OnClick="createNewInterventionButton_Click" />
                 <br />
             <br />
