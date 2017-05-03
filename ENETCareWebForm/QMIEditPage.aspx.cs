@@ -57,7 +57,7 @@ namespace ENETCareWebForm
             }
             else
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Quality management information update is successful.');window.location ='AllClientsViewPage.aspx';", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('Quality management information update is successful.');window.location ='AllClientsWithInterventionViewPage.aspx';", true);
                 //Response.Redirect("SiteEngineerHomePage.aspx");
             }
         }
@@ -89,7 +89,7 @@ namespace ENETCareWebForm
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AllClientsViewPage.aspx");
+            Response.Redirect("AllClientsWithInterventionViewPage.aspx");
         }
 
         public void DisableMasterPageButtons()
