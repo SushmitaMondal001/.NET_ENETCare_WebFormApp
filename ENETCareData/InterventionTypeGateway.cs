@@ -15,6 +15,10 @@ namespace ENETCareData
         DatabaseConfig aDatabaseConfig = new DatabaseConfig();
 
 
+        /// <summary>
+        /// Get all the lists from InterventionType table
+        /// </summary>
+        /// <returns></returns>
         public List<InterventionType> GetInterventionTypeList()
         {
             List<InterventionType> aInterventionTypeList = new List<InterventionType>();
@@ -46,6 +50,12 @@ namespace ENETCareData
 
         }
 
+
+        /// <summary>
+        /// Fetch the InterventionTypeId from database according to param InterventionTypeName
+        /// </summary>
+        /// <param name="interventionTypeName"></param>
+        /// <returns></returns>
         public int GetInterventionTypeIdByName(string interventionTypeName)
         {
             int interventionTypeID = 0;
@@ -73,6 +83,13 @@ namespace ENETCareData
             }
             return interventionTypeID;
         }
+
+
+        /// <summary>
+        /// Get default value of labour for a specific intervention
+        /// </summary>
+        /// <param name="interventionTypeID"></param>
+        /// <returns></returns>
         public string GetEstLabourByIntTypeID(int interventionTypeID)
         {
             string estimatedLabour = "";
@@ -101,6 +118,12 @@ namespace ENETCareData
             return estimatedLabour;
         }
 
+
+        /// <summary>
+        /// Get default cost for a specific intervention
+        /// </summary>
+        /// <param name="interventionTypeID"></param>
+        /// <returns></returns>
         public string GetEstCostByIntTypeID(int interventionTypeID)
         {
             string estimatedCost = "";
@@ -129,6 +152,11 @@ namespace ENETCareData
             return estimatedCost;
         }
 
+        /// <summary>
+        /// Get the name of the intervention bythe id of that intervention
+        /// </summary>
+        /// <param name="interventionTypeID"></param>
+        /// <returns></returns>
         public string GetInterventionNameByTypeId(int interventionTypeID)
         {
             string interventionName = "";

@@ -61,7 +61,7 @@
             <asp:Label ID="userNameValueLabel" runat="server"></asp:Label>
         </p>
         <p style="margin-left: 40px">
-            &nbsp;<asp:Label ID="notesLabel" runat="server" Text="Notes:"></asp:Label>
+            &nbsp;<asp:Label ID="notesLabel" runat="server" Text="Notes:(3000 Words max)"></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="notesTextBox" runat="server" TextMode="MultiLine" Height="112px" Width="464px"></asp:TextBox>
         </p>

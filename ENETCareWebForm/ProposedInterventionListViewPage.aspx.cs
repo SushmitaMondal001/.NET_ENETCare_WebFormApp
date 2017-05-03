@@ -57,7 +57,10 @@ namespace ENETCareWebForm
             List<InterventionViewByUser> anInterventionViewByUserList = new List<InterventionViewByUser>();
             anInterventionViewByUserList = GetListWithValue(anInterventionViewByUserList);
             if (anInterventionViewByUserList.Count == 0)
+            {
                 ErrorMessageLabel.Text = "No Intervention was found !!";
+                interventionListGridView.Visible = false;
+            }
             else
             {
                 interventionListGridView.DataSource = anInterventionViewByUserList;
