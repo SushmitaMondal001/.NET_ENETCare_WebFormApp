@@ -13,6 +13,14 @@ namespace ENETCareData
         string connectionString = "";
         DatabaseConfig aDatabaseConfig = new DatabaseConfig();
 
+
+        /// <summary>
+        /// Add a new client in the Client table
+        /// </summary>
+        /// <param name="clientName"></param>
+        /// <param name="address"></param>
+        /// <param name="districtID"></param>
+        /// <returns>Returns integer value by reprenting the query success </returns>
         public int AddNewClient(string clientName, string address, int districtID)
         {
             int result = 0;
@@ -41,6 +49,12 @@ namespace ENETCareData
             }
         }
 
+
+        /// <summary>
+        /// Collect all the clients of a given param district
+        /// </summary>
+        /// <param name="districtID"></param>
+        /// <returns> ClientList</returns>
         public List<Client> GetClientListByDistrict(int districtID)
         {
             List<Client> aClientList = new List<Client>();
@@ -71,6 +85,11 @@ namespace ENETCareData
             return aClientList;
         }
 
+
+        /// <summary>
+        /// Returns all the clients of Client table
+        /// </summary>
+        /// <returns>Client List</returns>
         public List<Client> GetClientList()
         {
             List<Client> aClientList = new List<Client>();
@@ -100,6 +119,7 @@ namespace ENETCareData
             }
             return aClientList;
         }
+
 
         public string GetClientNameByClientID(int clientID)
         {
