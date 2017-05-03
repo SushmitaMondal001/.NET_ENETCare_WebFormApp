@@ -15,6 +15,18 @@ namespace ENETCareData
         DatabaseConfig aDatabaseConfig = new DatabaseConfig();
         UserGateway aUserGateway = new UserGateway();
 
+
+        /// <summary>
+        /// Add new intervention in the database with the param valus
+        /// </summary>
+        /// <param name="interventionTypeID"></param>
+        /// <param name="clientID"></param>
+        /// <param name="labourRequired"></param>
+        /// <param name="costRequired"></param>
+        /// <param name="userID"></param>
+        /// <param name="interventionDate"></param>
+        /// <param name="interventionState"></param>
+        /// <returns>Success indicator as integer</returns>
         public int AddNewIntervention(int interventionTypeID, int clientID, float labourRequired, float costRequired, int userID, string interventionDate, string interventionState)
         {
             int result = 0;
@@ -46,6 +58,12 @@ namespace ENETCareData
             }
         }
 
+
+        /// <summary>
+        /// Fetch the list of interventions for a specific client
+        /// </summary>
+        /// <param name="clientID"></param>
+        /// <returns></returns>
         public List<Intervention> GetInterventionListByClient(int clientID)
         {
             DateTime dateValue;
@@ -84,6 +102,11 @@ namespace ENETCareData
         }
 
 
+        /// <summary>
+        /// Get the list of interventions created by a specific SiteEngineer (User)
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public List<Intervention> GetInterventionListByUserID(int userID)
         {
             DateTime dateValue;
@@ -119,6 +142,13 @@ namespace ENETCareData
             }
             return anInterventionList;
         }
+
+
+        /// <summary>
+        /// Fetch details of an intervention by the intervention ID
+        /// </summary>
+        /// <param name="interventionID"></param>
+        /// <returns></returns>
         public Intervention GetInterventionListByInterventionID(int interventionID)
         {
             DateTime dateValue;
@@ -176,6 +206,13 @@ namespace ENETCareData
         }
 
 
+        /// <summary>
+        /// Update the intervention status for proposed intervention to a manager
+        /// </summary>
+        /// <param name="interventionID"></param>
+        /// <param name="status"></param>
+        /// <param name="approvalUserID"></param>
+        /// <returns></returns>
         public int UpdateInterventionStatusByID(int interventionID, string status, int? approvalUserID)
         {
             int result = 0;
@@ -203,6 +240,13 @@ namespace ENETCareData
             return result;
         }
 
+
+        /// <summary>
+        /// Update interventen status which has been already approved by siteEngineer or manager
+        /// </summary>
+        /// <param name="interventionID"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
         public int UpdateApprovedInterventionStatusByID(int interventionID, string status)
         {
             int result = 0;
@@ -231,6 +275,14 @@ namespace ENETCareData
         }
 
 
+        /// <summary>
+        /// Update an intervention while re-visiting
+        /// </summary>
+        /// <param name="interventionID"></param>
+        /// <param name="lastEditDate"></param>
+        /// <param name="notes"></param>
+        /// <param name="remainingLife"></param>
+        /// <returns></returns>
         public int UpdateIntervention(int interventionID, string lastEditDate, string notes, int? remainingLife)
         {
             int result = 0;
@@ -264,6 +316,12 @@ namespace ENETCareData
             }
         }
 
+
+        /// <summary>
+        /// Update the status of an intervention
+        /// </summary>
+        /// <param name="changedStatus"></param>
+        /// <param name="interventionID"></param>
         public void UpdateInterventionStatus(string changedStatus, int interventionID)
         {
             connectionString = aDatabaseConfig.Setup("ENETCareDatabase");
@@ -284,6 +342,12 @@ namespace ENETCareData
             }
         }
 
+
+        /// <summary>
+        /// Get total cost list for an User. Cost list will be calculated depending on the report Type (SUM or AVG)
+        /// </summary>
+        /// <param name="reportType"></param>
+        /// <returns></returns>
         public List<SiteEngineerTotalCost> GetTotalCostList(string reportType)
         {
             List<SiteEngineerTotalCost> aSiteEngineerTotalCostList = new List<SiteEngineerTotalCost>();
@@ -325,6 +389,11 @@ namespace ENETCareData
             return aSiteEngineerTotalCostList;
         }
 
+
+        /// <summary>
+        /// Get the list of costs and labours grouped by district
+        /// </summary>
+        /// <returns></returns>
         public List<CostByDistrict> GetCostLabourListByDistrict()
         {
             List<CostByDistrict> aCostByDistrictList = new List<CostByDistrict>();
@@ -358,6 +427,11 @@ namespace ENETCareData
         }
 
 
+        /// <summary>
+        /// Get the monthly cost of a district
+        /// </summary>
+        /// <param name="district"></param>
+        /// <returns></returns>
         public List<MonthlyCostsByDistrict> GetMonthlyCostLabourListByDistrict(string district)
         {
             List<MonthlyCostsByDistrict> aMonthlyCostByDistrictList = new List<MonthlyCostsByDistrict>();
@@ -392,6 +466,12 @@ namespace ENETCareData
             return aMonthlyCostByDistrictList;
         }
 
+
+        /// <summary>
+        /// Fetch Approved Intervention list which have been approved by the param userID
+        /// </summary>
+        /// <param name="userID"></param>
+        /// <returns></returns>
         public List<Intervention> GetInterventionListByApprovalUserID(int userID)
         {
             DateTime dateValue;

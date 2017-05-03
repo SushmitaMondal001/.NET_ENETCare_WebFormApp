@@ -75,7 +75,7 @@ namespace ENETCareWebForm
                 anInterventionViewByUser.InterventionType = anInterventionTypeManager.GetInterventionNameByTypeId(anIntervention.InterventionTypeID);
                 anInterventionViewByUser.InterventionDate = anIntervention.InterventionDate;
                 anInterventionViewByUser.ClientID = anIntervention.ClientID;
-                anInterventionViewByUser.ClientName = aClientManager.GetClientNameByID(anIntervention.ClientID);                                    
+                anInterventionViewByUser.ClientName = aClientManager.GetClientNameByClientID(anIntervention.ClientID);                                    
                 anInterventionViewByUser.InterventionStatus = anIntervention.InterventionState;
                 anInterventionViewByUserList.Add(anInterventionViewByUser);
                 

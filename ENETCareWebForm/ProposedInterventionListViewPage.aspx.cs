@@ -80,7 +80,7 @@ namespace ENETCareWebForm
                     anInterventionViewByUser.InterventionType = anInterventionTypeManager.GetInterventionNameByTypeId(anIntervention.InterventionTypeID);
                     anInterventionViewByUser.InterventionDate = anIntervention.InterventionDate;
                     anInterventionViewByUser.ClientID = aClient.ClientID;
-                    anInterventionViewByUser.ClientName = aClientManager.GetClientNameByID(aClient.ClientID);
+                    anInterventionViewByUser.ClientName = aClientManager.GetClientNameByClientID(aClient.ClientID);
                     anInterventionViewByUser.CostRequired = anIntervention.CostRequired;
                     anInterventionViewByUser.LabourRequired = anIntervention.LabourRequired;
                     if (anInterventionManager.IsEligibleForProposedList(anInterventionViewByUser.InterventionStatus,
